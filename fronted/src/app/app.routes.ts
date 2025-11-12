@@ -4,6 +4,9 @@ import { Rolregistrar } from './components/rol/rolregistrar/rolregistrar';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { UsuarioregistrarComponent } from './components/usuario/usuarioregistrar/usuarioregistrar.component';
 import { UsuariolistarComponent } from './components/usuario/usuariolistar/usuariolistar.component';
+import { Ingrediente } from './components/ingrediente/ingrediente';
+import { Ingredientelistar } from './components/ingrediente/ingredientelistar/ingredientelistar';
+import { Ingredienteregistrar } from './components/ingrediente/ingredienteregistrar/ingredienteregistrar';
 export const routes: Routes = 
 [
 {path:'roles',component:Rol,
@@ -19,6 +22,16 @@ export const routes: Routes =
         { path: '', component: UsuariolistarComponent },
       { path: 'nuevo', component: UsuarioregistrarComponent},
       { path: ':id', component: UsuarioregistrarComponent}
+    ]
+},
+
+{
+    path: 'ingredientes',
+    component: Ingrediente,
+    children: [
+    { path: '', component: Ingredientelistar },
+      { path: 'nuevo', component: Ingredienteregistrar},
+      { path: ':id', component: Ingredienteregistrar}
     ]
 }
 ];

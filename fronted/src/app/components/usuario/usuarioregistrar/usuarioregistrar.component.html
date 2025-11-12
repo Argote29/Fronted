@@ -55,6 +55,9 @@
       <mat-form-field>
         <mat-label>Dirección</mat-label>
         <input matInput formControlName="direccion" />
+        <mat-error>
+          @if (form.get('direccion')?.hasError('required')) { Ingrese la direccion!! }
+        </mat-error>
       </mat-form-field>
       <br />
 
@@ -77,17 +80,21 @@
       <br />
 
       <mat-form-field>
-        <mat-label>ID Rol</mat-label>
-        <input matInput type="number" formControlName="id_rol" />
+        <mat-label>Área</mat-label>
+        <mat-select formControlName="fk">
+          @for (a of listaRoles; track a) {
+          <mat-option [value]="a.id_rol">{{ a.nombre }}</mat-option>
+          }
+        </mat-select>
         <mat-error>
-          @if (form.get('id_rol')?.hasError('required')) { Ingrese el ID del rol!! }
+          @if (form.get('fk')?.hasError('required')) { Ingrese el rol!! }
         </mat-error>
       </mat-form-field>
       <br />
 
       <div>
         <button mat-raised-button color="primary" type="submit">Registrar</button>
-        <button mat-raised-button color="warn" routerLink="/usuarios" type="button">Cancelar</button>
+        <button mat-raised-button color="warn" (click)="volverAPadre()" type="button">Cancelar</button>
       </div>
     </form>
   </div>

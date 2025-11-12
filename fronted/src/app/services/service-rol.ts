@@ -17,6 +17,7 @@ export class RolService implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {}
+  
   list() {
     return this.http.get<Rol[]>(this.url);
   }

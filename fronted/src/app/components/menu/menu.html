@@ -3,9 +3,9 @@
     <button 
     matButton 
     class="btn-rojo" 
-    aria-label="Example icon-button with menu icon"
+    aria-label="Menu de Roles"
     [matMenuTriggerFor]="menuRol">
-      <mat-icon>menu</mat-icon>Roles
+      <mat-icon>security</mat-icon>Roles
     </button>
     <button 
       mat-button 
@@ -14,6 +14,15 @@
       [matMenuTriggerFor]="menuUsuario">
       <mat-icon>person</mat-icon>Usuarios
     </button>
+
+    <button 
+      mat-button 
+      class="btn-rojo" 
+      aria-label="Menú de Ingrdientes"
+      [matMenuTriggerFor]="menuIngrediente">
+      <mat-icon>dining</mat-icon>Ingredientes
+    </button>
+
   </mat-toolbar>
 
   <mat-menu #menuRol="matMenu">
@@ -23,6 +32,11 @@
   <mat-menu #menuUsuario="matMenu">
     <button mat-menu-item routerLink="/usuarios">Listar</button>
     <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>
+  </mat-menu>
+
+  <mat-menu #menuIngrediente="matMenu">
+    <button mat-menu-item routerLink="/ingredientes">Listar</button>
+    <button mat-menu-item routerLink="/ingredientes/nuevo">Registrar</button>
   </mat-menu>
 </div>
 

@@ -7,10 +7,13 @@ import { MatRadioModule } from '@angular/material/radio';
 import { Usuario } from '../../../models/usuario';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ServiceUsuario } from '../../../services/service-usuario';
+import { RolService } from '../../../services/service-rol';
+import { Rol } from '../../../models/rol';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-usuarioregistrar',
-  imports: [ReactiveFormsModule,MatInputModule,MatFormFieldModule,MatRadioModule,MatButtonModule],
+  imports: [MatSelectModule,ReactiveFormsModule,MatInputModule,MatFormFieldModule,MatRadioModule,MatButtonModule],
   templateUrl: './usuarioregistrar.component.html',
   styleUrl: './usuarioregistrar.component.css'
 })
@@ -20,19 +23,30 @@ export class UsuarioregistrarComponent implements OnInit{
 
   edicion: boolean = false;
   id: number = 0;
+  listaRoles: Rol[] = [];
+
 
   constructor(
     private uS: ServiceUsuario,
     private router: Router ,
     private formBuilder: FormBuilder ,
-    private route: ActivatedRoute 
+    private route: ActivatedRoute,
+    private rS:RolService
   ) {}
+
+volverAPadre() {
+  this.router.navigate(['../'], { relativeTo: this.route });
+}
 
   ngOnInit(): void {
     this.route.params.subscribe((data: Params ) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
       this.init();
+    });
+
+    this.rS.list().subscribe((data) => {
+      this.listaRoles = data;
     });
 
     this.form = this.formBuilder.group({
@@ -44,7 +58,7 @@ export class UsuarioregistrarComponent implements OnInit{
       direccion: [''],
       telefono: ['', Validators.required],
       genero: ['', Validators.required],
-      id_rol: ['', Validators.required]
+      fk: ['', Validators.required]
     });
   }
 
@@ -58,7 +72,7 @@ export class UsuarioregistrarComponent implements OnInit{
       this.u.direccion = this.form.value.direccion;
       this.u.telefono = this.form.value.telefono;
       this.u.genero = this.form.value.genero;
-      this.u.id_rol = this.form.value.id_rol;
+      this.u.rol.id_rol = this.form.value.fk;
 
       if (this.edicion) {
         this.uS.update(this.u).subscribe(() => {
@@ -86,7 +100,7 @@ export class UsuarioregistrarComponent implements OnInit{
           direccion: new FormControl(data.direccion),
           telefono: new FormControl(data.telefono),
           genero: new FormControl(data.genero),
-          id_rol: new FormControl(data.id_rol)
+          fk: new FormControl(data.rol.id_rol)
         });
       });
     }
