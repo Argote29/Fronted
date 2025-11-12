@@ -16,7 +16,7 @@ import { ServiceIngrediente } from '../../../services/service-ingrediente';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 @Component({
   selector: 'app-ingredienteregistrar',
-  imports: [ReactiveFormsModule,MatInputModule,MatFormFieldModule,MatRadioModule,MatButtonModule],
+  imports: [ReactiveFormsModule,MatInputModule,MatFormFieldModule,MatRadioModule,MatButtonModule,],
   templateUrl: './ingredienteregistrar.html',
   styleUrl: './ingredienteregistrar.css',
   providers: [provideNativeDateAdapter()],

@@ -7,8 +7,11 @@ import { UsuariolistarComponent } from './components/usuario/usuariolistar/usuar
 import { Ingrediente } from './components/ingrediente/ingrediente';
 import { Ingredientelistar } from './components/ingrediente/ingredientelistar/ingredientelistar';
 import { Ingredienteregistrar } from './components/ingrediente/ingredienteregistrar/ingredienteregistrar';
+import { Historiallistar } from './components/historial/historiallistar/historiallistar';
+import { Historialregistrar } from './components/historial/historialregistrar/historialregistrar';
 export const routes: Routes = 
 [
+
 {path:'roles',component:Rol,
     children:[
         {path:'news',component:Rolregistrar},
@@ -32,6 +35,16 @@ export const routes: Routes =
     { path: '', component: Ingredientelistar },
       { path: 'nuevo', component: Ingredienteregistrar},
       { path: ':id', component: Ingredienteregistrar}
+    ]
+},
+
+{
+    path: 'historial',
+    component: Ingrediente,
+    children: [
+    { path: '', component: Historiallistar },
+      { path: 'nuevo', component: Historialregistrar},
+      { path: ':id', component: Historialregistrar}
     ]
 }
 ];

@@ -18,9 +18,17 @@
     <button 
       mat-button 
       class="btn-rojo" 
-      aria-label="Menú de Ingrdientes"
+      aria-label="Menú de Ingredientes"
       [matMenuTriggerFor]="menuIngrediente">
       <mat-icon>dining</mat-icon>Ingredientes
+    </button>
+
+    <button 
+      mat-button 
+      class="btn-rojo" 
+      aria-label="Menú de Hitorial"
+      [matMenuTriggerFor]="menuHistorial">
+      <mat-icon>receipt_long</mat-icon>Historial
     </button>
 
   </mat-toolbar>
@@ -35,8 +43,13 @@
   </mat-menu>
 
   <mat-menu #menuIngrediente="matMenu">
-    <button mat-menu-item routerLink="/ingredientes">Listar</button>
+    <buton mat-menu-item routerLink="/ingredientes">Listar</buton>
     <button mat-menu-item routerLink="/ingredientes/nuevo">Registrar</button>
+  </mat-menu>
+
+  <mat-menu #menuHistorial="matMenu">
+    <buton mat-menu-item routerLink="/historial">Listar</buton>
+    <button mat-menu-item routerLink="/historial/nuevo">Registrar</button>
   </mat-menu>
 </div>
 

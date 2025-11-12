@@ -1,0 +1,67 @@
+<div class="container">
+  <div style="text-align: center; margin: 5%">
+    <h2>Historial</h2>
+  </div>
+
+  <div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!-- ID -->
+      <ng-container matColumnDef="c1">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let e">{{ e.id_historial }}</td>
+      </ng-container>
+
+  
+      <!-- Nombre -->
+      <ng-container matColumnDef="c2">
+        <th mat-header-cell *matHeaderCellDef> Fecha de inicio</th>
+        <td mat-cell *matCellDef="let e">{{ e.fecha_inicio_sub }}</td>
+      </ng-container>
+
+      <!-- Apellido -->
+      <ng-container matColumnDef="c3">
+        <th mat-header-cell *matHeaderCellDef> Fecha de fin </th>
+        <td mat-cell *matCellDef="let e">{{ e.fecha_final_sub }}</td>
+      </ng-container>
+
+      <!-- Correo -->
+      <ng-container matColumnDef="c4">
+        <th mat-header-cell *matHeaderCellDef> Estado </th>
+        <td mat-cell *matCellDef="let e">{{ e.estado }}</td>
+      </ng-container>
+
+
+      <!-- Rol -->
+      <ng-container matColumnDef="c5">
+        <th mat-header-cell *matHeaderCellDef> Usuario </th>
+        <td mat-cell *matCellDef="let e">{{ e.usuario.nombre}}</td>
+      </ng-container>
+
+      <!-- Actualizar -->
+      <ng-container matColumnDef="c6">
+        <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+        <td mat-cell *matCellDef="let e">
+          <button mat-button [routerLink]="['/historial', e.id_historial]">
+            <mat-icon>edit</mat-icon> Actualizar
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Eliminar -->
+      <ng-container matColumnDef="c7">
+        <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+        <td mat-cell *matCellDef="let e">
+          <button mat-button color="warn" (click)="eliminar(e.id_historial)">
+            <mat-icon>delete</mat-icon> Eliminar
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Filas -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+  </div>
+</div>
