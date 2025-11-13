@@ -1,12 +1,13 @@
 <div class="container">
   <mat-toolbar class="custom-toolbar">
     <button 
-    matButton 
-    class="btn-rojo" 
-    aria-label="Menu de Roles"
-    [matMenuTriggerFor]="menuRol">
+      mat-button 
+      class="btn-rojo" 
+      aria-label="Menú de Roles"
+      [matMenuTriggerFor]="menuRol">
       <mat-icon>security</mat-icon>Roles
     </button>
+
     <button 
       mat-button 
       class="btn-rojo" 
@@ -26,7 +27,7 @@
     <button 
       mat-button 
       class="btn-rojo" 
-      aria-label="Menú de Hitorial"
+      aria-label="Menú de Historial"
       [matMenuTriggerFor]="menuHistorial">
       <mat-icon>receipt_long</mat-icon>Historial
     </button>
@@ -36,33 +37,37 @@
       class="btn-rojo" 
       aria-label="Menú de Restaurante"
       [matMenuTriggerFor]="menuRestaurante">
-      <mat-icon>receipt_long</mat-icon>Restaurante
+      <mat-icon>restaurant</mat-icon>Restaurante
     </button>
-
   </mat-toolbar>
 
+  <!-- Menú Roles -->
   <mat-menu #menuRol="matMenu">
     <button mat-menu-item routerLink="/roles">Listar</button>
-    <button mat-menu-item routerLink="/roles/news">Registrar</button>
+    <button mat-menu-item routerLink="/roles/nuevo">Registrar</button>
   </mat-menu>
+
+  <!-- Menú Usuarios -->
   <mat-menu #menuUsuario="matMenu">
     <button mat-menu-item routerLink="/usuarios">Listar</button>
     <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>
   </mat-menu>
 
+  <!-- Menú Ingredientes -->
   <mat-menu #menuIngrediente="matMenu">
-    <buton mat-menu-item routerLink="/ingredientes">Listar</buton>
+    <button mat-menu-item routerLink="/ingredientes">Listar</button>
     <button mat-menu-item routerLink="/ingredientes/nuevo">Registrar</button>
   </mat-menu>
 
+  <!-- Menú Historial -->
   <mat-menu #menuHistorial="matMenu">
-    <buton mat-menu-item routerLink="/historial">Listar</buton>
+    <button mat-menu-item routerLink="/historial">Listar</button>
     <button mat-menu-item routerLink="/historial/nuevo">Registrar</button>
   </mat-menu>
-</div>
-    <mat-menu #menuRestaurante="matMenu">
+
+  <!-- Menú Restaurante -->
+  <mat-menu #menuRestaurante="matMenu">
     <button mat-menu-item routerLink="/restaurante">Listar</button>
     <button mat-menu-item routerLink="/restaurante/nuevo">Registrar</button>
   </mat-menu>
 </div>
-
