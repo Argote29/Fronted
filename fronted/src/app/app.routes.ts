@@ -12,6 +12,9 @@ import { Historialregistrar } from './components/historial/historialregistrar/hi
 import { Restaurante } from './components/restaurante/restaurante';
 import { Restaurantelistar } from './components/restaurante/restaurantelistar/restaurantelistar';
 import { Restauranteregistrar } from './components/restaurante/restauranteregistrar/restauranteregistrar';
+import { Resenalistar } from './components/resena/resenalistar/resenalistar';
+import { Resenaregistrar } from './components/resena/resenaregistrar/resenaregistrar';
+import { Resena } from './components/resena/resena';
 export const routes: Routes = 
 [
 
@@ -59,5 +62,14 @@ export const routes: Routes =
     { path: 'nuevo', component: Restauranteregistrar},
     { path: ':id', component: Restauranteregistrar}
   ]
-}
+},
+{
+  path: 'resena', 
+  component: Resena,
+  children: [
+    { path: '', component: Resenalistar },          
+    { path: 'nuevo', component: Resenaregistrar }, 
+    { path: ':id', component: Resenaregistrar },   
+  ],
+},
 ];
