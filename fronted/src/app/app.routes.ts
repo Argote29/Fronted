@@ -9,6 +9,9 @@ import { Ingredientelistar } from './components/ingrediente/ingredientelistar/in
 import { Ingredienteregistrar } from './components/ingrediente/ingredienteregistrar/ingredienteregistrar';
 import { Historiallistar } from './components/historial/historiallistar/historiallistar';
 import { Historialregistrar } from './components/historial/historialregistrar/historialregistrar';
+import { Restaurante } from './components/restaurante/restaurante';
+import { Restaurantelistar } from './components/restaurante/restaurantelistar/restaurantelistar';
+import { Restauranteregistrar } from './components/restaurante/restauranteregistrar/restauranteregistrar';
 export const routes: Routes = 
 [
 
@@ -46,5 +49,15 @@ export const routes: Routes =
       { path: 'nuevo', component: Historialregistrar},
       { path: ':id', component: Historialregistrar}
     ]
+},
+
+{
+  path: 'restaurante',
+  component: Restaurante,
+  children: [
+  { path: '', component: Restaurantelistar },
+    { path: 'nuevo', component: Restauranteregistrar},
+    { path: ':id', component: Restauranteregistrar}
+  ]
 }
 ];
