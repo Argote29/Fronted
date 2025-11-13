@@ -12,11 +12,7 @@
         <td mat-cell *matCellDef="let e">{{ e.id_usuario }}</td>
       </ng-container>
 
-      <!-- ID Rol -->
-      <ng-container matColumnDef="c2">
-        <th mat-header-cell *matHeaderCellDef> ID Rol </th>
-        <td mat-cell *matCellDef="let e">{{ e.id_rol }}</td>
-      </ng-container>
+  
 
       <!-- Nombre -->
       <ng-container matColumnDef="c3">
@@ -54,16 +50,10 @@
         <td mat-cell *matCellDef="let e">{{ e.genero }}</td>
       </ng-container>
 
-      <!-- Contraseña -->
-      <ng-container matColumnDef="c9">
-        <th mat-header-cell *matHeaderCellDef> Contraseña </th>
-        <td mat-cell *matCellDef="let e">{{ e.contrasenia }}</td>
-      </ng-container>
-
       <!-- Rol -->
       <ng-container matColumnDef="c10">
         <th mat-header-cell *matHeaderCellDef> Rol </th>
-        <td mat-cell *matCellDef="let e">{{ e.rol }}</td>
+        <td mat-cell *matCellDef="let e">{{ e.rol.nombre }}</td>
       </ng-container>
 
       <!-- Actualizar -->

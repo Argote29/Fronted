@@ -1,6 +1,7 @@
+import { Rol } from "./rol";
+
 export class Usuario {
   id_usuario: number = 0;
-  id_rol: number = 0;         
   nombre: string = '';
   apellido: string = '';
   correo: string = '';
@@ -8,4 +9,6 @@ export class Usuario {
   direccion: string = '';
   telefono: number = 0;
   genero: string = '';
+  rol:Rol=new Rol()
+
 }

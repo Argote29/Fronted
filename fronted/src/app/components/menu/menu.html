@@ -3,11 +3,10 @@
     <button 
     matButton 
     class="btn-rojo" 
-    aria-label="Example icon-button with menu icon"
+    aria-label="Menu de Roles"
     [matMenuTriggerFor]="menuRol">
-      <mat-icon>menu</mat-icon>Roles
+      <mat-icon>security</mat-icon>Roles
     </button>
-
     <button 
       mat-button 
       class="btn-rojo" 
@@ -16,14 +15,30 @@
       <mat-icon>person</mat-icon>Usuarios
     </button>
 
-    <button
+    <button 
       mat-button 
       class="btn-rojo" 
-      aria-label="Menú de restaurantes"
-      [matMenuTriggerFor]="menuRestaurante">
-      <mat-icon>storefront</mat-icon>Restaurantes
+      aria-label="Menú de Ingredientes"
+      [matMenuTriggerFor]="menuIngrediente">
+      <mat-icon>dining</mat-icon>Ingredientes
+    </button>
+
+    <button 
+      mat-button 
+      class="btn-rojo" 
+      aria-label="Menú de Hitorial"
+      [matMenuTriggerFor]="menuHistorial">
+      <mat-icon>receipt_long</mat-icon>Historial
     </button>
     
+    <button 
+      mat-button 
+      class="btn-rojo" 
+      aria-label="Menú de Restaurante"
+      [matMenuTriggerFor]="menuRestaurante">
+      <mat-icon>receipt_long</mat-icon>Restaurante
+    </button>
+
   </mat-toolbar>
 
   <mat-menu #menuRol="matMenu">
@@ -34,6 +49,17 @@
     <button mat-menu-item routerLink="/usuarios">Listar</button>
     <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>
   </mat-menu>
+
+  <mat-menu #menuIngrediente="matMenu">
+    <buton mat-menu-item routerLink="/ingredientes">Listar</buton>
+    <button mat-menu-item routerLink="/ingredientes/nuevo">Registrar</button>
+  </mat-menu>
+
+  <mat-menu #menuHistorial="matMenu">
+    <buton mat-menu-item routerLink="/historial">Listar</buton>
+    <button mat-menu-item routerLink="/historial/nuevo">Registrar</button>
+  </mat-menu>
+</div>
     <mat-menu #menuRestaurante="matMenu">
     <button mat-menu-item routerLink="/restaurante">Listar</button>
     <button mat-menu-item routerLink="/restaurante/nuevo">Registrar</button>
