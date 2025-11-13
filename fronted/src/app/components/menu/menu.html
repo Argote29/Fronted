@@ -39,6 +39,13 @@
       [matMenuTriggerFor]="menuRestaurante">
       <mat-icon>restaurant</mat-icon>Restaurante
     </button>
+    <button 
+      mat-button 
+      class="btn-rojo" 
+      aria-label="Menú de reseñas"
+      [matMenuTriggerFor]="menuResenas">
+      <mat-icon>rate_review</mat-icon>Reseñas
+    </button>
   </mat-toolbar>
 
   <!-- Menú Roles -->
@@ -69,5 +76,9 @@
   <mat-menu #menuRestaurante="matMenu">
     <button mat-menu-item routerLink="/restaurante">Listar</button>
     <button mat-menu-item routerLink="/restaurante/nuevo">Registrar</button>
+  </mat-menu>
+  <mat-menu #menuResenas="matMenu">
+    <button mat-menu-item routerLink="/resena">Listar</button>
+    <button mat-menu-item routerLink="/resena/nuevo">Registrar</button>
   </mat-menu>
 </div>
