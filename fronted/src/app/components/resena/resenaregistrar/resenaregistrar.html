@@ -1,0 +1,92 @@
+<div class="container">
+    <div style="text-align: center; margin: 5%">
+      <h2>Registro de Reseñas</h2>
+    </div>
+  
+    <div style="text-align: center; margin: 5%">
+      <form [formGroup]="form" (submit)="aceptar()">
+  
+        @if (edicion) {
+          <mat-form-field>
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="id" readonly />
+          </mat-form-field>
+          <br />
+        }
+  
+        <!-- Comentario -->
+        <mat-form-field>
+          <mat-label>Comentario</mat-label>
+          <textarea matInput formControlName="comentario"></textarea>
+          <mat-error>
+            @if (form.get('comentario')?.hasError('required')) {
+              Ingrese un comentario!!
+            }
+          </mat-error>
+        </mat-form-field>
+        <br />
+  
+        <!-- Calificación -->
+        <mat-form-field>
+          <mat-label>Calificación (0 - 5)</mat-label>
+          <input matInput type="number" min="0" max="5" formControlName="calificacion" />
+          <mat-error>
+            @if (form.get('calificacion')?.hasError('required')) {
+              Ingrese la calificación!!
+            }
+            @if (form.get('calificacion')?.hasError('min') || form.get('calificacion')?.hasError('max')) {
+              Debe estar entre 0 y 5!!
+            }
+          </mat-error>
+        </mat-form-field>
+        <br />
+  
+        <!-- Usuario -->
+        <mat-form-field>
+          <mat-label>Usuario</mat-label>
+          <mat-select formControlName="usuarioId">
+            @for (u of listaUsuarios; track u) {
+              <mat-option [value]="u.id_usuario">
+                {{ u.nombre }} {{ u.apellido }}
+              </mat-option>
+            }
+          </mat-select>
+          <mat-error>
+            @if (form.get('usuarioId')?.hasError('required')) {
+              Seleccione un usuario!!
+            }
+          </mat-error>
+        </mat-form-field>
+        <br />
+  
+        <!-- Restaurante -->
+        <mat-form-field>
+          <mat-label>Restaurante</mat-label>
+          <mat-select formControlName="restauranteId">
+            @for (r of listaRestaurantes; track r) {
+              <mat-option [value]="r.id_restaurante">
+                {{ r.nombre_restaurante }}
+              </mat-option>
+            }
+          </mat-select>
+          <mat-error>
+            @if (form.get('restauranteId')?.hasError('required')) {
+              Seleccione un restaurante!!
+            }
+          </mat-error>
+        </mat-form-field>
+        <br />
+  
+        <!-- Botones -->
+        <div>
+          <button mat-raised-button color="primary" type="submit">
+            {{ edicion ? 'Actualizar' : 'Registrar' }}
+          </button>
+          <button mat-raised-button color="warn" routerLink="/resena" type="button">
+            Cancelar
+          </button>
+        </div>
+  
+      </form>
+    </div>
+  </div>
