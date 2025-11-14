@@ -46,6 +46,27 @@
       [matMenuTriggerFor]="menuResenas">
       <mat-icon>rate_review</mat-icon>Reseñas
     </button>
+    <button 
+      mat-button 
+      class="btn-rojo" 
+      aria-label="Menú de promociones"
+      [matMenuTriggerFor]="menuPromociones">
+      <mat-icon>card_giftcard</mat-icon>Promociones
+    </button>
+
+
+    <button 
+      mat-button 
+      class="btn-rojo" 
+      aria-label="Menú de platos"
+      [matMenuTriggerFor]="menuPlatos">
+      <mat-icon>dinner_dining</mat-icon>Platos
+    </button>
+
+
+
+
+
   </mat-toolbar>
 
   <!-- Menú Roles -->
@@ -81,4 +102,17 @@
     <button mat-menu-item routerLink="/resena">Listar</button>
     <button mat-menu-item routerLink="/resena/nuevo">Registrar</button>
   </mat-menu>
+
+  <mat-menu #menuPromociones="matMenu">
+    <button mat-menu-item routerLink="/promociones">Listar</button>
+    <button mat-menu-item routerLink="/promociones/nuevo">Registrar</button>
+  </mat-menu>
+
+
+   <mat-menu #menuPlatos="matMenu">
+    <button mat-menu-item routerLink="/plato">Listar</button>
+    <button mat-menu-item routerLink="/plato/nuevo">Registrar</button>
+  </mat-menu>
+
+
 </div>

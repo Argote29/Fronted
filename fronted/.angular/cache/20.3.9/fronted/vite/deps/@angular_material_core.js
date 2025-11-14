@@ -1,4 +1,13 @@
 import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+  MAT_DATE_LOCALE_FACTORY
+} from "./chunk-V5RE4TH6.js";
+import {
+  _MatInternalFormField
+} from "./chunk-GKPS32QP.js";
+import {
   MAT_OPTGROUP,
   MAT_OPTION_PARENT_COMPONENT,
   MatOptgroup,
@@ -10,15 +19,6 @@ import {
   _countGroupLabelsBeforeOption,
   _getOptionScrollPosition
 } from "./chunk-2JUWQQIT.js";
-import {
-  _MatInternalFormField
-} from "./chunk-GKPS32QP.js";
-import {
-  DateAdapter,
-  MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
-  MAT_DATE_LOCALE_FACTORY
-} from "./chunk-V5RE4TH6.js";
 import {
   ErrorStateMatcher,
   ShowOnDirtyErrorStateMatcher,
@@ -44,8 +44,8 @@ import {
   _animationsDisabled,
   _getAnimationsState
 } from "./chunk-AUY6FB4S.js";
-import "./chunk-GWFLKVBH.js";
 import "./chunk-HPZPFJQX.js";
+import "./chunk-GWFLKVBH.js";
 import {
   MATERIAL_SANITY_CHECKS,
   MatCommonModule

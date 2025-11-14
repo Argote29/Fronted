@@ -15,12 +15,20 @@ import { Restauranteregistrar } from './components/restaurante/restauranteregist
 import { Resenalistar } from './components/resena/resenalistar/resenalistar';
 import { Resenaregistrar } from './components/resena/resenaregistrar/resenaregistrar';
 import { Resena } from './components/resena/resena';
+
+import { Promociones } from './components/promociones/promociones';
+import { Promocioneslistar } from './components/promociones/promocioneslistar/promocioneslistar';
+import { Promocionesregistrar } from './components/promociones/promocionesregistrar/promocionesregistrar';
+
+import { Plato } from './components/plato/plato';
+import { Platolistar } from './components/plato/platolistar/platolistar';
+import { Platoregistrar } from './components/plato/platoregistrar/platoregistrar';
 export const routes: Routes = 
 [
 
 {path:'roles',component:Rol,
     children:[
-        {path:'news',component:Rolregistrar},
+        {path:'nuevo',component:Rolregistrar},
         {path:'edits/:id',component:Rolregistrar}
     ]
 },
@@ -72,4 +80,23 @@ export const routes: Routes =
     { path: ':id', component: Resenaregistrar },   
   ],
 },
+
+{
+  path: 'promociones', 
+  component: Promociones,
+  children: [
+    { path: '', component: Promocioneslistar },          
+    { path: 'nuevo', component: Promocionesregistrar }, 
+    { path: ':id', component: Promocionesregistrar },   
+  ],
+},
+{
+    path: 'plato', 
+    component: Plato,
+    children: [
+      { path: '', component: Platolistar },         
+      { path: 'nuevo', component: Platoregistrar }, 
+      { path: ':id', component: Platoregistrar },   
+    ],
+  },
 ];
