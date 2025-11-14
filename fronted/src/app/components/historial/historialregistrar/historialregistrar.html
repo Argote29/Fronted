@@ -1,5 +1,5 @@
 <div class="container">
-  <div style="text-align: center; margin: 5%"><h2>Registro de Historial</h2></div>
+  <div style="text-align: center; margin: 5%"><h2>Registro de suscripciones</h2></div>
 
   <div style="text-align: center; margin: 5%">
     <form [formGroup]="form" (submit)="aceptar()">
@@ -38,18 +38,24 @@
           @if (form.get('fecha_fin')?.hasError('required')) { Ingrese fecha final del historial!! }
         </mat-error>
       </mat-form-field>
+      <!-- Mensaje validador grupal -->
+          <div div div *ngIf="form.hasError('fechasInvalidas') && (form.get('fecha_ini')?.touched || form.get('fecha_fin')?.touched)">
+        <mat-error>La fecha de inicio debe ser anterior o igual a la fecha de fin.</mat-error>
+          </div>
 
       <br>
 
       <mat-form-field>
         <mat-label>Estado</mat-label>
-        <input matInput formControlName="status" />
+        <mat-select formControlName="status">
+          <mat-option value="Activa">Activa</mat-option>
+          <mat-option value="Caducada">Caducada</mat-option>
+        </mat-select>
         <mat-error>
           @if (form.get('status')?.hasError('required')) { Ingrese el estado!! }
         </mat-error>
       </mat-form-field>
       <br />
-
 
       <mat-form-field>
         <mat-label>Nombre</mat-label>

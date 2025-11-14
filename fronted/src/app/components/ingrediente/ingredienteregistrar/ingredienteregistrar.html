@@ -15,27 +15,27 @@
         <br />
       }
 
-      <mat-form-field>
-        <mat-label>Nombre de Ingrediente</mat-label>
-        <input matInput formControlName="nombre" />
-        <mat-error>
-          @if (form.get('nombre')?.hasError('required')) { Ingrese el nombre del ingrediente!! }
-        </mat-error>
-      </mat-form-field>
-      <br />
-
-      <div>
-        <mat-radio-group aria-label="Select an option" formControlName="tipo">
-          <mat-radio-button [value]="true">Si es natural</mat-radio-button>
-          <mat-radio-button [value]="false">No es natural</mat-radio-button>
+        <mat-form-field>
+          <mat-label>Nombre de Ingrediente</mat-label>
+          <input matInput formControlName="nombre" />
           <mat-error>
-          @if (form.get('tipo')?.hasError('required')) { Seleccione el tipo!! }
-        </mat-error>
-        </mat-radio-group>
-      </div>
-      <br />
+            @if (form.get('nombre')?.hasError('required')) { Ingrese el nombre del ingrediente!! }
+          </mat-error>
+        </mat-form-field>
+        <br />
 
-      <mat-form-field>
+        <div>
+          <mat-radio-group aria-label="Select an option" formControlName="tipo">
+            <mat-radio-button [value]="true">Si es natural</mat-radio-button>
+            <mat-radio-button [value]="false">No es natural</mat-radio-button>
+            <mat-error>
+            @if (form.get('tipo')?.hasError('required')) { Seleccione el tipo!! }
+          </mat-error>
+          </mat-radio-group>
+        </div>
+        <br />
+
+        <mat-form-field>
         <mat-label>Nivel</mat-label>
         <input matInput formControlName="nivel" />
         <mat-error>

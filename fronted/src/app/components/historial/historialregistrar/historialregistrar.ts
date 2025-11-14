@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -12,15 +12,16 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ServiceUsuario } from '../../../services/service-usuario';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-historialregistrar',
-  imports: [MatSelectModule,ReactiveFormsModule,MatInputModule,MatFormFieldModule,MatRadioModule,MatButtonModule,MatDatepickerModule,MatNativeDateModule],
+  imports: [CommonModule,MatRadioModule, MatSelectModule, ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatRadioModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule],
   templateUrl: './historialregistrar.html',
   styleUrl: './historialregistrar.css',
 })
-export class Historialregistrar implements OnInit{
-form: FormGroup = new FormGroup({});
+export class Historialregistrar implements OnInit {
+  form: FormGroup = new FormGroup({});
   h: Historial = new Historial();
 
   edicion: boolean = false;
@@ -29,18 +30,29 @@ form: FormGroup = new FormGroup({});
 
   constructor(
     private hS: ServiceHistorial,
-    private router: Router ,
-    private formBuilder: FormBuilder ,
+    private router: Router,
+    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private uS:ServiceUsuario
+    private uS: ServiceUsuario
   ) {}
 
-volverAPadre() {
-  this.router.navigate(['../'], { relativeTo: this.route });
-}
+  // Validador personalizado para validar fechas
+  fechasValidas: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    const fechaInicio = control.get('fecha_ini')?.value;
+    const fechaFin = control.get('fecha_fin')?.value;
 
-ngOnInit(): void {
-    this.route.params.subscribe((data: Params ) => {
+    if (fechaInicio && fechaFin && new Date(fechaInicio) > new Date(fechaFin)) {
+      return { fechasInvalidas: true };
+    }
+    return null;
+  };
+
+  volverAPadre() {
+    this.router.navigate(['../'], { relativeTo: this.route });
+  }
+
+  ngOnInit(): void {
+    this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
       this.init();
@@ -50,13 +62,16 @@ ngOnInit(): void {
       this.listaUsuarios = data;
     });
 
-    this.form = this.formBuilder.group({
-      codigo: [''],
-      fecha_ini: ['', Validators.required],
-      fecha_fin: ['', Validators.required],
-      status: ['', Validators.required],
-      fk: ['', Validators.required]
-    });
+    this.form = this.formBuilder.group(
+      {
+        codigo: [''],
+        fecha_ini: ['', Validators.required],
+        fecha_fin: ['', Validators.required],
+        status: ['', Validators.required],
+        fk: ['', Validators.required],
+      },
+      { validators: this.fechasValidas }
+    );
   }
 
   aceptar(): void {
@@ -84,13 +99,16 @@ ngOnInit(): void {
   init() {
     if (this.edicion) {
       this.hS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          codigo: new FormControl(data.id_historial),
-          fecha_ini: new FormControl(data.fecha_inicio_sub),
-          fecha_fin: new FormControl(data.fecha_final_sub),
-          status: new FormControl(data.estado),
-          fk: new FormControl(data.usuario.id_usuario)
-        });
+        this.form = this.formBuilder.group(
+          {
+            codigo: [data.id_historial],
+            fecha_ini: [data.fecha_inicio_sub, Validators.required],
+            fecha_fin: [data.fecha_final_sub, Validators.required],
+            status: [data.estado, Validators.required],
+            fk: [data.usuario.id_usuario, Validators.required],
+          },
+          { validators: this.fechasValidas }
+        );
       });
     }
   }

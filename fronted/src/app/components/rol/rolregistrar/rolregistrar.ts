@@ -16,10 +16,11 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-rolregistrar',
-  imports: [ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatRadioModule, MatButtonModule, CommonModule,MatSelectModule],
+  imports: [MatPaginatorModule,ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatRadioModule, MatButtonModule, CommonModule,MatSelectModule],
   templateUrl: './rolregistrar.html',
   providers: [provideNativeDateAdapter()],
   styleUrl: './rolregistrar.css',
