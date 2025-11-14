@@ -51,14 +51,14 @@ volverAPadre() {
 
     this.form = this.formBuilder.group({
       codigo: [''],
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      correo: ['', [Validators.required, Validators.email]],
-      contrasena: ['', Validators.required],
-      direccion: [''],
-      telefono: ['', Validators.required],
-      genero: ['', Validators.required],
-      fk: ['', Validators.required]
+      nombre: ['', [Validators.required, Validators.maxLength(30)]],
+      apellido: ['', [Validators.required, Validators.maxLength(60)]],
+      correo: ['', [Validators.required, Validators.email, Validators.maxLength(60)]],
+      contrasena: ['', [Validators.required, Validators.maxLength(100),Validators.minLength(5)]],
+      direccion: ['',[Validators.required,Validators.maxLength(60)]],
+      telefono: ['', [Validators.required,Validators.maxLength(60)]],
+      genero: ['', [Validators.required,Validators.maxLength(9)]],
+      fk: ['', [Validators.required]]
     });
   }
 
@@ -91,16 +91,16 @@ volverAPadre() {
   init() {
     if (this.edicion) {
       this.uS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          codigo: new FormControl(data.id_usuario),
-          nombre: new FormControl(data.nombre),
-          apellido: new FormControl(data.apellido),
-          correo: new FormControl(data.correo),
-          contrasena: new FormControl(data.contrasena),
-          direccion: new FormControl(data.direccion),
-          telefono: new FormControl(data.telefono),
-          genero: new FormControl(data.genero),
-          fk: new FormControl(data.rol.id_rol)
+        this.form = this.formBuilder.group({
+          codigo: [data.id_usuario],
+          nombre: [data.nombre, [Validators.required, Validators.maxLength(30)]],
+          apellido: [data.apellido, [Validators.required, Validators.maxLength(60)]],
+          correo: [data.correo, [Validators.required, Validators.email, Validators.maxLength(60)]],
+          contrasena: [data.contrasena, [Validators.required, Validators.maxLength(100), Validators.minLength(5)]],
+          direccion: [data.direccion, [Validators.required, Validators.maxLength(60)]],
+          telefono: [data.telefono, [Validators.required, Validators.maxLength(60)]],
+          genero: [data.genero, [Validators.required, Validators.maxLength(9)]],
+          fk: [data.rol.id_rol, Validators.required]
         });
       });
     }

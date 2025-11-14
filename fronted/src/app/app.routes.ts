@@ -23,13 +23,15 @@ import { Promocionesregistrar } from './components/promociones/promocionesregist
 import { Plato } from './components/plato/plato';
 import { Platolistar } from './components/plato/platolistar/platolistar';
 import { Platoregistrar } from './components/plato/platoregistrar/platoregistrar';
+import { Rollistar } from './components/rol/rollistar/rollistar';
 export const routes: Routes = 
 [
 
 {path:'roles',component:Rol,
     children:[
+        {path:'',component:Rollistar},
         {path:'nuevo',component:Rolregistrar},
-        {path:'edits/:id',component:Rolregistrar}
+        { path: ':id', component: Rolregistrar}
     ]
 },
 {
@@ -68,7 +70,7 @@ export const routes: Routes =
   children: [
   { path: '', component: Restaurantelistar },
     { path: 'nuevo', component: Restauranteregistrar},
-    { path: ':id', component: Restauranteregistrar}
+    { path: ':id', component: Restauranteregistrar},
   ]
 },
 {
