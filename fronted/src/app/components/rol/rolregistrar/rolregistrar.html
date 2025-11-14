@@ -27,7 +27,7 @@
       <br />
       <mat-form-field>
         <mat-label>Descripcion</mat-label>
-        <input matInput formControlName="descripcion" />
+         <textarea matInput formControlName="descripcion" rows="4" cols="50"></textarea>
 
         <mat-error>
           @if (form.get('descripcion')?.hasError('required')) { Ingrese la DESCRIPCION !!! }

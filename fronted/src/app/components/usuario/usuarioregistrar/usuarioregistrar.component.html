@@ -47,16 +47,16 @@
       </mat-form-field>
       <br />
 
-      <mat-form-field>
-        <mat-label>Contraseña</mat-label>
-        <input matInput type="password" formControlName="contrasena" />
-        <mat-error>
-          @if (form.get('contrasena')?.hasError('required')) { Ingrese la contraseña!! }
-          @if (form.get('contrasena')?.hasError('minlength')) { Mínimo 5 caracteres!! }
-          @if (form.get('contrasena')?.hasError('maxlength')) { Máximo 100 caracteres!! }
-        </mat-error>
-      </mat-form-field>
-      <br />
+      <div *ngIf="!edicion">
+  <mat-form-field>
+    <mat-label>Contraseña</mat-label>
+    <input matInput type="password" formControlName="contrasena" />
+    <mat-error *ngIf="form.get('contrasena')?.hasError('required')">Ingrese la contraseña!!</mat-error>
+    <mat-error *ngIf="form.get('contrasena')?.hasError('minlength')">Mínimo 5 caracteres!!</mat-error>
+    <mat-error *ngIf="form.get('contrasena')?.hasError('maxlength')">Máximo 100 caracteres!!</mat-error>
+  </mat-form-field>
+  <br />
+  </div>
 
       <mat-form-field>
         <mat-label>Dirección</mat-label>
@@ -73,7 +73,7 @@
         <input matInput type="number" formControlName="telefono" />
         <mat-error>
           @if (form.get('telefono')?.hasError('required')) { Ingrese el teléfono!! }
-          @if (form.get('telefono')?.hasError('maxlength')) { Máximo 60 caracteres!! }
+          @if (form.get('telefono')?.hasError('maxlength')) { Máximo 9 caracteres!! }
         </mat-error>
       </mat-form-field>
       <br />
