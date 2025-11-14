@@ -1,0 +1,36 @@
+<div class="container">
+  <div style="text-align: center; margin: 5%"><h2>Registro de Roles</h2></div>
+  <div style="text-align: center; margin: 5%">
+    <form [formGroup]="form" (submit)="aceptar()">
+      @if(edicion){
+      <mat-form-field>
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="codigo" />
+        <mat-error>
+          @if (form.get('codigo')?.hasError('required')) { Ingrese el id del rol!! }
+        </mat-error>
+      </mat-form-field>
+      }
+      <br />
+      <mat-form-field>
+        <mat-label>Rol</mat-label>
+        <input matInput formControlName="nombre" />
+        <mat-error>
+          @if (form.get('nombre')?.hasError('required')) { Ingrese nombre del rol!! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Descripcion</mat-label>
+        <input matInput formControlName="descripcion" />
+        <mat-error>
+          @if (form.get('descripcion')?.hasError('required')) { Ingrese la descripcion del Rol!! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+      <div>
+        <button matButton="elevated">Registrar</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+<div class="container">
+  <div style="text-align: center; margin: 5%"><h2>Registro de Usuarios</h2></div>
+
+  <div style="text-align: center; margin: 5%">
+    <form [formGroup]="form" (submit)="aceptar()">
+
+      @if (edicion) {
+        <mat-form-field>
+          <mat-label>ID</mat-label>
+          <input matInput formControlName="codigo" />
+          <mat-error>
+            @if (form.get('codigo')?.hasError('required')) { Ingrese el ID del usuario!! }
+          </mat-error>
+        </mat-form-field>
+        <br />
+      }
+
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" />
+        <mat-error>
+          @if (form.get('nombre')?.hasError('required')) { Ingrese el nombre!! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Apellido</mat-label>
+        <input matInput formControlName="apellido" />
+        <mat-error>
+          @if (form.get('apellido')?.hasError('required')) { Ingrese el apellido!! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Correo</mat-label>
+        <input matInput type="email" formControlName="correo" />
+        <mat-error>
+          @if (form.get('correo')?.hasError('required')) { Ingrese el correo!! }
+          @if (form.get('correo')?.hasError('email')) { Correo inválido!! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" formControlName="contrasena" />
+        <mat-error>
+          @if (form.get('contrasenaa')?.hasError('required')) { Ingrese la contraseña!! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Dirección</mat-label>
+        <input matInput formControlName="direccion" />
+        <mat-error>
+          @if (form.get('direccion')?.hasError('required')) { Ingrese la direccion!! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Teléfono</mat-label>
+        <input matInput type="number" formControlName="telefono" />
+        <mat-error>
+          @if (form.get('telefono')?.hasError('required')) { Ingrese el teléfono!! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Género</mat-label>
+        <input matInput formControlName="genero" placeholder="M / F" />
+        <mat-error>
+          @if (form.get('genero')?.hasError('required')) { Ingrese el género!! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Área</mat-label>
+        <mat-select formControlName="fk">
+          @for (a of listaRoles; track a) {
+          <mat-option [value]="a.id_rol">{{ a.nombre }}</mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('fk')?.hasError('required')) { Ingrese el rol!! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <div>
+        <button mat-raised-button color="primary" type="submit">Registrar</button>
+        <button mat-raised-button color="warn" (click)="volverAPadre()" type="button">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
