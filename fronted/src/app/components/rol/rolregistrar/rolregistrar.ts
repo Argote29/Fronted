@@ -14,17 +14,19 @@ import { Rol } from '../../../models/rol';
 import { RolService } from '../../../services/service-rol';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { CommonModule } from '@angular/common';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-rolregistrar',
-  imports: [ReactiveFormsModule,MatInputModule,MatFormFieldModule,MatRadioModule,MatButtonModule],
+  imports: [ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatRadioModule, MatButtonModule, CommonModule,MatSelectModule],
   templateUrl: './rolregistrar.html',
   providers: [provideNativeDateAdapter()],
   styleUrl: './rolregistrar.css',
 })
 export class Rolregistrar implements OnInit {
   form: FormGroup = new FormGroup({});
-  r:Rol = new Rol();
+  r: Rol = new Rol();
 
   edicion: boolean = false;
   id: number = 0;
@@ -34,7 +36,7 @@ export class Rolregistrar implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
@@ -44,23 +46,23 @@ export class Rolregistrar implements OnInit {
     });
 
     this.form = this.formBuilder.group({
-      codigo:[''],
-      nombre: ['', Validators.required],
-      descripcion: ['', Validators.required]
+      codigo: [''],
+      nombre: ['', [Validators.required, Validators.maxLength(30)]],
+      descripcion: ['', [Validators.required, Validators.maxLength(200)]]
     });
   }
-    aceptar(): void {
+  aceptar(): void {
     if (this.form.valid) {
-      this.r.id_rol=this.form.value.codigo
+      this.r.id_rol = this.form.value.codigo
       this.r.nombre = this.form.value.nombre;
       this.r.descripcion = this.form.value.descripcion;
-      if(this.edicion){
+      if (this.edicion) {
         this.rS.update(this.r).subscribe((data) => {
           this.rS.list().subscribe((data) => {
             this.rS.setList(data);
           });
         });
-      }else{
+      } else {
         this.rS.insert(this.r).subscribe((data) => {
           this.rS.list().subscribe((data) => {
             this.rS.setList(data);
@@ -74,10 +76,10 @@ export class Rolregistrar implements OnInit {
   init() {
     if (this.edicion) {
       this.rS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          codigo: new FormControl(data.id_rol),
-          nombre: new FormControl(data.nombre),
-          descripcion: new FormControl(data.descripcion)
+        this.form = this.formBuilder.group({
+          codigo: [data.id_rol],
+          nombre: [data.nombre, [Validators.required, Validators.maxLength(30)]],
+          descripcion: [data.descripcion, [Validators.required, Validators.maxLength(200)]]
         });
       });
     }

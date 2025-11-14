@@ -5,9 +5,11 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
 import { Rol } from '../../../models/rol';
 import { RolService } from '../../../services/service-rol';
+import { MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-rollistar',
-  imports: [MatTableModule,MatButtonModule,MatIconModule,RouterLink],
+  imports: [MatTableModule,MatButtonModule,MatIconModule,RouterLink, MatCardModule,CommonModule],
   templateUrl: './rollistar.html',
   styleUrl: './rollistar.css',
 })

@@ -2,7 +2,7 @@
   <div style="text-align: center; margin: 5%"><h2>Registro de Usuarios</h2></div>
 
   <div style="text-align: center; margin: 5%">
-    <form [formGroup]="form" (submit)="aceptar()">
+    <form [formGroup]="form" (ngSubmit)="aceptar()">
 
       @if (edicion) {
         <mat-form-field>
@@ -10,6 +10,7 @@
           <input matInput formControlName="codigo" />
           <mat-error>
             @if (form.get('codigo')?.hasError('required')) { Ingrese el ID del usuario!! }
+            @if (form.get('codigo')?.hasError('maxlength')) { Máximo 30 caracteres!!! }
           </mat-error>
         </mat-form-field>
         <br />
@@ -20,6 +21,7 @@
         <input matInput formControlName="nombre" />
         <mat-error>
           @if (form.get('nombre')?.hasError('required')) { Ingrese el nombre!! }
+          @if (form.get('nombre')?.hasError('maxlength')) { Máximo 30 caracteres!! }
         </mat-error>
       </mat-form-field>
       <br />
@@ -29,6 +31,7 @@
         <input matInput formControlName="apellido" />
         <mat-error>
           @if (form.get('apellido')?.hasError('required')) { Ingrese el apellido!! }
+          @if (form.get('apellido')?.hasError('maxlength')) { Máximo 60 caracteres!! }
         </mat-error>
       </mat-form-field>
       <br />
@@ -39,6 +42,7 @@
         <mat-error>
           @if (form.get('correo')?.hasError('required')) { Ingrese el correo!! }
           @if (form.get('correo')?.hasError('email')) { Correo inválido!! }
+          @if (form.get('correo')?.hasError('maxlength')) { Máximo 60 caracteres!! }
         </mat-error>
       </mat-form-field>
       <br />
@@ -47,7 +51,9 @@
         <mat-label>Contraseña</mat-label>
         <input matInput type="password" formControlName="contrasena" />
         <mat-error>
-          @if (form.get('contrasenaa')?.hasError('required')) { Ingrese la contraseña!! }
+          @if (form.get('contrasena')?.hasError('required')) { Ingrese la contraseña!! }
+          @if (form.get('contrasena')?.hasError('minlength')) { Mínimo 5 caracteres!! }
+          @if (form.get('contrasena')?.hasError('maxlength')) { Máximo 100 caracteres!! }
         </mat-error>
       </mat-form-field>
       <br />
@@ -56,7 +62,8 @@
         <mat-label>Dirección</mat-label>
         <input matInput formControlName="direccion" />
         <mat-error>
-          @if (form.get('direccion')?.hasError('required')) { Ingrese la direccion!! }
+          @if (form.get('direccion')?.hasError('required')) { Ingrese la dirección!! }
+          @if (form.get('direccion')?.hasError('maxlength')) { Máximo 60 caracteres!! }
         </mat-error>
       </mat-form-field>
       <br />
@@ -66,13 +73,17 @@
         <input matInput type="number" formControlName="telefono" />
         <mat-error>
           @if (form.get('telefono')?.hasError('required')) { Ingrese el teléfono!! }
+          @if (form.get('telefono')?.hasError('maxlength')) { Máximo 60 caracteres!! }
         </mat-error>
       </mat-form-field>
       <br />
 
       <mat-form-field>
         <mat-label>Género</mat-label>
-        <input matInput formControlName="genero" placeholder="M / F" />
+        <mat-select formControlName="genero">
+          <mat-option value="M">M</mat-option>
+          <mat-option value="F">F</mat-option>
+        </mat-select>
         <mat-error>
           @if (form.get('genero')?.hasError('required')) { Ingrese el género!! }
         </mat-error>
@@ -80,10 +91,10 @@
       <br />
 
       <mat-form-field>
-        <mat-label>Área</mat-label>
+        <mat-label>Rol</mat-label>
         <mat-select formControlName="fk">
-          @for (a of listaRoles; track a) {
-          <mat-option [value]="a.id_rol">{{ a.nombre }}</mat-option>
+          @for (a of listaRoles; track a.id_rol) {
+            <mat-option [value]="a.id_rol">{{ a.nombre }}</mat-option>
           }
         </mat-select>
         <mat-error>
