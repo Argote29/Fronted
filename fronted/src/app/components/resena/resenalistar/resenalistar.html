@@ -1,69 +1,89 @@
 <div class="container">
-    <div style="text-align:center; margin: 20px 0;">
-      <h2>Listado de Reseñas</h2>
-    </div>
-  
-    <div style="text-align:right; margin-bottom: 12px;">
-      <button mat-raised-button color="primary" routerLink="/resena/nuevo">
-        <mat-icon>add</mat-icon>&nbsp;Nueva resena
-      </button>
-    </div>
-  
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z2" style="width:100%">
-  
-      <!-- ID -->
-      <ng-container matColumnDef="c1">
-        <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let e"> {{ e.id_resena }} </td>
-      </ng-container>
-  
-      <!-- Comentario -->
-      <ng-container matColumnDef="c2">
-        <th mat-header-cell *matHeaderCellDef> Comentario </th>
-        <td mat-cell *matCellDef="let e"> {{ e.comentario }} </td>
-      </ng-container>
-  
-      
-      <ng-container matColumnDef="c3">
-        <th mat-header-cell *matHeaderCellDef> Calificación </th>
-        <td mat-cell *matCellDef="let e"> {{ e.calificacion }} </td>
-      </ng-container>
-  
-      
-      <ng-container matColumnDef="c4">
-        <th mat-header-cell *matHeaderCellDef> Fecha </th>
-        
-        <td mat-cell *matCellDef="let e"> {{ e.fecha_resena | date:'dd/MM/yyyy' }} </td>
-      </ng-container>
-  
-      <!-- Usuario -->
-      <ng-container matColumnDef="c5">
-        <th mat-header-cell *matHeaderCellDef> Usuario </th>
-        <td mat-cell *matCellDef="let e">
-          {{ e.usuario?.nombre }} {{ e.usuario?.apellido }}
-        </td>
-      </ng-container>
-  
-      <!-- Restaurante -->
-      <ng-container matColumnDef="c6">
-        <th mat-header-cell *matHeaderCellDef> Restaurante </th>
-        <td mat-cell *matCellDef="let e"> {{ e.restaurante?.nombre_restaurante }} </td>
-      </ng-container>
-  
-      <!-- Acciones -->
-      <ng-container matColumnDef="c7">
-        <th mat-header-cell *matHeaderCellDef> Acciones </th>
-        <td mat-cell *matCellDef="let e" style="display:flex; gap:8px;">
-          <button mat-icon-button color="primary" [routerLink]="['/resena', e.id_resena]">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button color="warn" (click)="eliminar(e.id_resena)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+ 
+  <div style="text-align:center; margin: 20px 0;">
+    <h2>Listado de Reseñas</h2>
   </div>
+
+  
+  <div style="text-align:right; margin-bottom: 12px;">
+    <button mat-raised-button color="primary" routerLink="/resena/nuevo">
+      <mat-icon>add</mat-icon>&nbsp;Nueva resena
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width:100%">
+
+    
+    <ng-container matColumnDef="c1">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let e"> {{ e.id_resena }} </td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="c2">
+      <th mat-header-cell *matHeaderCellDef> Comentario </th>
+      <td mat-cell *matCellDef="let e"> {{ e.comentario }} </td>
+    </ng-container>
+
+  
+    <ng-container matColumnDef="c3">
+      <th mat-header-cell *matHeaderCellDef> Calificación </th>
+      <td mat-cell *matCellDef="let e"> {{ e.calificacion }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="c4">
+      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+      <td mat-cell *matCellDef="let e"> {{ e.fecha_resena | date:'dd/MM/yyyy' }} </td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="c5">
+      <th mat-header-cell *matHeaderCellDef> Usuario </th>
+      <td mat-cell *matCellDef="let e">
+        {{ e.usuario?.nombre }} {{ e.usuario?.apellido }}
+      </td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="c6">
+      <th mat-header-cell *matHeaderCellDef> Restaurante </th>
+      <td mat-cell *matCellDef="let e"> {{ e.restaurante?.nombre_restaurante }} </td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="c7">
+      <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+      <td mat-cell *matCellDef="let e">
+        <button
+          matButton
+          [routerLink]="['/resena', e.id_resena]">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="c8">
+      <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+      <td mat-cell *matCellDef="let e">
+        <button
+          matButton
+          color="warn"
+          (click)="eliminar(e.id_resena)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <
+  <mat-paginator
+    [pageSizeOptions]="[5, 8, 10, 25]"
+    [pageSize]="8"
+    showFirstLastButtons>
+  </mat-paginator>
+</div>
