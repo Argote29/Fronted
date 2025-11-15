@@ -14,31 +14,6 @@
         <br />
       }
 
-      <!-- Descripción -->
-      <mat-form-field>
-        <mat-label>Descripción</mat-label>
-        <textarea matInput formControlName="descripcion"></textarea>
-        <mat-error>
-          @if (form.get('descripcion')?.hasError('required')) {
-            Ingrese una descripción!!
-          }
-        </mat-error>
-      </mat-form-field>
-      <br />
-
-      <!-- Descuento -->
-      <mat-form-field>
-        <mat-label>Descuento</mat-label>
-        <input matInput type="number" formControlName="descuento" />
-        <mat-error>
-          @if (form.get('descuento')?.hasError('required')) {
-            Ingrese un descuento!!
-          }
-        </mat-error>
-      </mat-form-field>
-      <br />
-
-      <!-- Restaurante -->
       <mat-form-field>
         <mat-label>Restaurante</mat-label>
         <mat-select formControlName="restauranteId">
@@ -54,7 +29,57 @@
           }
         </mat-error>
       </mat-form-field>
-      <br />
+
+      <mat-form-field>
+        <mat-label>Descuento</mat-label>
+        <input matInput type="number" formControlName="descuento" />
+        <mat-error>
+          @if (form.get('descuento')?.hasError('required')) {
+            Ingrese un descuento!!
+          }
+          @if (form.get('descuento')?.hasError('min') || form.get('descuento')?.hasError('max')) {
+            El descuento debe estar entre 1 y 100 !!!
+          }
+        </mat-error>
+      </mat-form-field>
+
+      <div class="fila-fechas">
+
+        <mat-form-field>
+          <mat-label>Fecha de inicio</mat-label>
+          <input matInput [matDatepicker]="pickerInicio" formControlName="fecha_ini" />
+          <mat-datepicker-toggle matIconSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+          <mat-datepicker #pickerInicio></mat-datepicker>
+          <mat-error>
+            @if (form.get('fecha_ini')?.hasError('required')) { Ingrese fecha de inicio }
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Fecha de fin</mat-label>
+          <input matInput [matDatepicker]="pickerFin" formControlName="fecha_fin" />
+          <mat-datepicker-toggle matIconSuffix [for]="pickerFin"></mat-datepicker-toggle>
+          <mat-datepicker #pickerFin></mat-datepicker>
+          <mat-error>
+            @if (form.get('fecha_fin')?.hasError('required')) { Ingrese fecha final }
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+
+      <div *ngIf="form.hasError('fechasInvalidas') && (form.get('fecha_ini')?.touched || form.get('fecha_fin')?.touched)">
+        <mat-error>La fecha de inicio debe ser anterior o igual a la fecha de fin.</mat-error>
+      </div>
+
+      <mat-form-field>
+        <mat-label>Descripcion</mat-label>
+        <textarea matInput formControlName="descripcion" rows="4"></textarea>
+
+        <mat-error>
+          @if (form.get('descripcion')?.hasError('required')) { Ingrese la DESCRIPCIÓN !!! }
+          @if (form.get('descripcion')?.hasError('maxlength')) { Máximo 200 caracteres !!! }
+        </mat-error>
+      </mat-form-field>
 
       <div>
         <button mat-raised-button color="primary" type="submit">
@@ -68,4 +93,3 @@
     </form>
   </div>
 </div>
-ng
