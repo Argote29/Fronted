@@ -65,6 +65,13 @@
     </button>
 
 
+        <button 
+      mat-button 
+      class="btn-rojo" 
+      aria-label="Menú de ingredientes por platos"
+      [matMenuTriggerFor]="menuIngredientesplato">
+      <mat-icon>grain</mat-icon>Ingredientes por platos
+    </button>
 
 
 
@@ -113,6 +120,13 @@
    <mat-menu #menuPlatos="matMenu">
     <button mat-menu-item routerLink="/plato">Listar</button>
     <button mat-menu-item routerLink="/plato/nuevo">Registrar</button>
+  </mat-menu>
+
+
+      <!-- Menú Ingredientes por Platos -->
+  <mat-menu #menuIngredientesplato="matMenu">
+    <button mat-menu-item routerLink="/ingredientesplato">Listar</button>
+    <button mat-menu-item routerLink="/ingredientesplato/nuevo">Registrar</button>
   </mat-menu>
 
 

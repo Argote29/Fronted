@@ -24,6 +24,12 @@ import { Plato } from './components/plato/plato';
 import { Platolistar } from './components/plato/platolistar/platolistar';
 import { Platoregistrar } from './components/plato/platoregistrar/platoregistrar';
 import { Rollistar } from './components/rol/rollistar/rollistar';
+
+
+import { Ingredientesplatolistar } from './components/ingredientesplato/ingredientesplatolistar/ingredientesplatolistar';
+import { Ingredientesplatoregistrar } from './components/ingredientesplato/ingredientesplatoregistrar/ingredientesplatoregistrar';
+import { Ingredientesplato } from './components/ingredientesplato/ingredientesplato';
+
 export const routes: Routes = 
 [
 
@@ -99,6 +105,16 @@ export const routes: Routes =
       { path: '', component: Platolistar },         
       { path: 'nuevo', component: Platoregistrar }, 
       { path: ':id', component: Platoregistrar },   
+    ],
+  },
+
+    {
+    path: 'ingredientesplato', 
+    component: Ingredientesplato,
+    children: [
+      { path: '', component: Ingredientesplatolistar },         
+      { path: 'nuevo', component: Ingredientesplatoregistrar }, 
+      { path: ':id', component: Ingredientesplatoregistrar },   
     ],
   },
 ];
