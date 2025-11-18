@@ -1,0 +1,91 @@
+<div class="container">
+  <div style="text-align: center; margin: 5%">
+    <h2>Registro de Reseñas</h2>
+  </div>
+
+  <div style="text-align: center; margin: 5%">
+    <form [formGroup]="form" (submit)="aceptar()">
+
+      @if (edicion) {
+        <mat-form-field>
+          <mat-label>ID</mat-label>
+          <input matInput formControlName="id" readonly />
+        </mat-form-field>
+        <br />
+      }
+      <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="usuarioId">
+          @for (u of listaUsuarios; track u) {
+            <mat-option [value]="u.id_usuario">
+              {{ u.nombre }} {{ u.apellido }}
+            </mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('usuarioId')?.hasError('required')) {
+            Seleccione un usuario!!
+          }
+        </mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Restaurante</mat-label>
+        <mat-select formControlName="restauranteId">
+          @for (r of listaRestaurantes; track r) {
+            <mat-option [value]="r.id_restaurante">
+              {{ r.nombre_restaurante }}
+            </mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('restauranteId')?.hasError('required')) {
+            Seleccione un restaurante!!
+          }
+        </mat-error>
+      </mat-form-field>
+      <br />
+      <div class="rating">
+        @for (star of stars; track star; let i = $index) {
+          <mat-icon
+            (click)="setRating(i + 1)"
+            [class.filled]="i < form.get('calificacion')?.value">
+            star
+          </mat-icon>
+        }
+      </div>
+      <div class="rating-error">
+        @if (form.get('calificacion')?.hasError('required')) {
+          Seleccione una calificación!!
+        }
+      </div>
+      <br />
+      <mat-form-field>
+        <mat-label>Descripción</mat-label>
+        <textarea
+          matInput
+          formControlName="comentario"
+          rows="4">
+        </textarea>
+        <mat-error>
+          @if (form.get('comentario')?.hasError('required')) {
+            Ingrese un comentario !!!
+          }
+          @if (form.get('comentario')?.hasError('maxlength')) {
+            Máximo 200 caracteres !!!
+          }
+        </mat-error>
+      </mat-form-field>
+      <br />
+      <div>
+        <button mat-raised-button color="primary" type="submit">
+          {{ edicion ? 'Actualizar' : 'Registrar' }}
+        </button>
+        <button mat-raised-button color="warn" routerLink="/resena" type="button">
+          Cancelar
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
