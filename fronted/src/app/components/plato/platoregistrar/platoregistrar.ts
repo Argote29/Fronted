@@ -27,12 +27,10 @@ import { Promociones } from '../../../models/promociones';
   styleUrl: './platoregistrar.css',
 })
 export class Platoregistrar {
-
   form: FormGroup = new FormGroup({});
   r: Plato = new Plato();
   edicion = false;
   id = 0;
-
   listaRestaurantes: Restaurante[] = [];
   listaPromociones: Promociones[] = [];
 
@@ -52,15 +50,11 @@ export class Platoregistrar {
       this.edicion = this.id != null;
       this.init();
     });
-
-    // Cargar selects
     this.promS.list().subscribe(d => (this.listaPromociones = d));
     this.rs.list().subscribe(d => (this.listaRestaurantes = d));
-
-    // Form principal
     this.form = this.fb.group({
       id_plato: [''],
-      precio_plato: [0, Validators.required],
+      precio_plato: [0, [Validators.required,Validators.min(1), Validators.max(10000)]],
       nombre_plato: ["", Validators.required],
       info_nutricional: ["", Validators.required],
       id_promociones: [null, Validators.required],
@@ -70,20 +64,14 @@ export class Platoregistrar {
 
   aceptar(): void {
     if (!this.form.valid) return;
-
-    // Mapear campos simples
     this.r.id_plato = this.form.value.id_plato;
     this.r.precio_plato = this.form.value.precio_plato;
     this.r.nombre_plato = this.form.value.nombre_plato;
     this.r.info_nutricional = this.form.value.info_nutricional;
-
-    // FK - inicializar para evitar undefined
     this.r.promociones = new Promociones();
     this.r.restaurante = new Restaurante();
-
     this.r.promociones.id_Promociones = this.form.value.id_promociones;
     this.r.restaurante.id_restaurante = this.form.value.id_restaurante;
-
     const op = this.edicion ? this.ps.update(this.r) : this.ps.insert(this.r);
 
     op.subscribe(() => {
@@ -101,10 +89,7 @@ export class Platoregistrar {
           precio_plato: new FormControl(data.precio_plato, Validators.required),
           nombre_plato: new FormControl(data.nombre_plato, Validators.required),
           info_nutricional: new FormControl(data.info_nutricional, Validators.required),
-
-          // 🔥 CORREGIDO: debe coincidir con el form -> id_promociones
           id_promociones: new FormControl(data.promociones?.id_Promociones, Validators.required),
-
           id_restaurante: new FormControl(data.restaurante?.id_restaurante, Validators.required),
         });
 

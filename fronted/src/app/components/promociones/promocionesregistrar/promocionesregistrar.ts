@@ -1,5 +1,14 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
+  Validators
+} from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { MatInputModule } from '@angular/material/input';
@@ -12,36 +21,53 @@ import { RestauranteService } from '../../../services/service-restaurante';
 
 import { Promociones } from '../../../models/promociones';
 import { Restaurante } from '../../../models/Restaurante';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-promocionesregistrar',
-  imports: [ReactiveFormsModule,
+  imports: [
+    ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatSelectModule],
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    CommonModule
+  ],
   templateUrl: './promocionesregistrar.html',
   styleUrl: './promocionesregistrar.css',
 })
 export class Promocionesregistrar {
-   form: FormGroup = new FormGroup({});
-    r: Promociones = new Promociones();
-    edicion = false;
-    id = 0;
+  form: FormGroup = new FormGroup({});
+  r: Promociones = new Promociones();
+  edicion = false;
+  id = 0;
 
-  listaRestaurantes: Restaurante[] = []
+  listaRestaurantes: Restaurante[] = [];
 
-constructor(
+  constructor(
     private proS: ServicePromociones,
     private restS: RestauranteService,
-
     private router: Router,
     private fb: FormBuilder,
     private route: ActivatedRoute
   ) {}
 
+  fechasValidas: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
+    const fechaInicio = group.get('fecha_ini')?.value;
+    const fechaFin = group.get('fecha_fin')?.value;
 
-  
+    if (!fechaInicio || !fechaFin) return null; 
+
+    const ini = new Date(fechaInicio);
+    const fin = new Date(fechaFin);
+
+    return ini <= fin ? null : { fechasInvalidas: true };
+  };
+
   ngOnInit(): void {
     this.route.params.subscribe((p: Params) => {
       this.id = p['id'];
@@ -49,36 +75,34 @@ constructor(
       this.init();
     });
 
-    
     this.restS.list().subscribe(d => (this.listaRestaurantes = d));
 
-    
-   this.form = this.fb.group({
-  id_Promociones: [''],
-  descripcion: ['', Validators.required],
-  descuento: ['', Validators.required],
-  restauranteId: [null, Validators.required],
-});
-
+    this.form = this.fb.group(
+      {
+        id_Promociones: [''],
+        descripcion: ['', [Validators.required, Validators.maxLength(200)]],
+        descuento: ['', [Validators.required, Validators.min(1), Validators.max(100)]],
+        restauranteId: [null, Validators.required],
+        fecha_ini: [null, Validators.required],
+        fecha_fin: [null, Validators.required],
+      },
+      { validators: this.fechasValidas } 
+    );
   }
 
-
-    aceptar(): void {
+  aceptar(): void {
     if (!this.form.valid) return;
 
-   
-    this.r.id_Promociones = this.form.value.id_Promociones;
-    this.r.descripcion= this.form.value.descripcion;
-    this.r.descuento = this.form.value.descuento;
+    const v = this.form.value;
 
-    
-    this.r.fecha_inico_promo = this.r.fecha_inico_promo || new Date().toLocaleDateString('en-CA');
-    this.r.fecha_final_promo = this.r.fecha_final_promo || new Date().toLocaleDateString('en-CA');
+    this.r.id_Promociones = v.id_Promociones;
+    this.r.descripcion = v.descripcion;
+    this.r.descuento = v.descuento;
+    this.r.fecha_inico_promo = v.fecha_ini;
+    this.r.fecha_final_promo = v.fecha_fin;
 
-  
-    this.r.restaurante.id_restaurante = this.form.value.restauranteId;
+    this.r.restaurante.id_restaurante = v.restauranteId;
 
-    
     const op = this.edicion ? this.proS.update(this.r) : this.proS.insert(this.r);
     op.subscribe(() => {
       this.proS.list().subscribe(data => this.proS.setList(data));
@@ -86,22 +110,18 @@ constructor(
     });
   }
 
-   private init(): void {
+  private init(): void {
     if (this.edicion) {
       this.proS.listId(this.id).subscribe(data => {
-        
-        this.r.fecha_inico_promo = data.fecha_inico_promo;
-        this.r.fecha_final_promo = data.fecha_final_promo;
-
-      this.form = new FormGroup({
-  id_Promociones: new FormControl(data.id_Promociones),
-  descripcion: new FormControl(data.descripcion, Validators.required),
-  descuento: new FormControl(data.descuento, Validators.required),
-  restauranteId: new FormControl(data.restaurante?.id_restaurante, Validators.required),
-});
-
+        this.form.patchValue({
+          id_Promociones: data.id_Promociones,
+          descripcion: data.descripcion,
+          descuento: data.descuento,
+          restauranteId: data.restaurante?.id_restaurante,
+          fecha_ini: data.fecha_inico_promo ? new Date(data.fecha_inico_promo) : null,
+          fecha_fin: data.fecha_final_promo ? new Date(data.fecha_final_promo) : null,
+        });
       });
     }
   }
-
 }

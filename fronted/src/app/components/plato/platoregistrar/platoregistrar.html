@@ -14,43 +14,6 @@
         <br />
       }
 
-      <!-- Nombre del plato -->
-      <mat-form-field>
-        <mat-label>Nombre del Plato</mat-label>
-        <input matInput formControlName="nombre_plato" />
-        <mat-error>
-          @if (form.get('nombre_plato')?.hasError('required')) {
-            Ingrese el nombre del plato!!
-          }
-        </mat-error>
-      </mat-form-field>
-      <br />
-
-      <!-- Precio -->
-      <mat-form-field>
-        <mat-label>Precio del Plato</mat-label>
-        <input type="number" matInput formControlName="precio_plato" />
-        <mat-error>
-          @if (form.get('precio_plato')?.hasError('required')) {
-            Ingrese el precio del plato!!
-          }
-        </mat-error>
-      </mat-form-field>
-      <br />
-
-      <!-- Información nutricional -->
-      <mat-form-field>
-        <mat-label>Información nutricional</mat-label>
-        <textarea matInput formControlName="info_nutricional"></textarea>
-        <mat-error>
-          @if (form.get('info_nutricional')?.hasError('required')) {
-            Ingrese la información nutricional!!
-          }
-        </mat-error>
-      </mat-form-field>
-      <br />
-
-      <!-- Restaurante -->
       <mat-form-field>
         <mat-label>Restaurante</mat-label>
         <mat-select formControlName="id_restaurante">
@@ -68,7 +31,6 @@
       </mat-form-field>
       <br />
 
-      <!-- Promoción -->
       <mat-form-field>
         <mat-label>Promoción</mat-label>
         <mat-select formControlName="id_promociones">
@@ -86,8 +48,44 @@
       </mat-form-field>
       <br />
 
-      <!-- Botones -->
-      <div>
+      <mat-form-field>
+        <mat-label>Nombre del Plato</mat-label>
+        <input matInput formControlName="nombre_plato" />
+        <mat-error>
+          @if (form.get('nombre_plato')?.hasError('required')) {
+            Ingrese el nombre del plato!!
+          }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Precio del Plato</mat-label>
+        <input type="number" matInput formControlName="precio_plato" />
+        <mat-error>
+          @if (form.get('precio_plato')?.hasError('required')) {
+            Ingrese el precio del plato!!
+          }
+          @if (form.get('precio_plato')?.hasError('min') || form.get('precio_plato')?.hasError('max')) {
+            Ingrese un precio válido!!
+          }
+        </mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Informacion Nutricional</mat-label>
+         <textarea matInput formControlName="info_nutricional" rows="4" cols="50"></textarea>
+
+        <mat-error>
+          @if (form.get('info_nutricional')?.hasError('required')) { Ingrese la informacion nutricional !!! }
+
+          @if (form.get('info_nutricional')?.hasError('maxlength')) { Maximo 200 caracteres !!! }
+        </mat-error>
+
+      </mat-form-field>
+      <br />
+
+      <div class="acciones-form">
         <button mat-raised-button color="primary" type="submit">
           {{ edicion ? 'Actualizar' : 'Registrar' }}
         </button>
