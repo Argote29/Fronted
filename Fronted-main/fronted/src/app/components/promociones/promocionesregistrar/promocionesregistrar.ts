@@ -84,7 +84,7 @@ export class Promocionesregistrar {
         descuento: ['', [Validators.required, Validators.min(1), Validators.max(100)]],
         restauranteId: [null, Validators.required],
         fecha_ini: [null, Validators.required],
-        fecha_fin: [null, Validators.required],
+        fecha_fin: [null, [Validators.required]],
       },
       { validators: this.fechasValidas } 
     );

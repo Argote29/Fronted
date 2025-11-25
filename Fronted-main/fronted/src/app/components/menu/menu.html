@@ -73,6 +73,13 @@
       <mat-icon>grain</mat-icon>Ingredientes por platos
     </button>
 
+            <button 
+      mat-button 
+      class="btn-rojo" 
+      aria-label="Menú Reportes"
+      [matMenuTriggerFor]="menuReportes">
+      <mat-icon>computer</mat-icon>Reportes
+    </button>
 
 
   </mat-toolbar>
@@ -106,6 +113,7 @@
     <button mat-menu-item routerLink="/restaurante">Listar</button>
     <button mat-menu-item routerLink="/restaurante/nuevo">Registrar</button>
   </mat-menu>
+
   <mat-menu #menuResenas="matMenu">
     <button mat-menu-item routerLink="/resena">Listar</button>
     <button mat-menu-item routerLink="/resena/nuevo">Registrar</button>
@@ -127,6 +135,11 @@
   <mat-menu #menuIngredientesplato="matMenu">
     <button mat-menu-item routerLink="/ingredientesplato">Listar</button>
     <button mat-menu-item routerLink="/ingredientesplato/nuevo">Registrar</button>
+  </mat-menu>
+
+        <!-- Menú Reportes -->
+  <mat-menu #menuReportes="matMenu">
+    <button mat-menu-item routerLink="/reporte1">Reporte 1</button>
   </mat-menu>
 
 

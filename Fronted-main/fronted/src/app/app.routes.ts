@@ -29,6 +29,7 @@ import { Rollistar } from './components/rol/rollistar/rollistar';
 import { Ingredientesplatolistar } from './components/ingredientesplato/ingredientesplatolistar/ingredientesplatolistar';
 import { Ingredientesplatoregistrar } from './components/ingredientesplato/ingredientesplatoregistrar/ingredientesplatoregistrar';
 import { Ingredientesplato } from './components/ingredientesplato/ingredientesplato';
+import { Reporterestaurantemasresenados } from './components/reporterestaurantemasresenados/reporterestaurantemasresenados';
 
 export const routes: Routes = 
 [
@@ -117,4 +118,7 @@ export const routes: Routes =
       { path: ':id', component: Ingredientesplatoregistrar },   
     ],
   },
+  {
+    path:'reporte1', component:Reporterestaurantemasresenados
+  }
 ];
