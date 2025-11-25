@@ -1,66 +1,91 @@
-/* --- Toolbar --- */
+/* ------------------------------------------------ */
+/* 2.1. Definición de Variables */
+/* ------------------------------------------------ */
+:host {
+    --color-dark-green: #083E2E; 
+    --color-primary: #1B906E;    
+    --color-mid-green: #15664E;  
+    --color-text-light: #E9FFE7; 
+    --color-white: #ffffff;      
+}
+
+/* ------------------------------------------------ */
+/* 2.2. Estilos de la Barra de Herramientas (mat-toolbar) */
+/* ------------------------------------------------ */
 .custom-toolbar {
-  background-color: rgb(242, 49, 35); /* verde principal */
-  display: flex;
-  align-items: center;
-  padding: 0 8px;
+    background-color: var(--color-dark-green) !important;
+    padding: 0 16px;
+    height: 60px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    display: flex;
+    justify-content: flex-start;
 }
 
-/* --- Botón principal --- */
-.btn-rojo {
-  background-color: rgb(242, 49, 35);
-  border: none;
-  font-size: smaller;
-  border-radius: 4px;
-  margin: 4px;
-  padding: 6px 10px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+/* ------------------------------------------------ */
+/* 2.3. Estilos de los Botones del Menú (¡SOLUCIÓN FORZADA!) */
+/* ------------------------------------------------ */
+
+/* El selector general del botón */
+.custom-toolbar button.mat-button {
+    margin-right: 15px; 
+    border-radius: 4px;
+    padding: 0 10px;
+    height: 100%;
+    transition: background-color 0.3s;
 }
 
-.btn-rojo:hover {
-  background-color: rgb(245, 131, 102);
+/* Estilo al pasar el ratón (Hover) */
+.custom-toolbar button.mat-button:hover {
+    background-color: var(--color-mid-green) !important; 
 }
 
-/* --- Icono --- */
-.btn-rojo mat-icon,
-.btn-rojo .material-symbols-outlined {
-  font-size: 1.3rem;
-  vertical-align: middle;
-  line-height: 1;
+/* --- SELECTORES DE ALTO CONTRASTE (¡CLAVE!) --- */
+
+/* 1. Fuerza el color del TEXTO dentro del botón */
+:host ::ng-deep .custom-toolbar .mat-mdc-button .mdc-button__label {
+    color: var(--color-text-light) !important; /* Texto claro siempre */
+    font-weight: 500;
+    font-size: 0.9em;
 }
 
-/* --- Texto dentro del botón --- */
-.btn-rojo span:not(.material-symbols-outlined),
-.btn-rojo {
-  vertical-align: middle;
+/* 2. Fuerza el color del ÍCONO dentro del botón */
+:host ::ng-deep .custom-toolbar .mat-mdc-button mat-icon {
+    color: var(--color-text-light) !important; /* Ícono claro siempre */
+    margin-right: 6px;
+    font-size: 18px; 
+    vertical-align: middle;
 }
 
-/* --- Asegurar color blanco --- */
-.custom-toolbar button,
-.custom-toolbar mat-icon {
-  color: rgb(255, 255, 255);
+/* 3. Fuerza el color del TEXTO en hover */
+:host ::ng-deep .custom-toolbar .mat-mdc-button:hover .mdc-button__label {
+    color: var(--color-white) !important; 
 }
 
-/* --- Menú desplegable translúcido verde claro --- */
-.mat-mdc-menu-panel {
-  background-color: rgba(243, 122, 122, 0.3) !important; /* verde claro translúcido (lightgreen con transparencia) */
-  backdrop-filter: blur(6px); /* efecto suave de vidrio */
-  border: 1px solid rgba(238, 79, 10, 0.3);
-  border-radius: 8px;
-  padding: 4px 0;
+/* 4. Fuerza el color del ÍCONO en hover */
+:host ::ng-deep .custom-toolbar .mat-mdc-button:hover mat-icon {
+    color: var(--color-white) !important;
 }
 
-/* --- Opciones del menú --- */
-.mat-mdc-menu-item {
-  color: #f43218 !important; /* texto verde oscuro */
-  font-size: 0.85rem;
-  font-weight: 500;
+/* ------------------------------------------------ */
+/* 2.4. Estilos de los Submenús (mat-menu-item) */
+/* ------------------------------------------------ */
+
+/* El panel que contiene los items del menú */
+:host ::ng-deep .mat-mdc-menu-panel {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--color-primary);
 }
 
-.mat-mdc-menu-item:hover {
-  background-color: rgba(246, 136, 111, 0.2) !important; /* un verde más visible al pasar el mouse */
+/* Items del submenú */
+:host ::ng-deep .mat-mdc-menu-item {
+    color: var(--color-dark-green);
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+/* Hover en los items del submenú */
+:host ::ng-deep .mat-mdc-menu-item:hover {
+    background-color: var(--color-text-light) !important; 
+    color: var(--color-primary);
 }

@@ -1,0 +1,137 @@
+/* ------------------------------------------------ */
+/* 2.1. Definición de Variables y Contenedor Principal */
+/* ------------------------------------------------ */
+:host {
+    /* Define tus colores como variables CSS */
+    --color-dark-green: #083E2E;
+    --color-primary: #1B906E;
+    --color-mid-green: #15664E;
+    --color-accent-1: #A4F47E;
+    --color-accent-2: #C2FFC8;
+    --color-background: #E9FFE7;
+    --color-warn: #f44336; /* Usaremos un rojo para eliminar */
+}
+
+/* Fondo principal limpio */
+.main-container {
+    background-color: var(--color-background); 
+    min-height: 100vh;
+    padding: 30px;
+}
+
+/* Título */
+.title {
+    color: var(--color-dark-green);
+    font-size: 2.5em;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* ------------------------------------------------ */
+/* 2.2. Contenedor de Tarjetas */
+/* ------------------------------------------------ */
+.card-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px; /* Aumenta la separación entre tarjetas */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ------------------------------------------------ */
+/* 2.3. Estilo de mat-card (Tarjeta de Usuario) */
+/* ------------------------------------------------ */
+.user-card {
+    width: 100%;
+    max-width: 380px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 5px solid var(--color-primary); /* Borde de color primario */
+}
+
+.user-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Efecto hover sutil */
+}
+
+/* Encabezado */
+.user-avatar {
+    background-color: var(--color-accent-1); 
+    border-radius: 50%;
+}
+
+.card-title {
+    color: var(--color-dark-green);
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.card-subtitle {
+    color: var(--color-primary);
+    font-weight: 500;
+}
+
+/* Contenido de la Tarjeta */
+.card-content {
+    padding-top: 10px !important;
+    text-align: left;
+    color: var(--color-mid-green);
+}
+
+.card-content p {
+    margin: 5px 0;
+    font-size: 0.95em;
+    display: flex;
+    align-items: center;
+}
+
+.section-title {
+    color: var(--color-dark-green);
+    font-weight: 700;
+    font-size: 1.1em;
+    border-bottom: 1px solid var(--color-accent-2);
+    padding-bottom: 5px;
+    margin-bottom: 10px !important;
+}
+
+.icon-detail {
+    font-size: 18px;
+    margin-right: 8px;
+    color: var(--color-primary);
+}
+
+/* ------------------------------------------------ */
+/* 2.4. Estilo de Botones */
+/* ------------------------------------------------ */
+.card-actions {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 15px !important;
+}
+
+.update-button {
+    background-color: var(--color-primary) !important;
+    color: white !important;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.update-button:hover {
+    background-color: var(--color-mid-green) !important;
+}
+
+.delete-button {
+    background-color: var(--color-warn) !important;
+    color: white !important;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+    background-color: #d32f2f !important; /* Rojo más oscuro en hover */
+}

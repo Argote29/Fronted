@@ -5,10 +5,11 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
 import { Historial } from '../../../models/historial';
 import { ServiceHistorial } from '../../../services/service-historial';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-historiallistar',
-  imports: [MatTableModule, MatButtonModule, MatIconModule, RouterLink],
+  imports: [MatTableModule, MatButtonModule, MatIconModule, RouterLink, CommonModule],
   templateUrl: './historiallistar.html',
   styleUrl: './historiallistar.css',
 })

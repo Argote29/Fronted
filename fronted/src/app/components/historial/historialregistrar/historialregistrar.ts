@@ -65,9 +65,9 @@ export class Historialregistrar implements OnInit {
     this.form = this.formBuilder.group(
       {
         codigo: [''],
-        fecha_ini: ['', Validators.required],
+        fecha_ini: [new Date(), Validators.required],
         fecha_fin: ['', Validators.required],
-        status: ['', Validators.required],
+        status: ['', Validators.required],  
         fk: ['', Validators.required],
       },
       { validators: this.fechasValidas }
@@ -77,7 +77,7 @@ export class Historialregistrar implements OnInit {
   aceptar(): void {
     if (this.form.valid) {
       this.h.id_historial = this.form.value.codigo;
-      this.h.fecha_inicio_sub = this.form.value.fecha_ini;
+      this.h.fecha_inicio_sub = new Date();
       this.h.fecha_final_sub = this.form.value.fecha_fin;
       this.h.estado = this.form.value.status;
       this.h.usuario.id_usuario = this.form.value.fk;
@@ -102,7 +102,7 @@ export class Historialregistrar implements OnInit {
         this.form = this.formBuilder.group(
           {
             codigo: [data.id_historial],
-            fecha_ini: [data.fecha_inicio_sub, Validators.required],
+            fecha_ini: [data.fecha_inicio_sub],
             fecha_fin: [data.fecha_final_sub, Validators.required],
             status: [data.estado, Validators.required],
             fk: [data.usuario.id_usuario, Validators.required],

@@ -38,7 +38,10 @@ export class Rolregistrar implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute
   ) { }
-
+  
+volverAPadre() {
+  this.router.navigate(['../'], { relativeTo: this.route });
+}
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
