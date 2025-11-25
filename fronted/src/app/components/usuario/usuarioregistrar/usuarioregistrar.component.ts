@@ -54,10 +54,10 @@ volverAPadre() {
       codigo: [''],
       nombre: ['', [Validators.required, Validators.maxLength(30)]],
       apellido: ['', [Validators.required, Validators.maxLength(60)]],
-      correo: ['', [Validators.required, Validators.email, Validators.maxLength(60)]],
+      correo: ['', [Validators.required, Validators.email, Validators.maxLength(60), Validators.pattern('^.+?\.com$')]],
       contrasena: ['', [Validators.required, Validators.maxLength(100),Validators.minLength(5)]],
       direccion: ['',[Validators.required,Validators.maxLength(60)]],
-      telefono: ['', [Validators.required,Validators.maxLength(9)]],
+      telefono: ['', [Validators.required, Validators.maxLength(9), Validators.minLength(9)]],
       genero: ['', [Validators.required,Validators.maxLength(9)]],
       fk: ['', [Validators.required]]
     });
@@ -96,10 +96,10 @@ volverAPadre() {
           codigo: [data.id_usuario],
           nombre: [data.nombre, [Validators.required, Validators.maxLength(30)]],
           apellido: [data.apellido, [Validators.required, Validators.maxLength(60)]],
-          correo: [data.correo, [Validators.required, Validators.email, Validators.maxLength(60)]],
+          correo: [data.correo, [Validators.required, Validators.email, Validators.maxLength(60), Validators.pattern('^.+?\.com$')]],
           contrasena: [data.contrasena, [Validators.required, Validators.maxLength(100), Validators.minLength(5)]],
           direccion: [data.direccion, [Validators.required, Validators.maxLength(60)]],
-          telefono: [data.telefono, [Validators.required, Validators.maxLength(9)]],
+          telefono: [data.telefono, [Validators.required, Validators.maxLength(13), Validators.minLength(9)]],
           genero: [data.genero, [Validators.required, Validators.maxLength(9)]],
           fk: [data.rol.id_rol, Validators.required]
         });

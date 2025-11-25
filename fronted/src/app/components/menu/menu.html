@@ -1,8 +1,7 @@
-<div class="container">
+<div >
   <mat-toolbar class="custom-toolbar">
     <button 
       mat-button 
-      class="btn-rojo" 
       aria-label="Menú de Roles"
       [matMenuTriggerFor]="menuRol">
       <mat-icon>security</mat-icon>Roles
@@ -10,7 +9,6 @@
 
     <button 
       mat-button 
-      class="btn-rojo" 
       aria-label="Menú de usuarios"
       [matMenuTriggerFor]="menuUsuario">
       <mat-icon>person</mat-icon>Usuarios
@@ -18,7 +16,6 @@
 
     <button 
       mat-button 
-      class="btn-rojo" 
       aria-label="Menú de Ingredientes"
       [matMenuTriggerFor]="menuIngrediente">
       <mat-icon>dining</mat-icon>Ingredientes
@@ -26,7 +23,6 @@
 
     <button 
       mat-button 
-      class="btn-rojo" 
       aria-label="Panel de Suscripciones"
       [matMenuTriggerFor]="menuHistorial">
       <mat-icon>receipt_long</mat-icon>Panel de Suscripciones
@@ -35,21 +31,18 @@
     
     <button 
       mat-button 
-      class="btn-rojo" 
       aria-label="Menú de Restaurante"
       [matMenuTriggerFor]="menuRestaurante">
       <mat-icon>restaurant</mat-icon>Restaurante
     </button>
     <button 
       mat-button 
-      class="btn-rojo" 
       aria-label="Menú de reseñas"
       [matMenuTriggerFor]="menuResenas">
       <mat-icon>rate_review</mat-icon>Reseñas
     </button>
     <button 
       mat-button 
-      class="btn-rojo" 
       aria-label="Menú de promociones"
       [matMenuTriggerFor]="menuPromociones">
       <mat-icon>card_giftcard</mat-icon>Promociones
@@ -58,54 +51,45 @@
 
     <button 
       mat-button 
-      class="btn-rojo" 
       aria-label="Menú de platos"
       [matMenuTriggerFor]="menuPlatos">
       <mat-icon>dinner_dining</mat-icon>Platos
     </button>
 
 
-        <button 
+    <button 
       mat-button 
-      class="btn-rojo" 
       aria-label="Menú de ingredientes por platos"
       [matMenuTriggerFor]="menuIngredientesplato">
       <mat-icon>grain</mat-icon>Ingredientes por platos
     </button>
-
-
-
   </mat-toolbar>
 
-  <!-- Menú Roles -->
   <mat-menu #menuRol="matMenu">
     <button mat-menu-item routerLink="/roles">Listar</button>
     <button mat-menu-item routerLink="/roles/nuevo">Registrar</button>
   </mat-menu>
 
-  <!-- Menú Usuarios -->
   <mat-menu #menuUsuario="matMenu">
     <button mat-menu-item routerLink="/usuarios">Listar</button>
     <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>
   </mat-menu>
 
-  <!-- Menú Ingredientes -->
   <mat-menu #menuIngrediente="matMenu">
     <button mat-menu-item routerLink="/ingredientes">Listar</button>
     <button mat-menu-item routerLink="/ingredientes/nuevo">Registrar</button>
   </mat-menu>
 
-  <!-- Menú Historial -->
   <mat-menu #menuHistorial="matMenu">
     <button mat-menu-item routerLink="/historial">Listar</button>
     <button mat-menu-item routerLink="/historial/nuevo">Registrar</button>
   </mat-menu>
 
-  <!-- Menú Restaurante -->
   <mat-menu #menuRestaurante="matMenu">
     <button mat-menu-item routerLink="/restaurante">Listar</button>
     <button mat-menu-item routerLink="/restaurante/nuevo">Registrar</button>
   </mat-menu>
+  
   <mat-menu #menuResenas="matMenu">
     <button mat-menu-item routerLink="/resena">Listar</button>
     <button mat-menu-item routerLink="/resena/nuevo">Registrar</button>
@@ -117,17 +101,14 @@
   </mat-menu>
 
 
-   <mat-menu #menuPlatos="matMenu">
+  <mat-menu #menuPlatos="matMenu">
     <button mat-menu-item routerLink="/plato">Listar</button>
     <button mat-menu-item routerLink="/plato/nuevo">Registrar</button>
   </mat-menu>
 
 
-      <!-- Menú Ingredientes por Platos -->
   <mat-menu #menuIngredientesplato="matMenu">
     <button mat-menu-item routerLink="/ingredientesplato">Listar</button>
     <button mat-menu-item routerLink="/ingredientesplato/nuevo">Registrar</button>
   </mat-menu>
-
-
 </div>
