@@ -29,24 +29,37 @@ import { Rollistar } from './components/rol/rollistar/rollistar';
 import { Ingredientesplatolistar } from './components/ingredientesplato/ingredientesplatolistar/ingredientesplatolistar';
 import { Ingredientesplatoregistrar } from './components/ingredientesplato/ingredientesplatoregistrar/ingredientesplatoregistrar';
 import { Ingredientesplato } from './components/ingredientesplato/ingredientesplato';
+import { Autenticador } from './components/autenticador/autenticador';
+import { Home } from './components/home/home';
+import { seguridadGuard } from './guard/seguridad-guard';
 
 export const routes: Routes = 
 [
-
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  }
+  ,
+  {
+    path: 'login',
+    component: Autenticador,
+  },
+  
 {path:'roles',component:Rol,
     children:[
-        {path:'',component:Rollistar},
-        {path:'nuevo',component:Rolregistrar},
-        { path: ':id', component: Rolregistrar}
+        {path:'',component:Rollistar, canActivate: [seguridadGuard]},
+        {path:'nuevo',component:Rolregistrar, canActivate: [seguridadGuard]},
+        { path: ':id', component: Rolregistrar, canActivate: [seguridadGuard]}
     ]
 },
 {
     path: 'usuarios',
     component: UsuarioComponent,
     children: [
-        { path: '', component: UsuariolistarComponent },
+        { path: '', component: UsuariolistarComponent, canActivate: [seguridadGuard] },
       { path: 'nuevo', component: UsuarioregistrarComponent},
-      { path: ':id', component: UsuarioregistrarComponent}
+      { path: ':id', component: UsuarioregistrarComponent, canActivate: [seguridadGuard]}
     ]
 },
 
@@ -54,9 +67,9 @@ export const routes: Routes =
     path: 'ingredientes',
     component: Ingrediente,
     children: [
-    { path: '', component: Ingredientelistar },
-      { path: 'nuevo', component: Ingredienteregistrar},
-      { path: ':id', component: Ingredienteregistrar}
+    { path: '', component: Ingredientelistar, canActivate: [seguridadGuard] },
+      { path: 'nuevo', component: Ingredienteregistrar, canActivate: [seguridadGuard]},
+      { path: ':id', component: Ingredienteregistrar, canActivate: [seguridadGuard]}
     ]
 },
 
@@ -64,9 +77,9 @@ export const routes: Routes =
     path: 'historial',
     component: Ingrediente,
     children: [
-    { path: '', component: Historiallistar },
-      { path: 'nuevo', component: Historialregistrar},
-      { path: ':id', component: Historialregistrar}
+    { path: '', component: Historiallistar, canActivate: [seguridadGuard] },
+      { path: 'nuevo', component: Historialregistrar, canActivate: [seguridadGuard]},
+      { path: ':id', component: Historialregistrar, canActivate: [seguridadGuard]}
     ]
 },
 
@@ -74,18 +87,18 @@ export const routes: Routes =
   path: 'restaurante',
   component: Restaurante,
   children: [
-  { path: '', component: Restaurantelistar },
-    { path: 'nuevo', component: Restauranteregistrar},
-    { path: ':id', component: Restauranteregistrar},
+  { path: '', component: Restaurantelistar , canActivate: [seguridadGuard]},
+    { path: 'nuevo', component: Restauranteregistrar, canActivate: [seguridadGuard]},
+    { path: ':id', component: Restauranteregistrar, canActivate: [seguridadGuard]},
   ]
 },
 {
   path: 'resena', 
   component: Resena,
   children: [
-    { path: '', component: Resenalistar },          
-    { path: 'nuevo', component: Resenaregistrar }, 
-    { path: ':id', component: Resenaregistrar },   
+    { path: '', component: Resenalistar, canActivate: [seguridadGuard] },          
+    { path: 'nuevo', component: Resenaregistrar, canActivate: [seguridadGuard] }, 
+    { path: ':id', component: Resenaregistrar, canActivate: [seguridadGuard] },   
   ],
 },
 
@@ -93,18 +106,18 @@ export const routes: Routes =
   path: 'promociones', 
   component: Promociones,
   children: [
-    { path: '', component: Promocioneslistar },          
-    { path: 'nuevo', component: Promocionesregistrar }, 
-    { path: ':id', component: Promocionesregistrar },   
+    { path: '', component: Promocioneslistar, canActivate: [seguridadGuard] },          
+    { path: 'nuevo', component: Promocionesregistrar , canActivate: [seguridadGuard]}, 
+    { path: ':id', component: Promocionesregistrar , canActivate: [seguridadGuard]},   
   ],
 },
 {
     path: 'plato', 
     component: Plato,
     children: [
-      { path: '', component: Platolistar },         
-      { path: 'nuevo', component: Platoregistrar }, 
-      { path: ':id', component: Platoregistrar },   
+      { path: '', component: Platolistar , canActivate: [seguridadGuard]},         
+      { path: 'nuevo', component: Platoregistrar , canActivate: [seguridadGuard]}, 
+      { path: ':id', component: Platoregistrar, canActivate: [seguridadGuard] },   
     ],
   },
 
@@ -112,9 +125,15 @@ export const routes: Routes =
     path: 'ingredientesplato', 
     component: Ingredientesplato,
     children: [
-      { path: '', component: Ingredientesplatolistar },         
-      { path: 'nuevo', component: Ingredientesplatoregistrar }, 
-      { path: ':id', component: Ingredientesplatoregistrar },   
+      { path: '', component: Ingredientesplatolistar, canActivate: [seguridadGuard] },         
+      { path: 'nuevo', component: Ingredientesplatoregistrar, canActivate: [seguridadGuard] }, 
+      { path: ':id', component: Ingredientesplatoregistrar , canActivate: [seguridadGuard]},   
     ],
+  },
+  {
+    path: 'homes',
+    component: Home,
+        canActivate: [seguridadGuard],
+
   },
 ];
