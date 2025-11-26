@@ -32,6 +32,7 @@ import { Ingredientesplato } from './components/ingredientesplato/ingredientespl
 import { Autenticador } from './components/autenticador/autenticador';
 import { Home } from './components/home/home';
 import { seguridadGuard } from './guard/seguridad-guard';
+import { Reporteporcentajeusuario } from './components/reporteporcentajeusuario/reporteporcentajeusuario';
 
 export const routes: Routes = 
 [
@@ -135,5 +136,8 @@ export const routes: Routes =
     component: Home,
         canActivate: [seguridadGuard],
 
+  },
+  {
+    path:'reportecantidad',component:Reporteporcentajeusuario
   },
 ];

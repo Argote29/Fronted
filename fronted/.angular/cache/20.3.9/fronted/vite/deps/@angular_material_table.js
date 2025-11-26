@@ -16,7 +16,7 @@ import "./chunk-GWFLKVBH.js";
 import "./chunk-5EG33CFQ.js";
 import {
   MatCommonModule
-} from "./chunk-DRE57IVQ.js";
+} from "./chunk-PVN5A74Y.js";
 import {
   Directionality
 } from "./chunk-CMQOO46O.js";

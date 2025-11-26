@@ -3,6 +3,7 @@ import { environment } from '../../enviroments/environment';
 import { Usuario } from '../models/usuario';
 import { Subject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { QueryPorcentajeUsuarioFiltrado } from '../models/QueryPorcentajeUsuarioFiltradoDTO';
 
 const base_url = environment.base;
 
@@ -50,4 +51,9 @@ export class ServiceUsuario implements OnInit {
   delete(id: number): Observable<string> {
     return this.http.delete(`${this.url}/${id}`, { responseType: 'text' });
   }
+
+  getPorcentajeUsuariosPorGenero(genero: string): Observable<QueryPorcentajeUsuarioFiltrado> {
+    return this.http.get<QueryPorcentajeUsuarioFiltrado>(`${this.url}/porcentaje-genero?genero=${genero}`);
+}
+
 }

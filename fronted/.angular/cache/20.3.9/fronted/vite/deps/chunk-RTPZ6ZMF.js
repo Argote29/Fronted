@@ -4,11 +4,11 @@ import {
   ViewportRuler
 } from "./chunk-7SQSL272.js";
 import {
-  coerceCssPixelValue
-} from "./chunk-GWFLKVBH.js";
-import {
   _isTestEnvironment
 } from "./chunk-HPZPFJQX.js";
+import {
+  coerceCssPixelValue
+} from "./chunk-GWFLKVBH.js";
 import {
   supportsScrollBehavior
 } from "./chunk-5EG33CFQ.js";
@@ -18,7 +18,7 @@ import {
   _getEventTarget,
   coerceArray,
   hasModifierKey
-} from "./chunk-DRE57IVQ.js";
+} from "./chunk-PVN5A74Y.js";
 import {
   BidiModule,
   Directionality
@@ -3452,4 +3452,4 @@ export {
   CdkConnectedOverlay,
   OverlayModule
 };
-//# sourceMappingURL=chunk-L6UBMP5Y.js.map
+//# sourceMappingURL=chunk-RTPZ6ZMF.js.map
