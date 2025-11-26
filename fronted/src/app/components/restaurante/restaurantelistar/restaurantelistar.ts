@@ -5,27 +5,27 @@ import { RestauranteService } from '../../../services/service-restaurante';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
 
 
 @Component({
   selector: 'app-restaurantelistar',
-  imports: [MatTableModule, MatButtonModule, MatIconModule, RouterLink],
+  imports: [MatTableModule, MatButtonModule, MatIconModule, RouterLink,MatCardModule],
   templateUrl: './restaurantelistar.html',
   styleUrl: './restaurantelistar.css',
 })
 export class Restaurantelistar implements OnInit {
-    dataSource: MatTableDataSource<Restaurante> = new MatTableDataSource();
+  dataSource: Restaurante[] = [];
 
-    displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6','c7','c8'];
 
     constructor(private rS: RestauranteService) {}
 
   ngOnInit(): void {
     this.rS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
+      this.dataSource = data;
     });
     this.rS.getList().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
+      this.dataSource = data;
     });
   }
   eliminar(id: number) {

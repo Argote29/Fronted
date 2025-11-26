@@ -1,6 +1,9 @@
 import {
   DomSanitizer
-} from "./chunk-DXAX7RBP.js";
+} from "./chunk-HH7VHSRV.js";
+import {
+  HttpClient
+} from "./chunk-LSVIF5KG.js";
 import {
   MatCommonModule
 } from "./chunk-OWKKBIUM.js";
@@ -8,9 +11,6 @@ import "./chunk-BP6VVTUM.js";
 import "./chunk-CMQOO46O.js";
 import "./chunk-7WZPOWOK.js";
 import "./chunk-4OSHMCG2.js";
-import {
-  HttpClient
-} from "./chunk-LSVIF5KG.js";
 import "./chunk-RDHXSB74.js";
 import {
   ChangeDetectionStrategy,

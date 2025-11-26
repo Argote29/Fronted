@@ -15,26 +15,43 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+// 1. IMPORTAR GOOGLE MAPS
+import { GoogleMap, MapMarker } from '@angular/google-maps';
+import { CommonModule } from '@angular/common'; // Importante para *ngIf
+
 @Component({
   selector: 'app-restauranteregistrar',
+  standalone: true,
   imports: [
+    CommonModule, // Necesario para directivas como *ngIf
     ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
     MatRadioModule,
     MatDatepickerModule,
     MatButtonModule,
+    GoogleMap, // Importar el componente del mapa
+    MapMarker  // Importar el marcador
   ],
-  templateUrl: './restauranteregistrar.html',
+  templateUrl: './restauranteregistrar.html', // Asegúrate que el nombre del archivo coincida
   providers: [provideNativeDateAdapter()],
-  styleUrl: './restauranteregistrar.css',
+  styleUrl: './restauranteregistrar.css', // Asegúrate que el nombre coincida
 })
-export class Restauranteregistrar implements OnInit {
+export class Restauranteregistrar implements OnInit { // Renombré la clase por convención (Component)
   form: FormGroup = new FormGroup({});
-  re : Restaurante = new Restaurante();
+  re: Restaurante = new Restaurante();
 
   edicion: boolean = false;
   id: number = 0;
+
+  // 2. CONFIGURACIÓN DEL MAPA
+  center: google.maps.LatLngLiteral = { lat: -12.0464, lng: -77.0428 }; // Lima, Perú (Puedes cambiarlo)
+  zoom = 15;
+  markerPosition: google.maps.LatLngLiteral | undefined;
+  mapOptions: google.maps.MapOptions = {
+    disableDefaultUI: false, // Muestra controles de zoom
+    clickableIcons: false,   // Evita clics accidentales en POIs de Google
+  };
 
   constructor(
     private rS: RestauranteService,
@@ -42,6 +59,9 @@ export class Restauranteregistrar implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute
   ) {}
+  volverAPadre() {
+  this.router.navigate(['../'], { relativeTo: this.route });
+}
 
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
@@ -51,29 +71,31 @@ export class Restauranteregistrar implements OnInit {
     });
 
     this.form = this.formBuilder.group({
-      codigo:[''],
+      codigo: [''],
       nombre: ['', Validators.required],
-      ubicacion: ['', Validators.required],
+      ubicacion: ['', Validators.required], // Aquí guardaremos la dirección
       cocinatip: ['', Validators.required],
       Tiempo: ['', Validators.required],
       numero: [''],
     });
   }
+
   aceptar(): void {
     if (this.form.valid) {
-      this.re.id_restaurante=this.form.value.codigo
+      this.re.id_restaurante = this.form.value.codigo;
       this.re.nombre_restaurante = this.form.value.nombre;
       this.re.direccion = this.form.value.ubicacion;
       this.re.tipo_cocina = this.form.value.cocinatip;
       this.re.horario = this.form.value.Tiempo;
-      this.re.contacto = this.form.value.presupuesto;
-      if(this.edicion){
+      this.re.contacto = this.form.value.numero; // Corregido: era 'presupuesto' en tu código anterior
+
+      if (this.edicion) {
         this.rS.update(this.re).subscribe((data) => {
           this.rS.list().subscribe((data) => {
             this.rS.setList(data);
           });
         });
-      }else{
+      } else {
         this.rS.insert(this.re).subscribe((data) => {
           this.rS.list().subscribe((data) => {
             this.rS.setList(data);
@@ -99,4 +121,31 @@ export class Restauranteregistrar implements OnInit {
     }
   }
 
+  // 3. LÓGICA DEL MAPA: AL HACER CLIC
+  seleccionarUbicacion(event: google.maps.MapMouseEvent) {
+    if (event.latLng) {
+      this.markerPosition = event.latLng.toJSON();
+      // Llamamos a la función para obtener el nombre de la calle
+      this.obtenerDireccion(this.markerPosition);
+    }
+  }
+
+  // 4. GEOCODING: CONVERTIR COORDENADAS A TEXTO
+  obtenerDireccion(latLng: google.maps.LatLngLiteral) {
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ location: latLng }, (results, status) => {
+      if (status === 'OK' && results && results[0]) {
+        const direccion = results[0].formatted_address;
+        
+        console.log('Dirección encontrada:', direccion);
+
+        // Actualizamos el campo 'ubicacion' del formulario
+        this.form.patchValue({
+          ubicacion: direccion
+        });
+      } else {
+        console.error('Error al geocodificar: ' + status);
+      }
+    });
+  }
 }
