@@ -2,7 +2,7 @@ import {
   MatRipple,
   MatRippleModule,
   _StructuralStylesLoader
-} from "./chunk-X3UMURRK.js";
+} from "./chunk-NUWT2MDD.js";
 import {
   _animationsDisabled
 } from "./chunk-Q6V6YDTC.js";
@@ -698,4 +698,4 @@ export {
   _getOptionScrollPosition,
   MatOptionModule
 };
-//# sourceMappingURL=chunk-NAELS2HB.js.map
+//# sourceMappingURL=chunk-MPGHMNLN.js.map

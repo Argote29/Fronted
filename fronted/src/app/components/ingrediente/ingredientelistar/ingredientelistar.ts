@@ -5,11 +5,12 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
 import { Ingrediente } from '../../../models/ingrediente';
 import { ServiceIngrediente } from '../../../services/service-ingrediente';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-ingredientelistar',
-  imports: [MatTableModule,MatButtonModule,MatIconModule,RouterLink],
+  imports: [MatTableModule,MatButtonModule,MatIconModule,RouterLink,CommonModule],
   templateUrl: './ingredientelistar.html',
   styleUrl: './ingredientelistar.css',
 })
