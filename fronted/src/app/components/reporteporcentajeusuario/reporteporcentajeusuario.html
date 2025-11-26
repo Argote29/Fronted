@@ -1,0 +1,37 @@
+<div class="main-container">
+  <div class="report-card">
+    <h2 class="title report-title">Reporte de Porcentaje de Usuarios Filtrado</h2>
+
+    <div class="filter-section">
+      <label for="generoInput" class="filter-label">Filtrar por Género (M/F): </label>
+      <input 
+        type="text" 
+        id="generoInput" 
+        [(ngModel)]="generoSeleccionado" 
+        maxlength="1" 
+        class="filter-input"
+      >
+      <button 
+        mat-raised-button 
+        class="filter-button" 
+        (click)="cargarGraficoPorGenero(generoSeleccionado)">
+        Mostrar Gráfico
+      </button>
+    </div>
+
+    <div *ngIf="hasData" class="chart-container">
+      <canvas 
+        baseChart
+        [type]="chartType"
+        [datasets]="chartData"
+        [labels]="chartLabels"
+        [options]="chartOptions"
+        [legend]="chartLegend">
+      </canvas>
+    </div>
+    
+    <div *ngIf="!hasData" class="no-data-message">
+      Seleccione un género válido (M o F) y haga click en Mostrar Gráfico.
+    </div>
+  </div>
+</div>
