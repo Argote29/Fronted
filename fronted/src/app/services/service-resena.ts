@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 import { environment } from '../../enviroments/environment';
 import { Resena } from '../models/resena';
+import { QueryRestaurantesMasResenadosDTO } from '../models/QueryRestaurantesMasResenadosDTO';
 
 
 const base_url = environment.base;
@@ -45,5 +46,8 @@ export class ServiceResena implements OnInit {
 
   delete(id: number): Observable<string> {
     return this.http.delete(`${this.url}/${id}`, { responseType: 'text' });
+  }
+  getRestauranteMasResenados():Observable<QueryRestaurantesMasResenadosDTO[]>{
+    return this.http.get<QueryRestaurantesMasResenadosDTO[]>(`${this.url}/mas-resenados`)
   }
 }

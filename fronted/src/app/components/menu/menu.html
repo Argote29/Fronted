@@ -57,6 +57,12 @@
       <mat-icon>dinner_dining</mat-icon>Platos
     </button>
 
+        <button 
+      mat-button 
+      aria-label="Menú Reservas"
+      [matMenuTriggerFor]="menuReservas">
+      <mat-icon>event</mat-icon>Reservas
+    </button>
 
     <button 
       mat-button 
@@ -122,16 +128,23 @@
     <button mat-menu-item routerLink="/plato/nuevo">Registrar</button>
   </mat-menu>
 
+    <mat-menu #menuReservas="matMenu">
+    <button mat-menu-item routerLink="/reserva">Listar</button>
+    <button mat-menu-item routerLink="/reserva/nuevo">Registrar</button>
+  </mat-menu>
+
 
   <mat-menu #menuIngredientesplato="matMenu">
     <button mat-menu-item routerLink="/ingredientesplato">Listar</button>
     <button mat-menu-item routerLink="/ingredientesplato/nuevo">Registrar</button>
   </mat-menu>
 
+
   <mat-menu #menuReporte="matMenu">
     <button mat-menu-item routerLink="/reportecantidad"><mat-icon>folder</mat-icon>Porcentaje de  Usuario por Genero</button>
-    <button mat-menu-item routerLink="/sumas"><mat-icon>folder</mat-icon>Suma</button>
+    <button mat-menu-item routerLink="/reporterestaurantemasresenados"><mat-icon>folder</mat-icon>Cantidad de Reseñas Por Restaurante</button>
   </mat-menu>
+
 
   <mat-menu #menuSalir="matMenu">
     <button mat-menu-item routerLink="/login" (click)="cerrar()">

@@ -30,6 +30,10 @@ import { Home } from './components/home/home';
 import { seguridadGuard } from './guard/seguridad-guard';
 import { Reporteporcentajeusuario } from './components/reporteporcentajeusuario/reporteporcentajeusuario';
 import { LandingPage } from './components/landing-page/landing-page';
+import { Reporterestaurantemasresenados } from './components/reporterestaurantemasresenados/reporterestaurantemasresenados';
+import { Reserva } from './components/reserva/reserva';
+import { Reservalistar } from './components/reserva/reservalistar/reservalistar';
+import { Reservaregistrar } from './components/reserva/reservaregistrar/reservaregistrar';
 
 
 export const routes: Routes = [
@@ -119,11 +123,23 @@ export const routes: Routes = [
     ],
   },
   {
+    path:'reserva',
+    component:Reserva,
+    children:[
+      {path:'',component:Reservalistar,canActivate:[seguridadGuard]},
+      {path:'nuevo',component:Reservaregistrar,canActivate:[seguridadGuard]},
+      {path:'id',component:Reservaregistrar,canActivate:[seguridadGuard]},
+    ]
+  },
+  {
     path: 'homes',
     component: Home,
     canActivate: [seguridadGuard],
   },
   {
     path: 'reportecantidad', component: Reporteporcentajeusuario
+  },
+  {
+    path:'reporterestaurantemasresenados',component:Reporterestaurantemasresenados
   },
 ];
