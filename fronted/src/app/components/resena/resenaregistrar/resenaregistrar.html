@@ -1,19 +1,19 @@
-<div class="container">
-  <div style="text-align: center; margin: 5%">
-    <h2>Registro de Reseñas</h2>
-  </div>
+<div class="main-container">
+  <div class="form-card">
 
-  <div style="text-align: center; margin: 5%">
+    <h2 class="title">Registro de Reseñas</h2>
+
     <form [formGroup]="form" (submit)="aceptar()">
 
       @if (edicion) {
-        <mat-form-field>
+        <mat-form-field class="full-width">
           <mat-label>ID</mat-label>
           <input matInput formControlName="id" readonly />
         </mat-form-field>
-        <br />
       }
-      <mat-form-field>
+
+      <!-- Usuario -->
+      <mat-form-field class="full-width">
         <mat-label>Usuario</mat-label>
         <mat-select formControlName="usuarioId">
           @for (u of listaUsuarios; track u) {
@@ -28,8 +28,9 @@
           }
         </mat-error>
       </mat-form-field>
-      <br />
-      <mat-form-field>
+
+      <!-- Restaurante -->
+      <mat-form-field class="full-width">
         <mat-label>Restaurante</mat-label>
         <mat-select formControlName="restauranteId">
           @for (r of listaRestaurantes; track r) {
@@ -44,7 +45,8 @@
           }
         </mat-error>
       </mat-form-field>
-      <br />
+
+      <!-- Rating -->
       <div class="rating">
         @for (star of stars; track star; let i = $index) {
           <mat-icon
@@ -59,8 +61,9 @@
           Seleccione una calificación!!
         }
       </div>
-      <br />
-      <mat-form-field>
+
+      <!-- Comentario -->
+      <mat-form-field class="full-width">
         <mat-label>Descripción</mat-label>
         <textarea
           matInput
@@ -76,16 +79,26 @@
           }
         </mat-error>
       </mat-form-field>
-      <br />
-      <div>
-        <button mat-raised-button color="primary" type="submit">
+
+      <!-- Botones -->
+      <div class="actions">
+        <button
+          mat-raised-button
+          type="submit"
+          class="register-button">
           {{ edicion ? 'Actualizar' : 'Registrar' }}
         </button>
-        <button mat-raised-button color="warn" routerLink="/resena" type="button">
+
+        <button
+          mat-button
+          type="button"
+          class="cancel-button"
+          routerLink="/resena">
           Cancelar
         </button>
       </div>
 
     </form>
+
   </div>
 </div>

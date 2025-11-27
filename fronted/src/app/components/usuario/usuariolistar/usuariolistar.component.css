@@ -35,7 +35,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px; /* Aumenta la separación entre tarjetas */
+    gap: 30px; 
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -135,3 +135,26 @@
 .delete-button:hover {
     background-color: #d32f2f !important; /* Rojo más oscuro en hover */
 }
+.roles-paginator {
+    background-color: white;
+    color: var(--color-dark-green);
+    border-top: 1px solid var(--color-accent-2);
+}
+    .no-data-message-container {
+        /* Ocupa todo el ancho del flex-container */
+        width: 100%; 
+        max-width: 1100px; /* Asegura que no sea más ancho que la lista de tarjetas */
+        margin: 20px auto; /* Centra horizontalmente si el ancho es menor que 100% */
+
+        /* Estilos visuales */
+        padding: 30px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+       /* Centra el texto dentro del contenedor */
+    }
+
+    .no-data-message {
+        color: var(--color-mid-green);
+        font-style: italic;
+    }   

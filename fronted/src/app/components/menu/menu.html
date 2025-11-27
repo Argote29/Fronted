@@ -75,9 +75,18 @@
     </button> 
 
      <span class="spacer"> </span>
+    <button 
+      mat-button 
+      class="btn-rojo" 
+      aria-label="Menú de home"
+      routerLink="/homes">
+      <mat-icon>home</mat-icon>Inicio
+    </button>
+
     <button mat-button [matMenuTriggerFor]="menuSalir">
       <mat-icon>person</mat-icon>Usuario
     </button>
+
   </mat-toolbar>
  
   }
@@ -130,7 +139,8 @@
 
   <mat-menu #menuReporte="matMenu">
     <button mat-menu-item routerLink="/reportecantidad"><mat-icon>folder</mat-icon>Porcentaje de  Usuario por Genero</button>
-    <button mat-menu-item routerLink="/sumas"><mat-icon>folder</mat-icon>Suma</button>
+  <button mat-menu-item routerLink="/reportecantidadreservausuario"><mat-icon>folder</mat-icon>Cantidad de reserva por Usuario</button>
+  <button mat-menu-item routerLink="/reportepromediorestaurante"><mat-icon>folder</mat-icon>Puntuacion promedio por restaurante</button>
   </mat-menu>
 
   <mat-menu #menuSalir="matMenu">

@@ -132,6 +132,11 @@
     background-color: rgba(244, 67, 54, 0.1) !important;
 }
 
+.roles-paginator {
+    background-color: white;
+    color: var(--color-dark-green);
+    border-top: 1px solid var(--color-accent-2);
+}
 /* ------------------------------------------------ */
 /* 2.5. Mensaje sin Datos */
 /* ------------------------------------------------ */
