@@ -1,38 +1,50 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { Restaurante } from '../../../models/Restaurante';
-import { RestauranteService } from '../../../services/service-restaurante';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+  import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+  // Eliminamos MatTableDataSource ya que no se usa para paginación/filtrado aquí
+  import { Restaurante } from '../../../models/Restaurante';
+  import { RestauranteService } from '../../../services/service-restaurante';
+  import { MatButtonModule } from '@angular/material/button';
+  import { MatIconModule } from '@angular/material/icon';
+  import { RouterLink } from '@angular/router';
+  import { MatCardModule } from '@angular/material/card';
+  import { CommonModule } from '@angular/common'; // Necesario para @for, @empty, y otros
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
+  @Component({
+    selector: 'app-restaurantelistar',
+    imports: [MatButtonModule, MatIconModule, RouterLink, MatCardModule, CommonModule,MatPaginatorModule], // Añadir CommonModule
+    templateUrl: './restaurantelistar.html',
+    styleUrl: './restaurantelistar.css',
+  })
+  export class Restaurantelistar implements OnInit, AfterViewInit {
+    dataSource: MatTableDataSource <Restaurante> = new MatTableDataSource<Restaurante>([]);
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-@Component({
-  selector: 'app-restaurantelistar',
-  imports: [MatTableModule, MatButtonModule, MatIconModule, RouterLink],
-  templateUrl: './restaurantelistar.html',
-  styleUrl: './restaurantelistar.css',
-})
-export class Restaurantelistar implements OnInit {
-    dataSource: MatTableDataSource<Restaurante> = new MatTableDataSource();
+    constructor(private rS: RestauranteService) {}
 
-    displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6','c7','c8'];
+      ngOnInit(): void {
+        this.rS.getList().subscribe((data) => {
+            this.dataSource.data = data; 
+            if (this.paginator) {
+                this.dataSource.paginator = this.paginator;
+            }
+        });
+        
+        this.rS.list().subscribe((data) => {
+            this.rS .setList(data);
+        });
+    }
 
-    constructor(private rS: RestauranteService) {}
-
-  ngOnInit(): void {
-    this.rS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-    });
-    this.rS.getList().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-    });
+    ngAfterViewInit(): void {
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.paginator.pageSize = 3;
+    }
+    
+    eliminar(id: number) {
+      this.rS.delete(id).subscribe(() => {
+        this.rS.list().subscribe(data => {
+          this.rS.setList(data)
+        });
+      });
+    }
   }
-  eliminar(id: number) {
-    this.rS.delete(id).subscribe((data) => {
-      this.rS.list().subscribe(data=>{
-        this.rS.setList(data)
-      })
-    });
-  }
-}

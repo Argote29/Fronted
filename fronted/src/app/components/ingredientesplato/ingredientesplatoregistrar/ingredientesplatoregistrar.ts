@@ -71,47 +71,42 @@ ngOnInit(): void {
 
     
     this.form = this.fb.group({
-      nombre_ingrediente: ['', Validators.required],
-      cantidad: [0, [Validators.required, Validators.min(1), Validators.max(20)]],
-      tipo_unidad: ['', Validators.required],
-      platoId: [null, Validators.required],
-      IngredienteId: [null, Validators.required],
-      
-    });
+  cantidad: [0, [Validators.required, Validators.min(1), Validators.max(20)]],
+  tipo_unidad: ['', Validators.required],
+  platoId: [null, Validators.required],
+  ingredienteId: [null, Validators.required],
+});
   }
 
   aceptar(): void {
-    if (!this.form.valid) return;
+  if (!this.form.valid) return;
 
-  
-    this.i.nombre_ingrediente = this.form.value.nombre;
-    this.i.cantidad = this.form.value.porcion;
-    this.i.tipo_unidad = this.form.value.calificacion;
+  // Asignar valores desde el formulario
+  this.i.cantidad = this.form.value.cantidad;
+  this.i.tipo_unidad = this.form.value.tipo_unidad;
 
-    
-    this.i.plato.id_plato = this.form.value.platoId;
-    this.i.ingrediente.id_ingredientes = this.form.value.ingredienteId;
+  // Asignar relaciones
+  this.i.plato.id_plato = this.form.value.platoId;
+  this.i.ingredientes.id_ingredientes = this.form.value.ingredienteId;
 
-    
-    const op = this.edicion ? this.si.update(this.i) : this.si.insert(this.i);
-    op.subscribe(() => {
-      this.si.list().subscribe(data => this.si.setList(data));
-      this.router.navigate(['/resena']);
-    });
-  }
+  const op = this.edicion ? this.si.update(this.i) : this.si.insert(this.i);
+
+  op.subscribe(() => {
+    this.si.list().subscribe(data => this.si.setList(data));
+    this.router.navigate(['/ingredientesplato']);
+  });
+}
 
   private init(): void {
-    if (this.edicion) {
-      this.si.listId(this.id).subscribe(data => {
-        this.form = new FormGroup({
-          nombre: new FormControl(data.nombre_ingrediente),
-          porcion: new FormControl(data.cantidad, Validators.required),
-          calificacion: new FormControl(data.tipo_unidad, [Validators.required, Validators.min(0), Validators.max(5)]),
-          platoId: new FormControl(data.plato?.id_plato, Validators.required),
-          ingredienteId: new FormControl(data.ingrediente?.id_ingredientes, Validators.required),
-        });
+  if (this.edicion) {
+    this.si.listId(this.id).subscribe(data => {
+      this.form = new FormGroup({
+        cantidad: new FormControl(data.cantidad, Validators.required),
+        tipo_unidad: new FormControl(data.tipo_unidad, Validators.required),
+        platoId: new FormControl(data.plato?.id_plato, Validators.required),
+        ingredienteId: new FormControl(data.ingredientes?.id_ingredientes, Validators.required),
       });
-    }
+    });
   }
-
+}
 }

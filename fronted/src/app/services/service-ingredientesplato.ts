@@ -11,7 +11,7 @@ const base_url = environment.base;
   providedIn: 'root',
 })
 export class ServiceIngredientesplato implements OnInit {
-  private url = `${base_url}/ingredienteplato`;
+  private url = `${base_url}/ingrediente-plato`;
   private listaCambio = new Subject<Ingredientesplato[]>();
 
   constructor(private http: HttpClient) {}

@@ -3,51 +3,48 @@
         <h2 class="title">Lista de Roles</h2>
     </div>
 
-    <div class="table-container">
+    <div class="table-container" *ngIf="dataSource.data.length > 0">
+        
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 roles-table">
-
             <ng-container matColumnDef="c1">
                 <th mat-header-cell *matHeaderCellDef> ID</th>
                 <td mat-cell *matCellDef="let element"> {{element.id_rol}} </td>
             </ng-container>
-
             <ng-container matColumnDef="c2">
                 <th mat-header-cell *matHeaderCellDef> Rol </th>
                 <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
             </ng-container>
-
             <ng-container matColumnDef="c3">
                 <th mat-header-cell *matHeaderCellDef> Descripción </th>
                 <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
             </ng-container>
-
             <ng-container matColumnDef="c7">
                 <th mat-header-cell *matHeaderCellDef> Actualizar </th>
                 <td mat-cell *matCellDef="let element">
-                    <button
-                        mat-icon-button
-                        class="update-icon-button"
-                        [routerLink]="['/roles',element.id_rol]">
+                    <button mat-icon-button class="update-icon-button" [routerLink]="['/roles',element.id_rol]">
                         <mat-icon>edit</mat-icon>
                     </button>
                 </td>
             </ng-container>
-
             <ng-container matColumnDef="c8">
                 <th mat-header-cell *matHeaderCellDef> Eliminar </th>
                 <td mat-cell *matCellDef="let element">
-                    <button
-                        mat-icon-button
-                        class="delete-icon-button"
-                        (click)="eliminar(element.id_rol)">
+                    <button mat-icon-button class="delete-icon-button" (click)="eliminar(element.id_rol)">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </td>
             </ng-container>
-
+            
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        <mat-paginator [pageSizeOptions]="[5, 8, 10, 25]" [pageSize]="8" showFirstLastButtons class="roles-paginator"></mat-paginator>
+        
+        <mat-paginator [pageSizeOptions]="[5, 10, 15]" [pageSize]="5" showFirstLastButtons class="roles-paginator"></mat-paginator>
+    </div>
+
+    <div *ngIf="dataSource.data.length === 0" class="no-data-message-container">
+        <p class="no-data-message" >
+            No hay roles registrados.
+        </p>
     </div>
 </div>

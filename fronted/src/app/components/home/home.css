@@ -1,0 +1,31 @@
+/* ------------------------------------------------ */
+/* Aplicación del Fondo Principal Claro */
+/* ------------------------------------------------ */
+:host {
+    /* Define la variable de color de fondo */
+    --color-background: #E9FFE7; 
+    
+    /* Asegura que el componente ocupe todo el espacio de la ventana */
+    display: block;
+    min-height: 100vh;
+    width: 100%;
+    
+    /* Aplica el fondo claro */
+    background-color: var(--color-background) !important;
+}
+
+/* Si tu HTML usa una clase 'container' como contenedor principal: */
+.container {
+    background-color: var(--color-background);
+    padding: 20px;
+    /* Asegura que el contenido se muestre sin desbordar */
+    min-height: 100vh;
+}
+
+/* Puedes añadir estilos para el contenido que se mostrará aquí */
+/* Por ejemplo, un mensaje de bienvenida centrado */
+.welcome-message {
+    color: var(--color-mid-green); /* Usando un color de tu paleta para el texto */
+    text-align: center;
+    padding-top: 100px;
+}

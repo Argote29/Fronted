@@ -1,0 +1,133 @@
+/* ------------------------------------------------ */
+/* 2.1. Definición de Variables y Contenedor Principal */
+/* ------------------------------------------------ */
+:host {
+    /* Define tus colores como variables CSS */
+    --color-dark-green: #083E2E;
+    --color-primary: #1B906E;
+    --color-mid-green: #15664E;
+    --color-accent-2: #C2FFC8;
+    --color-background: #E9FFE7;
+    --color-warn: #f44336; /* Rojo estándar para eliminar */
+}
+
+.main-container {
+    background-color: var(--color-background); 
+    min-height: 100vh;
+    padding: 30px;
+}
+
+.title {
+    color: var(--color-dark-green);
+    font-size: 2.5em;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Contenedor de la tabla */
+.table-container {
+    max-width: 90%;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Asegura que la tabla y paginator se ajusten a los bordes redondeados */
+}
+
+
+/* ------------------------------------------------ */
+/* 2.2. Estilos de la Tabla (mat-table) */
+/* ------------------------------------------------ */
+.roles-table {
+    width: 100%;
+}
+
+/* Estilo de la fila de encabezado */
+.roles-table th.mat-header-cell {
+    background-color: var(--color-primary); /* Fondo verde primario */
+    color: white; /* Texto blanco para alto contraste */
+    font-weight: 600;
+    padding: 15px 10px;
+    text-align: center;
+}
+
+/* Estilo de las celdas de datos */
+.roles-table td.mat-cell {
+    color: var(--color-dark-green);
+    font-size: 0.95em;
+    padding: 12px 10px;
+    text-align: center;
+}
+
+/* Estilo para las filas pares (striping) para mejor lectura */
+.roles-table tr.mat-row:nth-child(even) {
+    background-color: var(--color-accent-2); /* Verde claro sutil */
+}
+
+/* Estilo hover en las filas */
+.roles-table tr.mat-row:hover {
+    background-color: rgba(27, 144, 110, 0.1); /* Tono suave de primario en hover */
+}
+
+
+/* ------------------------------------------------ */
+/* 2.3. Estilos de los Botones de Acción (Iconos) */
+/* ------------------------------------------------ */
+/* Botón Actualizar */
+.update-icon-button {
+    color: var(--color-primary) !important;
+}
+
+.update-icon-button:hover {
+    background-color: rgba(27, 144, 110, 0.2);
+}
+
+/* Botón Eliminar */
+.delete-icon-button {
+    color: var(--color-warn) !important;
+}
+
+.delete-icon-button:hover {
+    background-color: rgba(244, 67, 54, 0.2);
+}
+
+/* ------------------------------------------------ */
+/* 2.4. Estilos del Paginador */
+/* ------------------------------------------------ */
+.roles-paginator {
+    background-color: white;
+    color: var(--color-dark-green);
+    border-top: 1px solid var(--color-accent-2);
+}
+
+.no-data-message-container {
+    grid-column: 1 / -1; /* Ocupa todo el ancho del grid */
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.no-data-message {
+    color: var(--color-mid-green);
+    font-style: italic;
+}
+.roles-paginator {
+    background-color: white;
+    color: var(--color-dark-green);
+    border-top: 1px solid var(--color-accent-2);
+}
+
+.no-data-message-container {
+    grid-column: 1 / -1; /* Ocupa todo el ancho del grid */
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.no-data-message {
+    color: var(--color-mid-green);
+    font-style: italic;
+}

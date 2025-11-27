@@ -21,6 +21,13 @@
     justify-content: flex-start;
 }
 
+/* --- CLAVE: El Spacer Flexbox --- */
+.spacer {
+    /* Ocupa todo el espacio disponible */
+    flex: 1 1 auto; 
+}
+/* ------------------------------------------------ */
+
 /* ------------------------------------------------ */
 /* 2.3. Estilos de los Botones del Menú (¡SOLUCIÓN FORZADA!) */
 /* ------------------------------------------------ */

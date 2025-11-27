@@ -1,0 +1,112 @@
+<!-- Fíjate que NO hay html, head ni body. Empezamos directo con el nav -->
+
+<nav class="navbar">
+    <div class="container">
+        <div class="logo">VeganTaste</div>
+        <div>
+            <a routerLink="/usuarios/nuevo" class="btn btn-login">Registrarse</a>
+            <a routerLink="/login" class="btn btn-login">Iniciar Sesión</a>
+        </div>
+    </div>
+</nav>
+
+<header class="hero-section dark-mode">
+    <div class="container">
+        <h1 class="hero-title">DESCUBRE EL SABOR VEGANO QUE TE ESTÁS <span class="highlight">PERDIENDO.</span></h1>
+        <p class="hero-subtitle">VeganTaste es la plataforma web definitiva para encontrar, calificar y explorar restaurantes y platos 100% veganos.</p>
+        <a routerLink="/login" class="btn btn-glow">¡Explorar Ahora!</a>
+        <div class="web-mockup">
+            <!-- He puesto una URL funcional para que veas la imagen ya mismo -->
+            <img src="assets/restaurante.png" alt="Grupo de amigos disfrutando en restaurante vegano">
+        </div>
+    </div>
+</header>
+
+<section class="alternating-features">
+    <div class="container">
+        <div class="feature-block">
+            <div class="feature-image">
+                <img src="assets/query.png" alt="Aplicación con filtros de búsqueda y mapa">
+            </div>
+            <div class="feature-text">
+                <span class="tag">#01_FILTROS INTELIGENTES</span>
+                <h2>Encuentra por Antojo, no por Región.</h2>
+                <p>Hay un montón de filtros gracias a la búsqueda avanzada de VeganTaste.</p>
+            </div>
+        </div>
+        
+        <div class="feature-block reverse">
+            <div class="feature-image">
+                <img src="assets/resenas.jpg" alt="Teléfono móvil mostrando reseñas de restaurantes">
+            </div>
+            <div class="feature-text">
+                <span class="tag">#02_VALORACIÓN REAL</span>
+                <h2>Reseñas verificadas por la comunidad.</h2>
+                <p>Accede a calificaciones honestas de otros usuarios veganos. Deja tu propia reseña y ayuda a la comunidad a descubrir los mejores lugares. La transparencia es clave.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="team-section">
+    <div class="container">
+        <h2 class="section-title">Nuestra Misión. El Equipo Detrás de VeganTaste.</h2>
+        <p class="team-intro">Somos un equipo de desarrolladores y chefs veganos apasionados por hacer que encontrar comida ética sea simple, rápido y delicioso.</p>
+        <div class="team-grid">
+            <div class="member-card">
+                <div class="member-photo">
+                    <img src="assets/Alessandro.jpg" alt="Alessandro Argote">
+                </div>
+                <h3>Alessandro Argote</h3>
+                <p class="role">Fundador & CTO</p>
+                <p class="bio">Experto en IA y desarrollo web. Asegura que la plataforma sea rápida y eficiente.</p>
+            </div>
+            <div class="member-card">
+                <div class="member-photo">
+                    <img src="https://placehold.co/150x150/083E2E/57FFAE?text=F2" alt="Foto de Fundador 2">
+                </div>
+                <h3>Jesus Romani</h3>
+                <p class="role">Fundadora & CEO</p>
+                <p class="bio">Responsable de la dirección estratégica y del desarrollo de la plataforma. Supervisa iniciativas clave para mantener la calidad y coherencia del proyecto.</p>
+            </div>
+            
+            <div class="member-card">
+                <div class="member-photo">
+                    <img src="https://placehold.co/150x150/083E2E/57FFAE?text=F3" alt="Foto de Fundador 3">
+                </div>
+                <h3>[Nombre del Fundador 3]</h3>
+                <p class="role">Jefe de Contenido</p>
+                <p class="bio">Responsable de verificar la autenticidad de cada restaurante listado en la plataforma.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="testimonial-section light-contrast">
+    <div class="container">
+        <h2 class="section-title dark-text">Nuestra comunidad nos avala: Experiencias Reales.</h2>
+        <div class="reviews-grid">
+            <blockquote class="review-card">
+                <p>“VeganTaste me ahorró horas de búsqueda. La interfaz es minimalista y la información 100% confiable. ¡Es mi sitio web de cabecera!”</p>
+                <cite>— Laura S.</cite>
+            </blockquote>
+            <blockquote class="review-card">
+                <p>“El mejor directorio vegano. Los filtros por tipo de cocina son un sueño. Gracias a VeganTaste encontré un restaurante indio espectacular.”</p>
+                <cite>— Daniel M.</cite>
+            </blockquote>
+        </div>
+    </div>
+</section>
+
+<section class="cta-strip dark-mode">
+    <div class="container">
+        <h2>Comienza a saborear la facilidad de ser vegano.</h2>
+        <a routerLink="/login" class="btn btn-glow">Visita la Plataforma VeganTaste Ahora</a>
+    </div>
+</section>
+
+<footer class="footer dark-mode">
+    <div class="container">
+        <p>VeganTaste Plataforma Web © 2025. | Con amor por la comida Plant-Based.</p>
+    </div>
+</footer>

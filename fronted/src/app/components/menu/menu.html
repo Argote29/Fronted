@@ -1,4 +1,5 @@
 <div >
+  @if(verificar()){
   <mat-toolbar class="custom-toolbar">
     <button 
       mat-button 
@@ -63,8 +64,32 @@
       [matMenuTriggerFor]="menuIngredientesplato">
       <mat-icon>grain</mat-icon>Ingredientes por platos
     </button>
-  </mat-toolbar>
 
+    <button
+      matButton
+      class="btn-rojo"
+      aria-label="Example icon-button with menu icon"
+      [matMenuTriggerFor]="menuReporte"
+    >
+      <mat-icon>business</mat-icon>Reporte
+    </button> 
+
+     <span class="spacer"> </span>
+    <button 
+      mat-button 
+      class="btn-rojo" 
+      aria-label="Menú de home"
+      routerLink="/homes">
+      <mat-icon>home</mat-icon>Inicio
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="menuSalir">
+      <mat-icon>person</mat-icon>Usuario
+    </button>
+
+  </mat-toolbar>
+ 
+  }
   <mat-menu #menuRol="matMenu">
     <button mat-menu-item routerLink="/roles">Listar</button>
     <button mat-menu-item routerLink="/roles/nuevo">Registrar</button>
@@ -110,5 +135,23 @@
   <mat-menu #menuIngredientesplato="matMenu">
     <button mat-menu-item routerLink="/ingredientesplato">Listar</button>
     <button mat-menu-item routerLink="/ingredientesplato/nuevo">Registrar</button>
+  </mat-menu>
+
+  <mat-menu #menuReporte="matMenu">
+    <button mat-menu-item routerLink="/reportecantidad"><mat-icon>folder</mat-icon>Porcentaje de  Usuario por Genero</button>
+  <button mat-menu-item routerLink="/reportecantidadreservausuario"><mat-icon>folder</mat-icon>Cantidad de reserva por Usuario</button>
+  <button mat-menu-item routerLink="/reportepromediorestaurante"><mat-icon>folder</mat-icon>Puntuacion promedio por restaurante</button>
+  </mat-menu>
+
+  <mat-menu #menuSalir="matMenu">
+    <button mat-menu-item routerLink="/login" (click)="cerrar()">
+      <mat-icon>logout</mat-icon>
+      <span>Cerrar sesión</span>
+    </button>
+  
+    <button mat-menu-item disabled>
+      <mat-icon>verified_user</mat-icon> <span style="font-weight: bold; margin-right: 5px;">Rol:</span>
+      <span>{{ roles }}</span>
+    </button>
   </mat-menu>
 </div>
