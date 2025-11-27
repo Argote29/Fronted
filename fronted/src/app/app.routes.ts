@@ -30,7 +30,9 @@ import { Home } from './components/home/home';
 import { seguridadGuard } from './guard/seguridad-guard';
 import { Reporteporcentajeusuario } from './components/reporteporcentajeusuario/reporteporcentajeusuario';
 import { LandingPage } from './components/landing-page/landing-page';
-
+import { Reportecantidadreservausuario } from './components/reportecantidadreservausuario/reportecantidadreservausuario';
+import { Historial } from './components/historial/historial';
+import { Reportepromediorestaurante } from './components/reportepromediorestaurante/reportepromediorestaurante';
 
 export const routes: Routes = [
   { path: '', component: LandingPage, pathMatch: 'full' }, // Landing Page al inicio
@@ -126,4 +128,10 @@ export const routes: Routes = [
   {
     path: 'reportecantidad', component: Reporteporcentajeusuario
   },
+  {
+    path:'reportecantidadreservausuario',component: Reportecantidadreservausuario
+  },
+   {
+    path:'reportepromediorestaurante',component: Reportepromediorestaurante
+  }
 ];
