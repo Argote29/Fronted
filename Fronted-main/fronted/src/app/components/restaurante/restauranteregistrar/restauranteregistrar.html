@@ -1,0 +1,87 @@
+<div class="container">
+  <div style="text-align: center; margin: 5%">
+    <h2>{{ edicion ? 'Editar Restaurante' : 'Registrar Restaurante' }}</h2>
+  </div>
+
+  <div style="text-align: center; margin: 5%">
+    <form [formGroup]="form" (submit)="aceptar()">
+
+      @if (edicion) {
+        <mat-form-field>
+          <mat-label>ID</mat-label>
+          <input matInput formControlName="codigo" />
+          <!-- Si quisieras que sea obligatorio, tendrías que poner Validators.required en el TS -->
+        </mat-form-field>
+      }
+
+      <br />
+
+      <!-- NOMBRE -->
+      <mat-form-field>
+        <mat-label>Nombre del Restaurante</mat-label>
+        <input matInput formControlName="nombre" />
+        <mat-error>
+          @if (form.get('nombre')?.hasError('required')) {
+            Ingrese nombre del restaurante!!
+          }
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <!-- UBICACIÓN -->
+      <mat-form-field>
+        <mat-label>Ubicación</mat-label>
+        <input matInput formControlName="ubicacion" />
+        <mat-error>
+          @if (form.get('ubicacion')?.hasError('required')) {
+            Ingrese la ubicación del restaurante!!
+          }
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <!-- TIPO DE COCINA -->
+      <mat-form-field>
+        <mat-label>Tipo de cocina</mat-label>
+        <input matInput formControlName="cocinatip" />
+        <mat-error>
+          @if (form.get('cocinatip')?.hasError('required')) {
+            Ingrese el tipo de cocina!!
+          }
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <!-- HORARIO / TIEMPO -->
+      <mat-form-field>
+        <mat-label>Horario de atención</mat-label>
+        <input matInput formControlName="Tiempo" placeholder="Ej: 9:00 AM - 10:00 PM" />
+        <mat-error>
+          @if (form.get('Tiempo')?.hasError('required')) {
+            Ingrese el horario de atención!!
+          }
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <!-- CONTACTO / NÚMERO -->
+      <mat-form-field>
+        <mat-label>Teléfono de contacto</mat-label>
+        <input matInput formControlName="numero" type="number" />
+        <!-- No es requerido en el TS, por eso sin mat-error -->
+      </mat-form-field>
+
+      <br />
+
+      <div>
+        <button matButton="elevated">
+          {{ edicion ? 'Actualizar' : 'Registrar' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
