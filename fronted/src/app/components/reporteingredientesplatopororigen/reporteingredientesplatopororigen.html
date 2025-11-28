@@ -1,0 +1,36 @@
+<div class="report-card">
+  <h2>Reporte de Ingredientes por Origen</h2>
+
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Ingresa el origen (ej. Vegetal, Tubérculo)"
+    />
+    <button (click)="buscar()">Buscar</button>
+  </div>
+
+  <div *ngIf="hasData; else noData" class="table-wrapper">
+    <table class="tabla-ingredientes">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre del ingrediente</th>
+          <th>Origen</th>
+        </tr>
+      </thead>
+
+    <tbody>
+  <tr *ngFor="let ing of ingredientes; let i = index">
+    <td>{{ i + 1 }}</td>
+    <td>{{ ing.nombre }}</td>
+    <td>{{ ing.origen }}</td>
+  </tr>
+</tbody>
+    </table>
+  </div>
+
+  <ng-template #noData>
+    <p class="no-data">No hay datos para el origen ingresado.</p>
+  </ng-template>
+</div>

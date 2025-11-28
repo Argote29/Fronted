@@ -34,6 +34,8 @@ import { Reportecantidadreservausuario } from './components/reportecantidadreser
 import { Historial } from './components/historial/historial';
 import { Reportepromediorestaurante } from './components/reportepromediorestaurante/reportepromediorestaurante';
 import { ReportesuscripcionactivaComponent } from './components/reportesuscripcionactiva/reportesuscripcionactiva';
+import { Reporterestaurantessinpromo } from './components/reporterestaurantessinpromo/reporterestaurantessinpromo';
+import { Reporteingredientesplatopororigen } from './components/reporteingredientesplatopororigen/reporteingredientesplatopororigen';
 import { Reporteusuariomasresena } from './components/reporteusuariomasresena/reporteusuariomasresena';
 
 export const routes: Routes = [
@@ -133,11 +135,17 @@ export const routes: Routes = [
   {
     path:'reportecantidadreservausuario',component: Reportecantidadreservausuario
   },
-   {
+  {
     path:'reportepromediorestaurante',component: Reportepromediorestaurante
   },
   {
     path:'reportecomparacion',component: ReportesuscripcionactivaComponent
+  },
+  {
+    path:'reporterestaurantessinpromo',component: Reporterestaurantessinpromo
+  },
+    {
+    path:'reporteingredientesplatopororigen',component: Reporteingredientesplatopororigen
   },
   {
     path:'reporteusuarioresenas',component: Reporteusuariomasresena
