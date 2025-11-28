@@ -57,12 +57,6 @@
       <mat-icon>dinner_dining</mat-icon>Platos
     </button>
 
-        <button 
-      mat-button 
-      aria-label="Menú Reservas"
-      [matMenuTriggerFor]="menuReservas">
-      <mat-icon>event</mat-icon>Reservas
-    </button>
 
     <button 
       mat-button 
@@ -81,9 +75,18 @@
     </button> 
 
      <span class="spacer"> </span>
+    <button 
+      mat-button 
+      class="btn-rojo" 
+      aria-label="Menú de home"
+      routerLink="/homes">
+      <mat-icon>home</mat-icon>Inicio
+    </button>
+
     <button mat-button [matMenuTriggerFor]="menuSalir">
       <mat-icon>person</mat-icon>Usuario
     </button>
+
   </mat-toolbar>
  
   }
@@ -128,31 +131,31 @@
     <button mat-menu-item routerLink="/plato/nuevo">Registrar</button>
   </mat-menu>
 
-    <mat-menu #menuReservas="matMenu">
-    <button mat-menu-item routerLink="/reserva">Listar</button>
-    <button mat-menu-item routerLink="/reserva/nuevo">Registrar</button>
-  </mat-menu>
-
 
   <mat-menu #menuIngredientesplato="matMenu">
     <button mat-menu-item routerLink="/ingredientesplato">Listar</button>
     <button mat-menu-item routerLink="/ingredientesplato/nuevo">Registrar</button>
   </mat-menu>
 
-
   <mat-menu #menuReporte="matMenu">
-    <button mat-menu-item routerLink="/reportecantidad"><mat-icon>folder</mat-icon>Porcentaje de  Usuario por Genero</button>
-    <button mat-menu-item routerLink="/reporterestaurantemasresenados"><mat-icon>folder</mat-icon>Cantidad de Reseñas Por Restaurante</button>
-    <button mat-menu-item routerLink="/reportecantidaddereservasporrestaurante"><mat-icon>folder</mat-icon>Cantidad de Reservas por Restaurante</button>
-  </mat-menu>
+  <button mat-menu-item routerLink="/reportecantidad"><mat-icon>folder</mat-icon>Porcentaje de  Usuario por Genero</button>
+  <button mat-menu-item routerLink="/reportecantidadreservausuario"><mat-icon>folder</mat-icon>Cantidad de reserva por Usuario</button>
+  <button mat-menu-item routerLink="/reportepromediorestaurante"><mat-icon>folder</mat-icon>Puntuacion promedio por restaurante</button>
+  <button mat-menu-item routerLink="/reportecomparacion"><mat-icon>folder</mat-icon>Reporte de comparacion de suscripciones</button>
+  <button mat-menu-item routerLink="/reporterestaurantessinpromo"><mat-icon>folder</mat-icon>Restaurantes sin promociones</button>
+  <button mat-menu-item routerLink="/reporteingredientesplatopororigen"><mat-icon>folder</mat-icon>Ingredintes por origen</button>
+  <button mat-menu-item routerLink="/reporteusuarioresenas"><mat-icon>folder</mat-icon>Reporte de cantidad de reseñas por usuario</button>
+  <button mat-menu-item routerLink="/reporterestaurantemasresenados"><mat-icon>folder</mat-icon>Cantidad de Reseñas Por Restaurante</button>
+  <button mat-menu-item routerLink="/reportecantidaddereservasporrestaurante"><mat-icon>folder</mat-icon>Cantidad de Reservas por Restaurante</button>
 
+  </mat-menu>
 
   <mat-menu #menuSalir="matMenu">
     <button mat-menu-item routerLink="/login" (click)="cerrar()">
       <mat-icon>logout</mat-icon>
       <span>Cerrar sesión</span>
     </button>
-  
+
     <button mat-menu-item disabled>
       <mat-icon>verified_user</mat-icon> <span style="font-weight: bold; margin-right: 5px;">Rol:</span>
       <span>{{ roles }}</span>
