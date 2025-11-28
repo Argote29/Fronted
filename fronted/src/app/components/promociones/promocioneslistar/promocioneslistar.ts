@@ -12,7 +12,6 @@ import { Promociones } from '../../../models/promociones';
 
 @Component({
   selector: 'app-promocioneslistar',
-  standalone: true,
   imports: [
     CommonModule,
     MatTableModule,
@@ -34,21 +33,20 @@ export class Promocioneslistar {
   constructor(private proS: ServicePromociones) {}
 
   ngOnInit(): void {
-    this.proS.list().subscribe(data => {
-      this.dataSource.data = data;
-      this.dataSource.paginator = this.paginator;
-    });
-
-    this.proS.getList().subscribe(data => {
-      this.dataSource.data = data;
-      this.dataSource.paginator = this.paginator;
-    });
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.paginator.pageSize = 8;
-  }
+    this.proS.getList().subscribe((data) => {
+        this.dataSource.data = data; 
+        if (this.paginator) { 
+            this.dataSource.paginator = this.paginator;
+        }
+    });
+    this.proS.list().subscribe((data) => {
+      this.proS.setList(data); 
+    });
+  }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.paginator.pageSize = 5;
+  }
 
   eliminar(id: number): void {
     this.proS.delete(id).subscribe(() => {

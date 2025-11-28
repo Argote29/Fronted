@@ -99,4 +99,19 @@
     background-color: white;
     color: var(--color-dark-green);
     border-top: 1px solid var(--color-accent-2);
+
+}
+
+.no-data-message-container {
+    grid-column: 1 / -1; /* Ocupa todo el ancho del grid */
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.no-data-message {
+    color: var(--color-mid-green);
+    font-style: italic;
+
 }

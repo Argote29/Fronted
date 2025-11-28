@@ -75,9 +75,18 @@
     </button> 
 
      <span class="spacer"> </span>
+    <button 
+      mat-button 
+      class="btn-rojo" 
+      aria-label="Menú de home"
+      routerLink="/homes">
+      <mat-icon>home</mat-icon>Inicio
+    </button>
+
     <button mat-button [matMenuTriggerFor]="menuSalir">
       <mat-icon>person</mat-icon>Usuario
     </button>
+
   </mat-toolbar>
  
   }

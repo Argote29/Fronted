@@ -5,16 +5,10 @@
   </div>
 
   <!-- Tarjeta blanca con la tabla -->
-  <div class="table-container">
 
-    <!-- (Opcional) Botón Nueva reseña, si lo quieres conservar, ponlo aquí alineado a la derecha -->
-    <!--
-    <div style="text-align:right; margin-bottom: 12px;">
-      <button mat-raised-button color="primary" routerLink="/resena/nuevo">
-        <mat-icon>add</mat-icon>&nbsp;Nueva reseña
-      </button>
-    </div>
-    -->
+    <div class="table-container" *ngIf="dataSource.data.length > 0">
+
+    
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 ingredientes-table">
 
@@ -80,12 +74,19 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <mat-paginator
-      [pageSizeOptions]="[5, 8, 10, 25]"
-      [pageSize]="8"
-      showFirstLastButtons
-      class="roles-paginator">
-    </mat-paginator>
+  <mat-paginator 
+            [pageSizeOptions]="[5, 10, 15]" 
+            [pageSize]="5" 
+            [length]="dataSource.data.length"
+            showFirstLastButtons 
+            class="roles-paginator">
+        </mat-paginator>
+    </div>
 
-  </div>
+    <div *ngIf="dataSource.data.length === 0" class="no-data-message-container">
+        <p class="no-data-message" >
+            No hay reseñas registradas.
+        </p>
+    </div>
+
 </div>

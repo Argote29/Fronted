@@ -3,7 +3,8 @@
     <h2 class="title">Lista de Platos</h2>
   </div>
 
-  <div class="table-container">
+
+    <div class="table-container" *ngIf="dataSource.data.length > 0">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 ingredientes-table">
 
       <ng-container matColumnDef="c1">
@@ -56,18 +57,29 @@
             class="delete-icon-button"
             (click)="eliminar(e.id_plato)">
             <mat-icon>delete</mat-icon>
+
           </button>
         </td>
       </ng-container>
+
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <mat-paginator
-      [pageSizeOptions]="[5, 8, 10, 25]"
-      [pageSize]="8"
-      showFirstLastButtons>
-    </mat-paginator>
-  </div>
+   <mat-paginator 
+            [pageSizeOptions]="[5, 10, 15]" 
+            [pageSize]="5" 
+            [length]="dataSource.data.length"
+            showFirstLastButtons 
+            class="roles-paginator">
+        </mat-paginator>
+    </div>
+
+    <div *ngIf="dataSource.data.length === 0" class="no-data-message-container">
+        <p class="no-data-message" >
+            No hay platos registrados.
+        </p>
+    </div>  
+
 </div>
