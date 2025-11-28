@@ -1,0 +1,95 @@
+<div class="main-container">
+  <div class="form-card">
+    <h2 class="title">
+      {{ edicion ? 'Editar Restaurante' : 'Registrar Restaurante' }}
+    </h2>
+
+    <form [formGroup]="form" (submit)="aceptar()">
+
+      @if (edicion) {
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>ID</mat-label>
+          <input matInput formControlName="codigo" readonly />
+        </mat-form-field>
+      }
+
+      <!-- NOMBRE -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nombre del Restaurante</mat-label>
+        <input matInput formControlName="nombre" />
+        <mat-error>
+          @if (form.get('nombre')?.hasError('required')) {
+          Ingrese nombre del restaurante!!
+          }
+        </mat-error>
+      </mat-form-field>
+
+      <!-- UBICACIÓN (Con Mapa Integrado) -->
+      <div class="ubicacion-container">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Ubicación</mat-label>
+          <input matInput formControlName="ubicacion" readonly placeholder="Selecciona en el mapa..." />
+          <mat-hint>Haz clic en el mapa para obtener la dirección exacta</mat-hint>
+          <mat-error>
+            @if (form.get('ubicacion')?.hasError('required')) {
+            Ingrese la ubicación del restaurante!!
+            }
+          </mat-error>
+        </mat-form-field>
+
+        <!-- MAPA -->
+        <div class="map-wrapper map-styles">
+          <google-map 
+            height="300px"
+            width="100%"
+            [center]="center"
+            [zoom]="zoom"
+            [options]="mapOptions"
+            (mapClick)="seleccionarUbicacion($event)">
+            
+            <map-marker 
+              *ngIf="markerPosition"
+              [position]="markerPosition">
+            </map-marker>
+          </google-map>
+        </div>
+      </div>
+
+      <!-- TIPO DE COCINA -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Tipo de cocina</mat-label>
+        <input matInput formControlName="cocinatip" />
+        <mat-error>
+          @if (form.get('cocinatip')?.hasError('required')) {
+          Ingrese el tipo de cocina!!
+          }
+        </mat-error>
+      </mat-form-field>
+
+      <!-- HORARIO / TIEMPO -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Horario de atención</mat-label>
+        <input matInput formControlName="Tiempo" placeholder="Ej: 9:00 AM - 10:00 PM" />
+        <mat-error>
+          @if (form.get('Tiempo')?.hasError('required')) {
+          Ingrese el horario de atención!!
+          }
+        </mat-error>
+      </mat-form-field>
+
+      <!-- CONTACTO / NÚMERO -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Teléfono de contacto</mat-label>
+        <input matInput formControlName="numero" type="number" />
+      </mat-form-field>
+
+      <div class="actions">
+        <button mat-raised-button class="register-button" type="submit">
+          {{ edicion ? 'Actualizar' : 'Registrar' }}
+        </button>
+        <!-- Asumiendo que tienes una función volverAPadre() -->
+        <button mat-button class="cancel-button" type="button" (click)="volverAPadre()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

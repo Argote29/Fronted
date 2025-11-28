@@ -1,0 +1,82 @@
+
+<div class="main-container">
+  <div class="title-section">
+    <h2 class="title">Lista de Ingredientes por Plato</h2>
+  </div>
+
+    <div class="table-container" *ngIf="dataSource.data.length > 0">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 ingredientes-plato-table">
+
+      <!-- Ingrediente (nombre) -->
+      <ng-container matColumnDef="c1">
+        <th mat-header-cell *matHeaderCellDef>Nombre del Ingrediente</th>
+        <td mat-cell *matCellDef="let e">
+          {{ e.ingredientes?.nombre_ingrediente }}
+        </td>
+      </ng-container>
+
+      <!-- Cantidad -->
+      <ng-container matColumnDef="c2">
+        <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+        <td mat-cell *matCellDef="let e">
+          {{ e.cantidad }}
+        </td>
+      </ng-container>
+
+      <!-- Tipo de unidad -->
+      <ng-container matColumnDef="c3">
+        <th mat-header-cell *matHeaderCellDef>Tipo de Unidad</th>
+        <td mat-cell *matCellDef="let e">
+          {{ e.tipo_unidad }}
+        </td>
+      </ng-container>
+
+      <!-- Plato (nombre) -->
+      <ng-container matColumnDef="c4">
+        <th mat-header-cell *matHeaderCellDef>Plato</th>
+        <td mat-cell *matCellDef="let e">
+          {{ e.plato?.nombre_plato }}
+        </td>
+      </ng-container>
+
+      <!-- Actualizar -->
+      <ng-container matColumnDef="c5">
+        <th mat-header-cell *matHeaderCellDef>Actualizar</th>
+        <td mat-cell *matCellDef="let e">
+          <button mat-icon-button class="update-icon-button" [routerLink]="[e.idIngredientePlato]">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Eliminar -->
+      <ng-container matColumnDef="c6">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td mat-cell *matCellDef="let e">
+          <button mat-icon-button class="delete-icon-button" (click)="eliminar(e.idIngredientePlato)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Filas -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+   <mat-paginator 
+            [pageSizeOptions]="[5, 10, 15]" 
+            [pageSize]="5" 
+            [length]="dataSource.data.length"
+            showFirstLastButtons 
+            class="roles-paginator">
+        </mat-paginator>
+    </div>
+
+    <div *ngIf="dataSource.data.length === 0" class="no-data-message-container">
+        <p class="no-data-message" >
+            No hay platos registrados.
+        </p>
+    </div>  
+
+</div>

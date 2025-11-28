@@ -1,0 +1,98 @@
+/* ------------------------------------------------ */
+/* 2.1. Definición de Variables */
+/* ------------------------------------------------ */
+:host {
+    --color-dark-green: #083E2E; 
+    --color-primary: #1B906E;    
+    --color-mid-green: #15664E;  
+    --color-text-light: #E9FFE7; 
+    --color-white: #ffffff;      
+}
+
+/* ------------------------------------------------ */
+/* 2.2. Estilos de la Barra de Herramientas (mat-toolbar) */
+/* ------------------------------------------------ */
+.custom-toolbar {
+    background-color: var(--color-dark-green) !important;
+    padding: 0 16px;
+    height: 60px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* --- CLAVE: El Spacer Flexbox --- */
+.spacer {
+    /* Ocupa todo el espacio disponible */
+    flex: 1 1 auto; 
+}
+/* ------------------------------------------------ */
+
+/* ------------------------------------------------ */
+/* 2.3. Estilos de los Botones del Menú (¡SOLUCIÓN FORZADA!) */
+/* ------------------------------------------------ */
+
+/* El selector general del botón */
+.custom-toolbar button.mat-button {
+    margin-right: 15px; 
+    border-radius: 4px;
+    padding: 0 10px;
+    height: 100%;
+    transition: background-color 0.3s;
+}
+
+/* Estilo al pasar el ratón (Hover) */
+.custom-toolbar button.mat-button:hover {
+    background-color: var(--color-mid-green) !important; 
+}
+
+/* --- SELECTORES DE ALTO CONTRASTE (¡CLAVE!) --- */
+
+/* 1. Fuerza el color del TEXTO dentro del botón */
+:host ::ng-deep .custom-toolbar .mat-mdc-button .mdc-button__label {
+    color: var(--color-text-light) !important; /* Texto claro siempre */
+    font-weight: 500;
+    font-size: 0.9em;
+}
+
+/* 2. Fuerza el color del ÍCONO dentro del botón */
+:host ::ng-deep .custom-toolbar .mat-mdc-button mat-icon {
+    color: var(--color-text-light) !important; /* Ícono claro siempre */
+    margin-right: 6px;
+    font-size: 18px; 
+    vertical-align: middle;
+}
+
+/* 3. Fuerza el color del TEXTO en hover */
+:host ::ng-deep .custom-toolbar .mat-mdc-button:hover .mdc-button__label {
+    color: var(--color-white) !important; 
+}
+
+/* 4. Fuerza el color del ÍCONO en hover */
+:host ::ng-deep .custom-toolbar .mat-mdc-button:hover mat-icon {
+    color: var(--color-white) !important;
+}
+
+/* ------------------------------------------------ */
+/* 2.4. Estilos de los Submenús (mat-menu-item) */
+/* ------------------------------------------------ */
+
+/* El panel que contiene los items del menú */
+:host ::ng-deep .mat-mdc-menu-panel {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--color-primary);
+}
+
+/* Items del submenú */
+:host ::ng-deep .mat-mdc-menu-item {
+    color: var(--color-dark-green);
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+/* Hover en los items del submenú */
+:host ::ng-deep .mat-mdc-menu-item:hover {
+    background-color: var(--color-text-light) !important; 
+    color: var(--color-primary);
+}

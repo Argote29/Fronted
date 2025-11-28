@@ -1,0 +1,90 @@
+<div class="main-container">
+  <div class="form-card">
+    <h2 class="title">{{ edicion ? "Editar Plato" : "Registro de Platos" }}</h2>
+
+    <form [formGroup]="form" (submit)="aceptar()">
+
+      @if (edicion) {
+        <mat-form-field class="full-width">
+          <mat-label>ID</mat-label>
+          <input matInput formControlName="id_plato" readonly />
+        </mat-form-field>
+      }
+
+      <mat-form-field class="full-width">
+        <mat-label>Restaurante</mat-label>
+        <mat-select formControlName="id_restaurante">
+          @for (r of listaRestaurantes; track r) {
+            <mat-option [value]="r.id_restaurante">
+              {{ r.nombre_restaurante }}
+            </mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('id_restaurante')?.hasError('required')) {
+            Seleccione un restaurante!!
+          }
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Promoción</mat-label>
+        <mat-select formControlName="id_promociones">
+          @for (p of listaPromociones; track p) {
+            <mat-option [value]="p.id_Promociones">
+              {{ p.descripcion }}
+            </mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('id_promociones')?.hasError('required')) {
+            Seleccione una promoción!!
+          }
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Nombre del Plato</mat-label>
+        <input matInput formControlName="nombre_plato" />
+        <mat-error>
+          @if (form.get('nombre_plato')?.hasError('required')) {
+            Ingrese el nombre del plato!!
+          }
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Precio del Plato</mat-label>
+        <input type="number" matInput formControlName="precio_plato" />
+        <mat-error>
+          @if (form.get('precio_plato')?.hasError('required')) {
+            Ingrese el precio del plato!!
+          }
+          @if (form.get('precio_plato')?.hasError('min') || form.get('precio_plato')?.hasError('max')) {
+            Ingrese un precio válido!!
+          }
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Información Nutricional</mat-label>
+        <textarea matInput formControlName="info_nutricional" rows="4"></textarea>
+        <mat-error>
+          @if (form.get('info_nutricional')?.hasError('required')) { Ingrese la información nutricional !!! }
+          @if (form.get('info_nutricional')?.hasError('maxlength')) { Máximo 200 caracteres !!! }
+        </mat-error>
+      </mat-form-field>
+
+      <div class="actions">
+        <button mat-raised-button class="register-button" type="submit">
+          {{ edicion ? 'Actualizar' : 'Registrar' }}
+        </button>
+
+        <button mat-raised-button class="cancel-button" routerLink="/plato" type="button">
+          Cancelar
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

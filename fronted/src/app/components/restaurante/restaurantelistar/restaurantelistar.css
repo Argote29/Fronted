@@ -1,0 +1,154 @@
+/* ------------------------------------------------ */
+/* 2.1. Definición de Variables y Contenedor Principal */
+/* ------------------------------------------------ */
+:host {
+    /* Define tus colores como variables CSS */
+    --color-dark-green: #083E2E;
+    --color-primary: #1B906E;
+    --color-mid-green: #15664E;
+    --color-light-green: #57FFAE;
+    --color-accent-1: #A4F47E;
+    --color-accent-2: #C2FFC8;
+    --color-background: #E9FFE7;
+    --color-warn: #f44336;
+}
+
+/* Fondo principal limpio */
+.main-container {
+    background-color: var(--color-background); 
+    min-height: 100vh;
+    padding: 30px;
+}
+
+.title {
+    color: var(--color-dark-green);
+    font-size: 2.5em;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* ------------------------------------------------ */
+/* 2.2. Contenedor de Tarjetas (Grid) */
+/* ------------------------------------------------ */
+.card-grid-container {
+    display: grid;
+    /* Usa un grid responsive: 1 columna por defecto, 2 en pantallas medianas, 3 en grandes */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ------------------------------------------------ */
+/* 2.3. Estilo de mat-card (Tarjeta de Restaurante) */
+/* ------------------------------------------------ */
+.restaurant-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 5px solid var(--color-primary); /* Borde de color primario */
+}
+
+.restaurant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); 
+}
+
+/* Encabezado */
+.header-icon-wrapper {
+    background-color: var(--color-accent-1); 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.card-avatar-icon {
+    color: var(--color-primary);
+}
+
+.card-title {
+    color: var(--color-dark-green);
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.card-subtitle {
+    color: var(--color-primary);
+    font-weight: 500;
+}
+
+/* Contenido de la Tarjeta */
+.card-content {
+    padding-top: 10px !important;
+    text-align: left;
+    color: var(--color-mid-green);
+}
+
+.card-content p {
+    margin: 8px 0;
+    font-size: 0.95em;
+}
+
+.id-text {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 15px;
+    text-align: right;
+}
+
+/* ------------------------------------------------ */
+/* 2.4. Estilo de Botones de Acción */
+/* ------------------------------------------------ */
+.card-actions {
+    display: flex;
+    justify-content: flex-end; /* Alinea los botones al final */
+    padding-top: 15px !important;
+}
+
+.update-button {
+    color: var(--color-primary) !important;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.update-button:hover {
+    background-color: var(--color-accent-2) !important;
+}
+
+.delete-button {
+    color: var(--color-warn) !important;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+    margin-left: 10px;
+}
+
+.delete-button:hover {
+    background-color: rgba(244, 67, 54, 0.1) !important;
+}
+
+.roles-paginator {
+    background-color: white;
+    color: var(--color-dark-green);
+    border-top: 1px solid var(--color-accent-2);
+}
+/* ------------------------------------------------ */
+/* 2.5. Mensaje sin Datos */
+/* ------------------------------------------------ */
+.no-data-message-container {
+    grid-column: 1 / -1; /* Ocupa todo el ancho del grid */
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.no-data-message {
+    color: var(--color-mid-green);
+    font-style: italic;
+}

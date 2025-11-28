@@ -1,0 +1,108 @@
+
+<div class="main-container">
+  <div class="form-card">
+    <h2 class="title">Registro de Ingredientes por Plato</h2>
+
+    <form [formGroup]="form" (ngSubmit)="aceptar()">
+
+      <!-- Cantidad -->
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>Cantidad</mat-label>
+        <input
+          matInput
+          type="number"
+          min="1"
+          max="20"
+          formControlName="cantidad"
+        />
+        <mat-error>
+          @if (form.get('cantidad')?.hasError('required')) {
+            Ingrese la cantidad!!
+          }
+          @if (form.get('cantidad')?.hasError('min') || form.get('cantidad')?.hasError('max')) {
+            La cantidad debe estar entre 1 y 20
+          }
+        </mat-error>
+      </mat-form-field>
+
+
+      <!-- Tipo de unidad (Radio Group) -->
+      <div class="radio-group-container">
+        <label class="radio-label">Tipo de unidad</label>
+
+        <mat-radio-group
+          formControlName="tipo_unidad"
+          class="custom-radio-group"
+
+        >
+          <mat-radio-button value="g">Gramos (g)</mat-radio-button>
+          <mat-radio-button value="ml">Mililitros (ml)</mat-radio-button>
+          <mat-radio-button value="unidad">Unidad</mat-radio-button>
+        </mat-radio-group>
+
+
+        <mat-error class="radio-error">
+          @if (form.get('tipo_unidad')?.touched && form.get('tipo_unidad')?.hasError('required')) {
+            Seleccione un tipo de unidad!!
+          }
+        </mat-error>
+      </div>
+
+      <!-- Plato -->
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>Plato</mat-label>
+        <mat-select formControlName="platoId">
+          @for (p of listaPlato; track p) {
+            <mat-option [value]="p.id_plato">
+              {{ p.nombre_plato }}
+            </mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('platoId')?.hasError('required')) {
+            Seleccione un plato!!
+          }
+        </mat-error>
+      </mat-form-field>
+
+
+      <!-- Ingrediente -->
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>Ingrediente</mat-label>
+        <mat-select formControlName="ingredienteId">
+          @for (i of listaIngrediente; track i) {
+            <mat-option [value]="i.id_ingredientes">
+              {{ i.nombre_ingrediente }}
+            </mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('ingredienteId')?.hasError('required')) {
+            Seleccione un ingrediente!!
+          }
+        </mat-error>
+      </mat-form-field>
+
+
+      <!-- Botones -->
+      <div class="actions">
+        <button mat-raised-button class="register-button" type="submit">
+          {{ edicion ? 'Actualizar' : 'Registrar' }}
+        </button>
+        <button
+          mat-button
+          class="cancel-button"
+
+          routerLink="/ingredientesplato"
+          type="button"
+        >
+          Cancelar
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

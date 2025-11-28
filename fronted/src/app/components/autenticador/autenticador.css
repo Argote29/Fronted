@@ -1,0 +1,108 @@
+/* ------------------------------------------------ */
+/* 2.1. Definición de Variables y Contenedor Principal */
+/* ------------------------------------------------ */
+:host {
+    /* Define tus colores como variables CSS */
+    --color-dark-green: #083E2E;
+    --color-primary: #1B906E;
+    --color-mid-green: #15664E;
+    --color-accent-1: #A4F47E;
+    --color-accent-2: #C2FFC8;
+    --color-background: #E9FFE7;
+    --color-error: #f44336;
+}
+
+/* Fondo principal (Centrado en la pantalla) */
+.main-container {
+    background-color: var(--color-background); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* ------------------------------------------------ */
+/* 2.2. Estilo de Tarjeta de Login */
+/* ------------------------------------------------ */
+.login-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada para destacar */
+    max-width: 400px; /* Tamaño ideal para un login */
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-img {
+    max-width: 300px; /* Reducir el tamaño del logo para que encaje en la tarjeta */
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.login-title {
+    color: var(--color-dark-green);
+    font-size: 1.8em;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* ------------------------------------------------ */
+/* 2.3. Estilo de Campos de Formulario (Angular Material) */
+/* ------------------------------------------------ */
+.full-width-field {
+    width: 100%;
+}
+
+/* Estilo para un look de campo minimalista y moderno */
+:host ::ng-deep .mat-mdc-text-field-wrapper {
+    background-color: var(--color-accent-2); 
+    border-radius: 8px !important;
+}
+
+/* Color del borde de foco (focus) */
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-form-field-outline-thick {
+    color: var(--color-primary) !important;
+}
+
+/* Estilo de la etiqueta (Label) cuando está en el campo */
+:host ::ng-deep .mat-mdc-form-field-label {
+    color: var(--color-mid-green) !important;
+}
+
+/* ------------------------------------------------ */
+/* 2.4. Estilo del Botón Ingresar */
+/* ------------------------------------------------ */
+.register-button {
+    background-color: var(--color-primary) !important;
+    color: white !important;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    width: 100%; /* El botón ocupa todo el ancho */
+    margin-top: 15px;
+}
+
+.register-button:hover {
+    background-color: var(--color-mid-green) !important; 
+    box-shadow: 0 4px 8px rgba(27, 144, 110, 0.4);
+}
+
+.cancel-button {
+    background-color: transparent !important;
+    color: var(--color-primary) !important;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 10px 20px;
+    width: 100%; /* El botón ocupa todo el ancho */
+    flex-grow: 1;
+}
+
+.cancel-button:hover {
+    background-color: var(--color-accent-1) !important; 
+}

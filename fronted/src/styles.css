@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap');
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* --- IMPORTAR FUENTE --- */
+
+/* --- VARIABLES GLOBALES Y RESET --- */
+:root {
+    /* Paleta de Colores - Definidos para MODO OSCURO */
+    --clr-background-dark: #083E2E;   /* Fondo Principal (El más oscuro) */
+    --clr-dark-mid: #15664E;          /* Elementos Secundarios Oscuros */
+    --clr-accent-main: #1B906E;       /* Base para el "Glow" */
+    --clr-glow-bright: #57FFAE;       /* El toque Neón/Acento vivo */
+    --clr-light-contrast: #A4F47E;    /* Resaltados ligeros */
+    --clr-pale: #C2FFC8;              /* Fondo muy ligero */
+    --clr-text-light: #E9FFE7;        /* Texto sobre fondo oscuro */
+    --clr-clean-white: #FFFFFF;       /* Blanco puro para máximo contraste en texto oscuro */
+    
+    /* Tipografía Moderna */
+    --font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--clr-background-dark); /* Aquí se aplica el fondo verde oscuro a toda la app */
+    color: var(--clr-text-light);
+    line-height: 1.6;
+}

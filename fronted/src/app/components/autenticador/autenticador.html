@@ -1,0 +1,30 @@
+<div class="main-container">
+  
+    <div class="form-card login-card"> 
+        <h2 class="title login-title">Inicie sesión</h2>
+
+      <div>
+        <img src="assets/logo.png" alt="Logo de la empresa" class="logo-img">
+      </div>
+      
+      
+      <mat-form-field appearance="outline" class="full-width-field">
+        <mat-label>Correo</mat-label>
+        <input matInput placeholder="usuario@ejemplo.com" [(ngModel)]="correo" />
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline" class="full-width-field">
+        <mat-label>Contraseña</mat-label>
+        <input
+          type="password"
+          matInput
+          placeholder="Ingrese su contraseña"
+          [(ngModel)]="contrasena"
+        />
+      </mat-form-field>
+      
+      <button mat-raised-button class="register-button" (click)="login()">Ingresar</button>
+      <button mat-raised-button class="cancel-button" (click)="irAInicio()">Cancelar</button>
+
+    </div>
+  </div>

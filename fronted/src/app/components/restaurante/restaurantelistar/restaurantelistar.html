@@ -1,0 +1,54 @@
+<div class="main-container">
+    <div class="title-section">
+        <h2 class="title">Lista de Restaurantes</h2>
+    </div>
+
+    <div class="card-grid-container">
+        
+        @for (element of dataSource.connect() | async; track element.id_restaurante) { 
+            
+            <mat-card class="restaurant-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="header-icon-wrapper">
+                        <mat-icon class="card-avatar-icon">restaurant</mat-icon>
+                    </div>
+                    <mat-card-title class="card-title">{{ element.nombre_restaurante }}</mat-card-title>
+                    <mat-card-subtitle class="card-subtitle">{{ element.tipo_cocina }}</mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content class="card-content">
+                    <p><strong>📍 Dirección:</strong> {{ element.direccion }}</p>
+                    <p><strong>⏰ Horario:</strong> {{ element.horario }}</p>
+                    <p><strong>📞 Contacto:</strong> {{ element.contacto }}</p>
+                    <p class="id-text">ID: {{ element.id_restaurante }}</p>
+                </mat-card-content>
+
+                <mat-card-actions class="card-actions">
+                    <button mat-button class="update-button" [routerLink]="['/restaurante', element.id_restaurante]">
+                        <mat-icon>edit</mat-icon> Editar
+                    </button>
+                    
+                    <button mat-button class="delete-button" (click)="eliminar(element.id_restaurante)">
+                        <mat-icon>delete</mat-icon> Eliminar
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+
+        } @empty {
+            <div class="no-data-message-container">
+                <p class="no-data-message">No hay restaurantes registrados.</p>
+            </div>
+        }
+
+    </div>
+    
+    <mat-paginator 
+        *ngIf="dataSource.data.length > 0"
+        [length]="dataSource.data.length"
+        [pageSizeOptions]="[3, 6, 9, 12]" 
+        [pageSize]="3" 
+        showFirstLastButtons 
+        aria-label="Seleccionar página de restaurantes"
+        class="roles-paginator"> 
+    </mat-paginator> 
+</div>

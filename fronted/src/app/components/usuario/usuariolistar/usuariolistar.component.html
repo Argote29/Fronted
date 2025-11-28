@@ -1,0 +1,66 @@
+<div class="main-container">
+    <div class="title-section">
+        <h2 class="title">Lista de Usuarios</h2>
+    </div>
+
+    <div class="card-list-container">
+        
+        <!-- ⭐ CAMBIO CLAVE: Usar dataSource.connect() | async para obtener el subconjunto de datos de la página actual ⭐ -->
+        @for (element of dataSource.connect() | async; track element.id_usuario) { 
+            
+            <mat-card class="user-card mat-elevation-z4"> 
+                <mat-card-header>
+                    <div mat-card-avatar class="user-avatar"></div> 
+                    <mat-card-title class="card-title">
+                        {{ element.nombre }} {{ element.apellido }}
+                    </mat-card-title>
+                    <mat-card-subtitle class="card-subtitle">
+                        Rol: **{{ element.rol.nombre }}**
+                    </mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content class="card-content">
+                    <p class="section-title">Datos de contacto:</p>
+                    <p> 
+                        <mat-icon class="icon-detail">location_on</mat-icon> Dirección: **{{ element.direccion}}**
+                    </p>
+                    <p> 
+                        <mat-icon class="icon-detail">phone</mat-icon> Teléfono: **{{ element.telefono}}**
+                    </p>
+                    <p> 
+                        <mat-icon class="icon-detail">person</mat-icon> Sexo: **{{ element.genero}}** </p>
+                </mat-card-content>
+
+                <mat-card-actions class="card-actions">
+                    <button mat-flat-button class="update-button" [routerLink]="['/usuarios', element.id_usuario]">
+                        <mat-icon>edit</mat-icon>
+                        Actualizar
+                    </button>
+                    <button mat-flat-button class="delete-button" (click)="eliminar(element.id_usuario)">
+                        <mat-icon>delete</mat-icon>
+                        Eliminar
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+
+        } @empty {
+            <!-- Bloque @empty se mantiene igual, se muestra cuando dataSource.data.length es 0 -->
+            <div class="no-data-message-container">
+                <p class="no-data-message">
+                    No hay usuarios registrados.
+                </p>
+            </div>
+        }
+    </div>
+
+    <!-- ⭐ PAGINADOR: Se muestra solo si hay datos y se vincula la longitud total ⭐ -->
+    <mat-paginator 
+        *ngIf="dataSource.data.length > 0"
+        [length]="dataSource.data.length"
+        [pageSize]="3"
+        [pageSizeOptions]="[3, 6, 9, 12]" 
+        showFirstLastButtons 
+        aria-label="Seleccionar página de usuarios"
+        class="roles-paginator">
+    </mat-paginator> 
+</div>  

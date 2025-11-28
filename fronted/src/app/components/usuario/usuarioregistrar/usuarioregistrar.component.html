@@ -1,0 +1,109 @@
+<div class="main-container"> 
+  <div class="form-card">
+    <h2 class="title">{{ edicion ? 'Edición de Usuario' : 'Registro de Nuevo Usuario' }}</h2>
+    
+    <form [formGroup]="form" (ngSubmit)="aceptar()">
+
+      @if (edicion) {
+        <mat-form-field appearance="outline">
+          <mat-label>ID</mat-label>
+          <!-- Se añade [readonly]="edicion" para evitar la edición del ID -->
+          <input matInput formControlName="codigo" [readonly]="edicion" />
+          <mat-error>
+            @if (form.get('codigo')?.hasError('required')) { Ingrese el ID del usuario!! }
+            @if (form.get('codigo')?.hasError('maxlength')) { Máximo 30 caracteres!!! }
+          </mat-error>
+        </mat-form-field>
+      }
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" />
+        <mat-error>
+          @if (form.get('nombre')?.hasError('required')) { Ingrese el nombre!! }
+          @if (form.get('nombre')?.hasError('maxlength')) { Máximo 30 caracteres!! }
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Apellido</mat-label>
+        <input matInput formControlName="apellido" />
+        <mat-error>
+          @if (form.get('apellido')?.hasError('required')) { Ingrese el apellido!! }
+          @if (form.get('apellido')?.hasError('maxlength')) { Máximo 60 caracteres!! }
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Correo</mat-label>
+        <input matInput type="email" formControlName="correo" />
+        <mat-error>
+          @if (form.get('correo')?.hasError('required')) { Ingrese el correo!! }
+          @if (form.get('correo')?.hasError('email')) { Correo inválido!! }
+          @if (form.get('correo')?.hasError('maxlength')) { Máximo 60 caracteres!! }
+          @if (form.get('correo')?.hasError('pattern')) { El correo debe terminar en .com!! }
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Se cambia *ngIf por @if para consistencia con el control flow de Angular 17+ -->
+      @if (!edicion) {
+        <mat-form-field appearance="outline">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" formControlName="contrasena" />
+          <mat-error *ngIf="form.get('contrasena')?.hasError('required')">Ingrese la contraseña!!</mat-error>
+          <mat-error *ngIf="form.get('contrasena')?.hasError('minlength')">Mínimo 5 caracteres!!</mat-error>
+          <mat-error *ngIf="form.get('contrasena')?.hasError('maxlength')">Máximo 100 caracteres!!</mat-error>
+        </mat-form-field>
+      }
+
+      <mat-form-field appearance="outline">
+        <mat-label>Dirección</mat-label>
+        <input matInput formControlName="direccion" />
+        <mat-error>
+          @if (form.get('direccion')?.hasError('required')) { Ingrese la dirección!! }
+          @if (form.get('direccion')?.hasError('maxlength')) { Máximo 60 caracteres!! }
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Teléfono (Ej: 987654321)</mat-label>
+        <input matInput type="tel" formControlName="telefono" />
+        <mat-error>
+          @if (form.get('telefono')?.hasError('required')) { Ingrese el teléfono!! }
+          @if (form.get('telefono')?.hasError('maxlength')) { Máximo 13 caracteres!! }
+          <!-- Se asume que el patrón de validación en el TS fue actualizado para permitir el formato 9 dígitos -->
+          <!-- @if (form.get('telefono')?.hasError('pattern')) { El formato debe ser +51 seguido de 9 dígitos!! } -->
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Género</mat-label>
+        <mat-select formControlName="genero">
+          <mat-option value="M">M</mat-option>
+          <mat-option value="F">F</mat-option>
+        </mat-select>
+        <mat-error>
+          @if (form.get('genero')?.hasError('required')) { Ingrese el género!! }
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Rol</mat-label>
+        <!-- Esta lista ya viene filtrada desde el componente TypeScript -->
+        <mat-select formControlName="fk">
+          @for (a of listaRoles; track a.id_rol) {
+            <mat-option [value]="a.id_rol">{{ a.nombre }}</mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('fk')?.hasError('required')) { Ingrese el rol!! }
+        </mat-error>
+      </mat-form-field>
+
+      <div class="actions">
+        <button mat-raised-button class="register-button" type="submit">{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+        <button mat-button class="cancel-button" (click)="volverAPadre()" type="button">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
