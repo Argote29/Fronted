@@ -76,7 +76,7 @@ export class Restauranteregistrar implements OnInit { // Renombré la clase por 
       ubicacion: ['', Validators.required], // Aquí guardaremos la dirección
       cocinatip: ['', Validators.required],
       Tiempo: ['', Validators.required],
-      numero: [''],
+      numero: ['',Validators.required],
     });
   }
 

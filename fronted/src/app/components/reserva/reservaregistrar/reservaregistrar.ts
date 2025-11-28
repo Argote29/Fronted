@@ -85,7 +85,7 @@ export class Reservaregistrar {
     });
   }
 
-  private init(): void {
+    init(): void {
     if (this.edicion) {
       this.rs.listId(this.id).subscribe(data => {
         this.r.fecha_reserva = data.fecha_reserva;

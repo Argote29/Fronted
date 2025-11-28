@@ -129,7 +129,7 @@ export const routes: Routes = [
     children:[
       {path:'',component:Reservalistar,canActivate:[seguridadGuard]},
       {path:'nuevo',component:Reservaregistrar,canActivate:[seguridadGuard]},
-      {path:'id',component:Reservaregistrar,canActivate:[seguridadGuard]},
+      {path:':id',component:Reservaregistrar,canActivate:[seguridadGuard]},
     ]
   },
   {

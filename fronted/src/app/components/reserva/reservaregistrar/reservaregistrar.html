@@ -1,9 +1,8 @@
-<div class="container">
-  <div style="text-align: center; margin: 5%">
-    <h2>Registro de Reservas</h2>
-  </div>
+<div class="main-container">
+  <div class="form-card">
 
-  <div style="text-align: center; margin: 5%">
+    <h2 class="title">Registro de Reservas</h2>
+
     <form [formGroup]="form" (submit)="aceptar()">
 
       @if (edicion) {
@@ -11,11 +10,11 @@
           <mat-label>ID</mat-label>
           <input matInput formControlName="id" readonly />
         </mat-form-field>
-        <br />
+
       }
 
       <!-- Usuario -->
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <mat-label>Usuario</mat-label>
         <mat-select formControlName="usuarioId">
           @for (u of listaUsuarios; track u) {
@@ -30,10 +29,10 @@
           }
         </mat-error>
       </mat-form-field>
-      <br />
+      
 
       <!-- Restaurante -->
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <mat-label>Restaurante</mat-label>
         <mat-select formControlName="restauranteId">
           @for (r of listaRestaurantes; track r) {
@@ -48,36 +47,33 @@
           }
         </mat-error>
       </mat-form-field>
-      <br />
 
       <!-- Fecha -->
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <mat-label>Fecha de Reserva</mat-label>
-        <input matInput type="date" formControlName="fecha_reserva" />
+        <input matInput type="date" formControlName="fecha_reserva">
         <mat-error>
           @if (form.get('fecha_reserva')?.hasError('required')) {
             Seleccione una fecha!!
           }
         </mat-error>
       </mat-form-field>
-      <br />
 
       <!-- Hora -->
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <mat-label>Hora</mat-label>
-        <input matInput type="time" formControlName="hora" />
+        <input matInput type="time" formControlName="hora">
         <mat-error>
           @if (form.get('hora')?.hasError('required')) {
             Seleccione una hora!!
           }
         </mat-error>
       </mat-form-field>
-      <br />
 
       <!-- Número de personas -->
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <mat-label>Número de Personas</mat-label>
-        <input matInput type="number" formControlName="numero_personas" min="1" />
+        <input matInput type="number" formControlName="numero_personas" min="1">
         <mat-error>
           @if (form.get('numero_personas')?.hasError('required')) {
             Ingrese el número de personas!!
@@ -87,10 +83,9 @@
           }
         </mat-error>
       </mat-form-field>
-      <br />
 
       <!-- Estado -->
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <mat-label>Estado</mat-label>
         <mat-select formControlName="estado">
           <mat-option value="Pendiente">Pendiente</mat-option>
@@ -103,15 +98,14 @@
           }
         </mat-error>
       </mat-form-field>
-      <br />
 
       <!-- Botones -->
-      <div>
-        <button mat-raised-button color="primary" type="submit">
+      <div class="actions">
+        <button class="register-button" mat-raised-button color="primary" type="submit">
           {{ edicion ? 'Actualizar' : 'Registrar' }}
         </button>
 
-        <button mat-raised-button color="warn" routerLink="/reserva" type="button">
+        <button class="cancel-button" mat-raised-button routerLink="/reserva" type="button">
           Cancelar
         </button>
       </div>

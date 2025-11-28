@@ -21,7 +21,7 @@ export class RestauranteService implements OnInit {
     return this.http.get<Restaurante[]>(this.url);
   }
 
-   insert(rE: Restaurante): Observable<string> {
+  insert(rE: Restaurante): Observable<string> {
     return this.http.post(this.url, rE, { responseType: 'text' });
   }
 
