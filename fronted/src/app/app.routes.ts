@@ -33,6 +33,7 @@ import { LandingPage } from './components/landing-page/landing-page';
 import { Reportecantidadreservausuario } from './components/reportecantidadreservausuario/reportecantidadreservausuario';
 import { Historial } from './components/historial/historial';
 import { Reportepromediorestaurante } from './components/reportepromediorestaurante/reportepromediorestaurante';
+import { ReportesuscripcionactivaComponent } from './components/reportesuscripcionactiva/reportesuscripcionactiva';
 
 export const routes: Routes = [
   { path: '', component: LandingPage, pathMatch: 'full' }, // Landing Page al inicio
@@ -68,7 +69,7 @@ export const routes: Routes = [
   },
   {
     path: 'historial',
-    component: Ingrediente,
+    component: Historial,
     children: [
       { path: '', component: Historiallistar, canActivate: [seguridadGuard] },
       { path: 'nuevo', component: Historialregistrar, canActivate: [seguridadGuard] },
@@ -133,5 +134,8 @@ export const routes: Routes = [
   },
    {
     path:'reportepromediorestaurante',component: Reportepromediorestaurante
+  },
+  {
+    path:'reportecomparacion',component: ReportesuscripcionactivaComponent
   }
 ];

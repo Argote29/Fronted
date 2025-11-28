@@ -36,7 +36,7 @@ export class Reportecantidadreservausuario implements OnInit {
           {
             data: data.map((item) => item.num_reserva),
             label: 'Cantidad de reserva por cliente',
-            backgroundColor: [' rgba(255, 255, 255, 1)',' rgba(172, 56, 56, 1)'],
+            backgroundColor: [' rgba(21, 185, 73, 1)',' rgba(172, 56, 56, 1)'],
           },
         ];
       } else {

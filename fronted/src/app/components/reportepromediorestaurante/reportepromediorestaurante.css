@@ -1,43 +1,78 @@
+/* ===================================================== */
+/* ESTILOS DEL REPORTE DE USUARIOS ACTIVOS               */
+/* ===================================================== */
+
+:host {
+  /* Variables de color */
+  --color-dark-green: #083E2E;
+  --color-primary: #1B906E;
+  --color-mid-green: #15664E;
+  --color-accent-2: #C2FFC8;
+  --color-background: #E9FFE7;
+}
+
 /* Contenedor general */
 .page-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-top: 20px;
-  }
-  
-  /* Título centrado */
-  .title-container {
-    width: 100%;
-    display: flex;
-    justify-content: center; /* 🔥 centro real */
-    margin-bottom: 20px;
-  }
-  
-  .title {
-    font-size: 28px;
-    font-weight: 600;
-    color: #ffffff;
-    text-align: center;
-  }
-  
-  /* Gráfico */
-  .chart-container {
-    width: 45%;
-    max-width: 800px;
-    min-width: 350px;
-    margin: 0 auto; /* centra */
-    background: rgba(255, 255, 255, 0.05);
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.3);
-  }
-  
-  /* No data */
-  .no-data {
-    margin-top: 40px;
-    text-align: center;
-    color: #ccc;
-  }
-  
+  background-color: var(--color-background);
+  min-height: 100vh;
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Título */
+.title-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.title {
+  font-size: 2.3rem;
+  font-weight: 600;
+  color: var(--color-dark-green);
+  text-align: center;
+}
+
+/* Contenedor del gráfico */
+.chart-container {
+  width: 50%;
+  max-width: 850px;
+  min-width: 380px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.20);
+  border: 2px solid var(--color-primary);
+}
+
+/* ======================= */
+/* ESTADO SIN DATOS        */
+/* ======================= */
+
+.no-data {
+  margin-top: 50px;
+  text-align: center;
+  color: var(--color-mid-green);
+  background: white;
+  padding: 30px;
+  width: 40%;
+  border-radius: 12px;
+  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--color-accent-2);
+}
+
+.no-data-icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+  color: var(--color-primary);
+}
+
+.no-data-message {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--color-dark-green);
+}
