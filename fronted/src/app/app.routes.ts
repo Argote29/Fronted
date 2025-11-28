@@ -34,6 +34,7 @@ import { Reporterestaurantemasresenados } from './components/reporterestaurantem
 import { Reserva } from './components/reserva/reserva';
 import { Reservalistar } from './components/reserva/reservalistar/reservalistar';
 import { Reservaregistrar } from './components/reserva/reservaregistrar/reservaregistrar';
+import { Reportecantidaddereservasporrestaurante } from './components/reportecantidaddereservasporrestaurante/reportecantidaddereservasporrestaurante';
 
 
 export const routes: Routes = [
@@ -141,5 +142,8 @@ export const routes: Routes = [
   },
   {
     path:'reporterestaurantemasresenados',component:Reporterestaurantemasresenados
+  },
+  {
+    path:'reportecantidaddereservasporrestaurante',component:Reportecantidaddereservasporrestaurante
   },
 ];

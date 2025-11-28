@@ -3,6 +3,7 @@ import { environment } from '../../enviroments/environment';
 import { Observable, Subject } from 'rxjs';
 import { Reserva } from '../models/Reserva';
 import { HttpClient } from '@angular/common/http';
+import { QueryCantidadDeReservasPorRestauranteDTO } from '../models/QueryCantidadDeReservasPorRestauranteDTO';
 
 const base_url = environment.base;
 
@@ -44,5 +45,9 @@ export class ServiceReserva implements OnInit {
 
   delete(id: number): Observable<string> {
     return this.http.delete(`${this.url}/${id}`, { responseType: 'text' });
+  }
+
+    getCantidadDeReservaPorRestaurante(id: number): Observable<QueryCantidadDeReservasPorRestauranteDTO> {
+      return this.http.get<QueryCantidadDeReservasPorRestauranteDTO>(`${this.url}/resumen/${id}`);
   }
 }
