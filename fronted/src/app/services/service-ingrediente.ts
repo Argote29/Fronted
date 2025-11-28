@@ -3,7 +3,7 @@ import { environment } from '../../enviroments/environment';
 import { Ingrediente } from '../models/ingrediente';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
+import { QueryIngredientespororigen } from '../models/QueryIngredientespororigen';
 const base_url = environment.base;
 
 @Injectable({
@@ -18,31 +18,34 @@ export class ServiceIngrediente implements OnInit{
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {}
-
    list() {
       return this.http.get<Ingrediente[]>(this.url);
     }
 
    insert(i: Ingrediente): Observable<string> {
-       return this.http.post(this.url, i, { responseType: 'text' });
-     }
+      return this.http.post(this.url, i, { responseType: 'text' });
+    }
    
     setList(listaNueva: Ingrediente[]) {
-       this.listaCambio.next(listaNueva);
-     }
+      this.listaCambio.next(listaNueva);
+    }
     getList() {
-       return this.listaCambio.asObservable();
-     }
+      return this.listaCambio.asObservable();
+    }
    
     listId(id: number) {
-       return this.http.get<Ingrediente>(`${this.url}/${id}`);
-     }
-     
+      return this.http.get<Ingrediente>(`${this.url}/${id}`);
+    }
+  
     update(i: Ingrediente) {
-       return this.http.put(`${this.url}`, i, { responseType: 'text' });
-     }
+      return this.http.put(`${this.url}`, i, { responseType: 'text' });
+    }
    
     delete(id: number) {
-       return this.http.delete(`${this.url}/${id}`,{ responseType: 'text' })
-     } 
+      return this.http.delete(`${this.url}/${id}`,{ responseType: 'text' })
+    } 
+
+    getIngredientespororigen(origen: string): Observable<QueryIngredientespororigen> {
+        return this.http.get<QueryIngredientespororigen>(`${this.url}/ingredientes/por-origen?origen=${origen}`);
+    }
 }

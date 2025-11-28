@@ -1,0 +1,130 @@
+/* Fondo general */
+:host {
+  display: block;
+  padding: 40px 20px;
+  background: #e8ffe8;  /* verde pastel */
+  min-height: 100vh;
+}
+
+/* TARJETA PRINCIPAL */
+.report-card {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #064e3b;   /* verde oscuro */
+  border-radius: 24px;
+  padding: 30px 40px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.report-card h2 {
+  text-align: center;
+  color: #e5fbee;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* BUSCADOR */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: none;
+  font-size: 15px;
+}
+
+.search-bar button {
+  padding: 10px 16px;
+  background: #ffffff;
+  color: #064e3b;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.search-bar button:hover {
+  background: #bbf7d0;
+}
+
+/* TABLA */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* usando border-spacing para filas separadas tipo “barras” */
+.tabla-ingredientes {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+/* encabezado */
+.tabla-ingredientes thead {
+  background: none;
+}
+
+.tabla-ingredientes th {
+  background: #16a34a;    /* verde brillante */
+  color: white;
+  padding: 12px;
+  font-size: 15px;
+  text-align: left;
+}
+
+.tabla-ingredientes th:first-child {
+  text-align: center;
+  width: 60px;
+}
+
+/* filas del cuerpo */
+.tabla-ingredientes tbody tr {
+  background: #22c55e;     /* verde medio */
+  border-radius: 10px;
+}
+
+.tabla-ingredientes td {
+  padding: 12px;
+  font-size: 15px;
+  color: #012c21;
+}
+
+/* índices centrados */
+.tabla-ingredientes td:first-child {
+  width: 60px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* bordes redondeados por fila */
+.tabla-ingredientes tbody tr td:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.tabla-ingredientes tbody tr td:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* hover */
+.tabla-ingredientes tbody tr:hover {
+  background: #4ade80;
+  transition: 0.2s;
+}
+
+/* mensaje sin datos */
+.no-data {
+  text-align: center;
+  margin-top: 20px;
+  color: #d1fae5;
+  font-size: 16px;
+}
