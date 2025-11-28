@@ -3,7 +3,7 @@
         <h2 class="title">Historial de suscripciones</h2>
     </div>
 
-    <div class="table-container">
+    <div class="table-container" *ngIf="dataSource.data.length > 0">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 historial-table">
 
             <ng-container matColumnDef="c1">
@@ -57,5 +57,18 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
         </table>
-        </div>
+       <mat-paginator 
+            [pageSizeOptions]="[5, 10, 15]" 
+            [pageSize]="5" 
+            [length]="dataSource.data.length"
+            showFirstLastButtons 
+            class="roles-paginator">
+        </mat-paginator>
+    </div>
+
+    <div *ngIf="dataSource.data.length === 0" class="no-data-message-container">
+        <p class="no-data-message" >
+            No hay suscripciones registradas.
+        </p>
+    </div>
 </div>

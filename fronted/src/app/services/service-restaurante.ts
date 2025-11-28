@@ -3,6 +3,8 @@ import { environment } from '../../enviroments/environment';
 import { Restaurante } from '../models/Restaurante';
 import { Subject,Observable} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { QueryPromedioRestaurante } from '../models/QueryPromedioRestaurante';
+import { QueryRestauranteSinPromo } from '../models/QueryRestauranteSinPromo';
 
 const base_url = environment.base;
 
@@ -43,4 +45,11 @@ export class RestauranteService implements OnInit {
   delete(id: number) {
     return this.http.delete(`${this.url}/${id}`,{ responseType: 'text' })
   }
+
+  getPromedioRestaurante(): Observable<QueryPromedioRestaurante[]>{
+    return this.http.get<QueryPromedioRestaurante[]>(`${this.url}/restaurantePromedioResena`);
+} 
+  getRestaurantesSinPromos(): Observable<QueryRestauranteSinPromo[]>{
+    return this.http.get<QueryRestauranteSinPromo[]>(`${this.url}/sin-promos`);
+} 
 }

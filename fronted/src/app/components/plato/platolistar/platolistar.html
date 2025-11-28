@@ -1,76 +1,85 @@
-<div class="container">
-  <div style="text-align:center; margin: 20px 0;">
-    <h2>Listado de Platos</h2>
+<div class="main-container">
+  <div class="title-section">
+    <h2 class="title">Lista de Platos</h2>
   </div>
 
-  <div style="text-align:right; margin-bottom: 12px;">
-    <button mat-raised-button color="primary" routerLink="/plato/nuevo">
-      <mat-icon>add</mat-icon>&nbsp;Nuevo plato
-    </button>
-  </div>
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width:100%">
+    <div class="table-container" *ngIf="dataSource.data.length > 0">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 ingredientes-table">
 
-    <ng-container matColumnDef="c1">
-      <th mat-header-cell *matHeaderCellDef> ID </th>
-      <td mat-cell *matCellDef="let e"> {{ e.id_plato }} </td>
-    </ng-container>
+      <ng-container matColumnDef="c1">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let e"> {{ e.id_plato }} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="c2">
-      <th mat-header-cell *matHeaderCellDef> Nombre </th>
-      <td mat-cell *matCellDef="let e"> {{ e.nombre_plato }} </td>
-    </ng-container>
+      <ng-container matColumnDef="c2">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let e"> {{ e.nombre_plato }} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="c3">
-      <th mat-header-cell *matHeaderCellDef> Precio </th>
-      <td mat-cell *matCellDef="let e"> {{ e.precio_plato }} </td>
-    </ng-container>
+      <ng-container matColumnDef="c3">
+        <th mat-header-cell *matHeaderCellDef> Precio </th>
+        <td mat-cell *matCellDef="let e"> {{ e.precio_plato }} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="c4">
-      <th mat-header-cell *matHeaderCellDef> Info nutricional </th>
-      <td mat-cell *matCellDef="let e"> {{ e.info_nutricional }} </td>
-    </ng-container>
+      <ng-container matColumnDef="c4">
+        <th mat-header-cell *matHeaderCellDef> Info nutricional </th>
+        <td mat-cell *matCellDef="let e"> {{ e.info_nutricional }} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="c5">
-      <th mat-header-cell *matHeaderCellDef> Restaurante </th>
-      <td mat-cell *matCellDef="let e"> {{ e.restaurante?.nombre_restaurante }} </td>
-    </ng-container>
+      <ng-container matColumnDef="c5">
+        <th mat-header-cell *matHeaderCellDef> Restaurante </th>
+        <td mat-cell *matCellDef="let e"> {{ e.restaurante?.nombre_restaurante }} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="c6">
-      <th mat-header-cell *matHeaderCellDef> Promocion </th>
-      <td mat-cell *matCellDef="let e"> {{ e.promociones?.descripcion }} </td>
-    </ng-container>
+      <ng-container matColumnDef="c6">
+        <th mat-header-cell *matHeaderCellDef> Promoción </th>
+        <td mat-cell *matCellDef="let e"> {{ e.promociones?.descripcion }} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="c7">
-      <th mat-header-cell *matHeaderCellDef> Actualizar </th>
-      <td mat-cell *matCellDef="let e">
-        <button
-          matButton
-          [routerLink]="['/plato', e.id_plato]">
-          <mat-icon>edit</mat-icon>
-        </button>
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="c7">
+        <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+        <td mat-cell *matCellDef="let e">
+          <button
+            mat-icon-button
+            class="update-icon-button"
+            [routerLink]="['/plato', e.id_plato]">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="c8">
-      <th mat-header-cell *matHeaderCellDef> Eliminar </th>
-      <td mat-cell *matCellDef="let e">
-        <button
-          matButton
-          color="warn"
-          (click)="eliminar(e.id_plato)">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="c8">
+        <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+        <td mat-cell *matCellDef="let e">
+          <button
+            mat-icon-button
+            class="delete-icon-button"
+            (click)="eliminar(e.id_plato)">
+            <mat-icon>delete</mat-icon>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+          </button>
+        </td>
+      </ng-container>
 
-  <mat-paginator
-    [pageSizeOptions]="[5, 8, 10, 25]"
-    [pageSize]="8"
-    showFirstLastButtons>
-  </mat-paginator>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+   <mat-paginator 
+            [pageSizeOptions]="[5, 10, 15]" 
+            [pageSize]="5" 
+            [length]="dataSource.data.length"
+            showFirstLastButtons 
+            class="roles-paginator">
+        </mat-paginator>
+    </div>
+
+    <div *ngIf="dataSource.data.length === 0" class="no-data-message-container">
+        <p class="no-data-message" >
+            No hay platos registrados.
+        </p>
+    </div>  
+
 </div>

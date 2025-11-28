@@ -3,9 +3,9 @@ import { Plato } from "./plato";
 import { Ingrediente } from "./ingrediente";
 
 export class Ingredientesplato {
-  nombre_ingrediente: string = "";
+  idIngredientePlato: number = 0;
   cantidad: number = 0;
   tipo_unidad: string = ""; 
   plato: Plato = new Plato()
-  ingrediente: Ingrediente = new Ingrediente()
+  ingredientes: Ingrediente = new Ingrediente()
 }

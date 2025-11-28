@@ -3,6 +3,7 @@ import { environment } from '../../enviroments/environment';
 import { Historial } from '../models/historial';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { QuerySuscripcionActiva } from '../models/QuerySuscripcionActiva';
 
 const base_url = environment.base;
 
@@ -45,5 +46,8 @@ export class ServiceHistorial implements OnInit {
      
       delete(id: number) {
          return this.http.delete(`${this.url}/${id}`,{ responseType: 'text' })
+       } 
+       getComparacionSuscripciones(): Observable<QuerySuscripcionActiva>{
+         return this.http.get<QuerySuscripcionActiva>(`${this.url}/comparacion`);
        } 
 }
