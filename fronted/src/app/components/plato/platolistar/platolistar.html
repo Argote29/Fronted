@@ -3,6 +3,7 @@
     <h2 class="title">Lista de Platos</h2>
   </div>
 
+
     <div class="table-container" *ngIf="dataSource.data.length > 0">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 ingredientes-table">
 
@@ -56,9 +57,11 @@
             class="delete-icon-button"
             (click)="eliminar(e.id_plato)">
             <mat-icon>delete</mat-icon>
+
           </button>
         </td>
       </ng-container>
+
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -78,4 +81,5 @@
             No hay platos registrados.
         </p>
     </div>  
+
 </div>

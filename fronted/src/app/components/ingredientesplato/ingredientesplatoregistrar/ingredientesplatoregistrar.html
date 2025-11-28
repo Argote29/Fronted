@@ -1,3 +1,4 @@
+
 <div class="main-container">
   <div class="form-card">
     <h2 class="title">Registro de Ingredientes por Plato</h2>
@@ -6,6 +7,7 @@
 
       <!-- Cantidad -->
       <mat-form-field appearance="outline" class="full-width">
+
         <mat-label>Cantidad</mat-label>
         <input
           matInput
@@ -24,6 +26,7 @@
         </mat-error>
       </mat-form-field>
 
+
       <!-- Tipo de unidad (Radio Group) -->
       <div class="radio-group-container">
         <label class="radio-label">Tipo de unidad</label>
@@ -31,11 +34,13 @@
         <mat-radio-group
           formControlName="tipo_unidad"
           class="custom-radio-group"
+
         >
           <mat-radio-button value="g">Gramos (g)</mat-radio-button>
           <mat-radio-button value="ml">Mililitros (ml)</mat-radio-button>
           <mat-radio-button value="unidad">Unidad</mat-radio-button>
         </mat-radio-group>
+
 
         <mat-error class="radio-error">
           @if (form.get('tipo_unidad')?.touched && form.get('tipo_unidad')?.hasError('required')) {
@@ -46,6 +51,7 @@
 
       <!-- Plato -->
       <mat-form-field appearance="outline" class="full-width">
+
         <mat-label>Plato</mat-label>
         <mat-select formControlName="platoId">
           @for (p of listaPlato; track p) {
@@ -61,8 +67,10 @@
         </mat-error>
       </mat-form-field>
 
+
       <!-- Ingrediente -->
       <mat-form-field appearance="outline" class="full-width">
+
         <mat-label>Ingrediente</mat-label>
         <mat-select formControlName="ingredienteId">
           @for (i of listaIngrediente; track i) {
@@ -78,6 +86,7 @@
         </mat-error>
       </mat-form-field>
 
+
       <!-- Botones -->
       <div class="actions">
         <button mat-raised-button class="register-button" type="submit">
@@ -86,6 +95,7 @@
         <button
           mat-button
           class="cancel-button"
+
           routerLink="/ingredientesplato"
           type="button"
         >

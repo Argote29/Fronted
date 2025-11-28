@@ -99,6 +99,7 @@
     background-color: white;
     color: var(--color-dark-green);
     border-top: 1px solid var(--color-accent-2);
+
 }
 
 .no-data-message-container {
@@ -112,4 +113,5 @@
 .no-data-message {
     color: var(--color-mid-green);
     font-style: italic;
+
 }
