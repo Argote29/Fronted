@@ -24,6 +24,9 @@ export class Autenticador implements OnInit {
   contrasena: string = '';
   mensaje: string = '';
   ngOnInit(): void {}
+  irAInicio() {
+  this.router.navigate(['/']); 
+}
   login() {
     let request = new JwtRequestDTO();
     request.correo = this.correo;

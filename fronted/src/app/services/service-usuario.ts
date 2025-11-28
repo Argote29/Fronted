@@ -5,6 +5,7 @@ import { Subject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { QueryPorcentajeUsuarioFiltrado } from '../models/QueryPorcentajeUsuarioFiltradoDTO';
 import { QueryCantidadReservaUsuario } from '../models/QueryCantidadReservaUsuario';
+import { QueryusuarioMasResenadodto } from '../models/QueryUsuarioMasResenado';
 
 const base_url = environment.base;
 
@@ -59,4 +60,7 @@ export class ServiceUsuario implements OnInit {
 getCantidadReservaUsuario(): Observable<QueryCantidadReservaUsuario[]>{
   return this.http.get<QueryCantidadReservaUsuario[]>(`${this.url}/agruparReservaUsuario`);
 } 
+
+  getUsuarioMasResenas(): Observable<QueryusuarioMasResenadodto[]>{
+return this.http.get<QueryusuarioMasResenadodto[]>(`${this.url}/mas-resenas`)}
 }

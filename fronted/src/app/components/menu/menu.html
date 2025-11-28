@@ -138,10 +138,14 @@
   </mat-menu>
 
   <mat-menu #menuReporte="matMenu">
-    <button mat-menu-item routerLink="/reportecantidad"><mat-icon>folder</mat-icon>Porcentaje de  Usuario por Genero</button>
+  <button mat-menu-item routerLink="/reportecantidad"><mat-icon>folder</mat-icon>Porcentaje de  Usuario por Genero</button>
   <button mat-menu-item routerLink="/reportecantidadreservausuario"><mat-icon>folder</mat-icon>Cantidad de reserva por Usuario</button>
   <button mat-menu-item routerLink="/reportepromediorestaurante"><mat-icon>folder</mat-icon>Puntuacion promedio por restaurante</button>
   <button mat-menu-item routerLink="/reportecomparacion"><mat-icon>folder</mat-icon>Reporte de comparacion de suscripciones</button>
+  <button mat-menu-item routerLink="/reporterestaurantessinpromo"><mat-icon>folder</mat-icon>Restaurantes sin promociones</button>
+  <button mat-menu-item routerLink="/reporteingredientesplatopororigen"><mat-icon>folder</mat-icon>Ingredintes por origen</button>
+  <button mat-menu-item routerLink="/reporteusuarioresenas"><mat-icon>folder</mat-icon>Reporte de cantidad de reseñas por usuario</button>
+
   </mat-menu>
 
   <mat-menu #menuSalir="matMenu">
@@ -149,7 +153,7 @@
       <mat-icon>logout</mat-icon>
       <span>Cerrar sesión</span>
     </button>
-  
+
     <button mat-menu-item disabled>
       <mat-icon>verified_user</mat-icon> <span style="font-weight: bold; margin-right: 5px;">Rol:</span>
       <span>{{ roles }}</span>
