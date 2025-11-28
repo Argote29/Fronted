@@ -60,7 +60,7 @@ export class Menu implements OnInit {
     return false;
   }
 
-  // 🛑 MÉTODOS DE ROL (Usan la lógica hasRole)
+  // 🛑 MÉTODOS DE ROL (Usan la lógica de hasRole)
   isAdmin(): boolean {
     return this.hasRole('ADMIN');
   }
