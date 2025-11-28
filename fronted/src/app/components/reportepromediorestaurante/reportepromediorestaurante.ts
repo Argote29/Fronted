@@ -36,7 +36,7 @@ export class Reportepromediorestaurante implements OnInit {
             data: data.map((item) => item.promCalificacion),
             label: 'Promedio del restaurante',
             backgroundColor: [
-              ' rgba(255, 255, 255, 1)',
+              ' rgba(21, 185, 73, 1)',
               ' rgba(197, 167, 69, 1)',
             ],
           },
