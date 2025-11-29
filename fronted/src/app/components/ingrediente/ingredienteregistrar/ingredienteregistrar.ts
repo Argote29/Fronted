@@ -14,9 +14,10 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { Ingrediente } from '../../../models/ingrediente';
 import { ServiceIngrediente } from '../../../services/service-ingrediente';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { MatSelectModule } from '@angular/material/select';
 @Component({
   selector: 'app-ingredienteregistrar',
-  imports: [ReactiveFormsModule,MatInputModule,MatFormFieldModule,MatRadioModule,MatButtonModule,],
+  imports: [ReactiveFormsModule,MatInputModule,MatFormFieldModule,MatRadioModule,MatButtonModule,MatSelectModule],
   templateUrl: './ingredienteregistrar.html',
   styleUrl: './ingredienteregistrar.css',
   providers: [provideNativeDateAdapter()],

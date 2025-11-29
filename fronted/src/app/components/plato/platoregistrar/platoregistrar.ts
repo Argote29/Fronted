@@ -42,6 +42,9 @@ export class Platoregistrar {
     private fb: FormBuilder,
     private route: ActivatedRoute
   ) {}
+  volverAPadre() {
+  this.router.navigate(['../'], { relativeTo: this.route });
+}
 
   ngOnInit(): void {
 

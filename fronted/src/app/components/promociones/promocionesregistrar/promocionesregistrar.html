@@ -85,9 +85,7 @@
         <button mat-raised-button class="register-button" type="submit">
           {{ edicion ? 'Actualizar' : 'Registrar' }}
         </button>
-        <button mat-raised-button class="cancel-button" routerLink="/promociones" type="button">
-          Cancelar
-        </button>
+        <button mat-button class="cancel-button" (click)="volverAPadre()" type="button">Cancelar</button>
       </div>
 
     </form>
