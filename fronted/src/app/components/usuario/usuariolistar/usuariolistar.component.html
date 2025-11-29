@@ -15,13 +15,18 @@
                         {{ element.nombre }} {{ element.apellido }}
                     </mat-card-title>
                     <mat-card-subtitle class="card-subtitle">
+<<<<<<< HEAD
                         Rol: **{{ element.rol.nombre }}**
+=======
+                        Rol: {{ element.rol.nombre }}
+>>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
                     </mat-card-subtitle>
                 </mat-card-header>
 
                 <mat-card-content class="card-content">
                     <p class="section-title">Datos de contacto:</p>
                     <p> 
+<<<<<<< HEAD
                         <mat-icon class="icon-detail">location_on</mat-icon> Dirección: **{{ element.direccion}}**
                     </p>
                     <p> 
@@ -40,6 +45,36 @@
                         <mat-icon>delete</mat-icon>
                         Eliminar
                     </button>
+=======
+                        <mat-icon class="icon-detail">location_on</mat-icon> Dirección: {{ element.direccion}}
+                    </p>
+                    <p> 
+                        <mat-icon class="icon-detail">phone</mat-icon> Teléfono: {{ element.telefono}}
+                    </p>
+                    <p> 
+                        <mat-icon class="icon-detail">person</mat-icon> Sexo: {{ element.genero}} </p>
+                </mat-card-content>
+
+                <mat-card-actions class="card-actions">
+                      <!-- ⭐ AHORA SE MUESTRA SOLO SI NO ES CLIENTE -->
+                   @if (isAdmin()) {
+                        <button 
+                            mat-flat-button 
+                            class="update-button" 
+                            [routerLink]="['/usuarios', element.id_usuario]"
+                            >
+                            <mat-icon>edit</mat-icon>Actualizar
+                        </button>
+                    <!-- ⭐ AHORA SE MUESTRA SOLO SI NO ES CLIENTE -->
+                        <button 
+                            mat-flat-button 
+                            class="delete-button" 
+                            (click)="eliminar(element.id_usuario)"
+                            >
+                            <mat-icon>delete</mat-icon>Eliminar
+                        </button>}
+                    
+>>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
                 </mat-card-actions>
             </mat-card>
 
@@ -53,7 +88,10 @@
         }
     </div>
 
+<<<<<<< HEAD
     <!-- ⭐ PAGINADOR: Se muestra solo si hay datos y se vincula la longitud total ⭐ -->
+=======
+>>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
     <mat-paginator 
         *ngIf="dataSource.data.length > 0"
         [length]="dataSource.data.length"

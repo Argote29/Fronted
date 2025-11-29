@@ -89,13 +89,8 @@
           {{ edicion ? 'Actualizar' : 'Registrar' }}
         </button>
 
-        <button
-          mat-button
-          type="button"
-          class="cancel-button"
-          routerLink="/resena">
-          Cancelar
-        </button>
+      <button mat-button class="cancel-button" (click)="volverAPadre()" type="button">Cancelar</button>
+
       </div>
 
     </form>

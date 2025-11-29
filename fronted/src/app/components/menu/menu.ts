@@ -8,21 +8,35 @@ import { LoginService } from '../../services/login-service';
 
 @Component({
   selector: 'app-menu',
+<<<<<<< HEAD
   standalone: true,
+=======
+  standalone: true, 
+>>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
   imports: [MatToolbarModule, MatIconModule, MatButtonModule, MatMenuModule, RouterLink],
   templateUrl: './menu.html',
   styleUrl: './menu.css',
 })
+<<<<<<< HEAD
 export class Menu implements OnInit {
   // Usamos 'any' para el rol ya que el formato de retorno es un Array inesperado (ej: ['ROLE_ADMIN'])
   roles: any = '';
+=======
+export class Menu implements OnInit { 
+  // Usamos 'any' para el rol ya que el formato de retorno es un Array inesperado (ej: ['ROLE_ADMIN'])
+  roles: any = ''; 
+>>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
   usuario: string = '';
 
   constructor(private loginService: LoginService) {}
   
   ngOnInit(): void {
     // 1. Cargamos el rol al inicio del componente para que esté listo al renderizar el HTML.
+<<<<<<< HEAD
     this.roles = this.loginService.showRole();
+=======
+    this.roles = this.loginService.showRole(); 
+>>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
     console.log('DEBUG: Rol cargado en MenuComponent:', this.roles);
   }
 

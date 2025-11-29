@@ -35,19 +35,22 @@
         </mat-error>
       </div>
 
-      <!-- NIVEL -->
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Nivel de Insecticida</mat-label>
-        <input matInput formControlName="nivel" />
+      <mat-form-field appearance="outline">
+        <mat-label>Nivel</mat-label>
+        <mat-select formControlName="nivel">
+          <mat-option value="Bajo">Bajo</mat-option>
+          <mat-option value="Medio">Medio</mat-option>
+          <mat-option value="Alto">Alto</mat-option>
+        </mat-select>
         <mat-error>
-          @if (form.get('nivel')?.hasError('required')) { Ingrese el nivel!! }
+          @if (form.get('nivel')?.hasError('required')) { seleccione el nivel!! }
         </mat-error>
       </mat-form-field>
 
       <!-- FORMAS DE PREPARAR -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Formas de preparar</mat-label>
-        <input matInput formControlName="formas" />
+        <textarea matInput formControlName="formas" rows="4"></textarea>
         <mat-error>
           @if (form.get('formas')?.hasError('required')) { Ingrese la forma de preparar!! }
         </mat-error>

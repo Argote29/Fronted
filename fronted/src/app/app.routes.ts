@@ -37,6 +37,13 @@ import { ReportesuscripcionactivaComponent } from './components/reportesuscripci
 import { Reporterestaurantessinpromo } from './components/reporterestaurantessinpromo/reporterestaurantessinpromo';
 import { Reporteingredientesplatopororigen } from './components/reporteingredientesplatopororigen/reporteingredientesplatopororigen';
 import { Reporteusuariomasresena } from './components/reporteusuariomasresena/reporteusuariomasresena';
+import { Reportecantidadreservausuario } from './components/reportecantidadreservausuario/reportecantidadreservausuario';
+import { Historial } from './components/historial/historial';
+import { Reportepromediorestaurante } from './components/reportepromediorestaurante/reportepromediorestaurante';
+import { ReportesuscripcionactivaComponent } from './components/reportesuscripcionactiva/reportesuscripcionactiva';
+import { Reporterestaurantessinpromo } from './components/reporterestaurantessinpromo/reporterestaurantessinpromo';
+import { Reporteingredientesplatopororigen } from './components/reporteingredientesplatopororigen/reporteingredientesplatopororigen';
+import { Reporteusuariomasresena } from './components/reporteusuariomasresena/reporteusuariomasresena';
 import { Reserva } from './components/reserva/reserva';
 import { Reservalistar } from './components/reserva/reservalistar/reservalistar';
 import { Reservaregistrar } from './components/reserva/reservaregistrar/reservaregistrar';
@@ -170,4 +177,22 @@ export const routes: Routes = [
   {
     path:'reportecantidaddereservasporrestaurante',component:Reportecantidaddereservasporrestaurante
   },
+  {
+    path:'reportecantidadreservausuario',component: Reportecantidadreservausuario
+  },
+  {
+    path:'reportepromediorestaurante',component: Reportepromediorestaurante
+  },
+  {
+    path:'reportecomparacion',component: ReportesuscripcionactivaComponent
+  },
+  {
+    path:'reporterestaurantessinpromo',component: Reporterestaurantessinpromo
+  },
+    {
+    path:'reporteingredientesplatopororigen',component: Reporteingredientesplatopororigen
+  },
+  {
+    path:'reporteusuarioresenas',component: Reporteusuariomasresena
+  }
 ];

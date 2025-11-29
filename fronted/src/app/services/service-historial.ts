@@ -44,9 +44,9 @@ export class ServiceHistorial implements OnInit {
         return this.http.put(`${this.url}`, h, { responseType: 'text' });
       }
       delete(id: number) {
-        return this.http.delete(`${this.url}/${id}`,{ responseType: 'text' })
-      }
-      getComparacionSuscripciones(): Observable<QuerySuscripcionActiva>{
-        return this.http.get<QuerySuscripcionActiva>(`${this.url}/comparacion`);
-      }
+         return this.http.delete(`${this.url}/${id}`,{ responseType: 'text' })
+       } 
+       getComparacionSuscripciones(): Observable<QuerySuscripcionActiva>{
+         return this.http.get<QuerySuscripcionActiva>(`${this.url}/comparacion`);
+       } 
 }
