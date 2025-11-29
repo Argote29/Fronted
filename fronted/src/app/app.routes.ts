@@ -42,6 +42,7 @@ import { Reporterestaurantessinpromo } from './components/reporterestaurantessin
 import { Reporteingredientesplatopororigen } from './components/reporteingredientesplatopororigen/reporteingredientesplatopororigen';
 import { Reporteusuariomasresena } from './components/reporteusuariomasresena/reporteusuariomasresena';
 import { Historial } from './components/historial/historial';
+import { PaymentComponent } from './components/payment/payment';
 
 export const routes: Routes = [
   { path: '', component: LandingPage, pathMatch: 'full' }, // Landing Page al inicio
@@ -187,5 +188,8 @@ export const routes: Routes = [
   },
   {
     path:'reporteusuarioresenas',component: Reporteusuariomasresena
+  },
+  {
+    path:'pago',component: PaymentComponent
   }
 ];

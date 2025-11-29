@@ -1,125 +1,160 @@
-/* ============================================
-   FONDO COMPLETO VERDE CLARO
-=============================================== */
+/* ------------------------------------------------ */
+/* 2.1. Definición de Variables y Contenedor Principal */
+/* ------------------------------------------------ */
 :host {
-  display: block;
-  width: 100%;
-  min-height: 100vh;
-  background-color: #E9FFE7 !important; /* FONDO VERDE CLARO */
-  padding: 30px 0;
+    /* Define tus colores como variables CSS */
+    --color-dark-green: #083E2E;
+    --color-primary: #1B906E; /* Verde principal para éxito/botones */
+    --color-mid-green: #15664E; /* Título */
+    --color-accent-2: #C2FFC8; /* Verde claro sutil para filas pares */
+    --color-background: #E9FFE7; /* Fondo principal muy claro */
+    --color-warn: #f44336; /* Rojo para eliminar/estado Cancelada */
+    --color-success: #388e3c; /* Verde oscuro para estado Confirmada */
+    --color-info: #ffc107; /* Amarillo/Naranja para estado Pendiente */
+    --color-table-border: #ddd; /* Líneas de división sutiles */
 }
 
-/* ============================================
-   CONTENEDOR CENTRAL (TABLA)
-=============================================== */
-.container {
-  max-width: 1300px;
-  margin: 0 auto;
+.main-container {
+    background-color: var(--color-background) !important;
+    min-height: 100vh;
+    padding: 30px;
 }
 
-/* TÍTULO */
-h2 {
-  font-size: 28px;
-  color: #0B4C3C;
-  font-weight: 700;
-  margin-bottom: 20px;
+.title {
+    color: var(--color-mid-green) !important; /* Título en verde medio */
+    font-size: 2.5em;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
-/* ============================================
-   BOTÓN “Nueva reserva”
-=============================================== */
-button[mat-raised-button] {
-  font-weight: 600;
-  border-radius: 8px;
+/* Contenedor de la tabla (La tarjeta blanca) */
+.table-container {
+    max-width: 95%;
+    margin: 0 auto;
+    background-color: white !important; /* Fondo blanco de la tabla */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden; 
 }
 
-/* ============================================
-   TABLA
-=============================================== */
 
-table {
-  background: #ffffff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+/* ------------------------------------------------ */
+/* 2.2. Estilos de la Tabla (mat-table) */
+/* ------------------------------------------------ */
+.reservas-table {
+    width: 100%;
+    box-shadow: none !important; 
 }
 
-/* ENCABEZADO DE LA TABLA */
-th.mat-header-cell {
-  background-color: #ffffff;
-  font-weight: 700;
-  color: #2e5247;
-  font-size: 15px;
-  border-bottom: 2px solid #e2e2e2;
-  text-align: left;
+/* Estilo de la fila de encabezado (Look plano y blanco) */
+:host ::ng-deep .reservas-table th.mat-header-cell {
+    background-color: white !important; 
+    color: var(--color-dark-green) !important; 
+    font-weight: 600;
+    padding: 15px 10px;
+    text-align: center;
+    border-bottom: 2px solid var(--color-table-border) !important; 
 }
 
-/* CELDAS */
-td.mat-cell {
-  font-size: 14px;
-  color: #333;
-  background-color: #ffffff;
-  border-bottom: 1px solid #efefef;
-  padding: 10px;
+/* Estilo de las celdas de datos */
+.reservas-table td.mat-cell {
+    color: var(--color-dark-green);
+    font-size: 0.9em;
+    padding: 12px 10px;
+    text-align: center;
+    position: relative; 
+    overflow: visible;  
+    border-bottom: 1px solid var(--color-table-border); 
 }
 
-/* EFECTO HOVER FILA */
-tr.mat-row:hover {
-  background-color: #f4fff4;
+/* Estilo para las filas pares (striping) */
+.reservas-table tr.mat-row:nth-child(even) {
+    background-color: var(--color-accent-2); 
 }
 
-/* ============================================
-   BADGES DE ESTADO
-=============================================== */
+/* Estilo hover en las filas */
+.reservas-table tr.mat-row:hover {
+    background-color: rgba(27, 144, 110, 0.1); 
+}
 
+
+/* ------------------------------------------------ */
+/* 2.3. Estilos de Badges de Estado */
+/* ------------------------------------------------ */
 .estado-badge {
-  padding: 4px 12px;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 13px;
-  display: inline-block;
-  text-align: center;
-  min-width: 85px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    min-width: 90px;
+    text-align: center;
 }
 
-.estado-pendiente {
-  background: #FFF7D1;
-  color: #B28800;
-}
-
+/* Confirmada (Éxito) */
 .estado-confirmada {
-  background: #D7F8E7;
-  color: #0A8A4A;
+    color: var(--color-success); 
+    background-color: #e8f5e9; /* Fondo muy claro asociado a éxito */
 }
 
+/* Pendiente (Advertencia/Info) */
+.estado-pendiente {
+    color: var(--color-info); 
+    background-color: #fff8e1; /* Fondo muy claro asociado a info/alerta */
+}
+
+/* Cancelada (Rojo/Error) */
 .estado-cancelada {
-  background: #FFE2E2;
-  color: #D11A2A;
+    color: var(--color-warn); 
+    background-color: #ffebee; /* Fondo rojo muy claro asociado a advertencia */
 }
 
-/* ============================================
-   ICONOS (Editar / Eliminar)
-=============================================== */
+/* ------------------------------------------------ */
+/* 2.4. Estilos de los Botones de Acción (Iconos) */
+/* ------------------------------------------------ */
 
-button mat-icon {
-  font-size: 20px;
+.update-icon-button, .delete-icon-button {
+    /* Corregir el ripple */
+    display: inline-flex !important;
+    position: relative !important; 
+    
+    width: 40px !important;
+    height: 40px !important;
+    line-height: 40px !important;
+    padding: 0 !important;
+    text-align: center;
 }
 
-button[color="warn"] mat-icon {
-  color: #d32f2f !important; /* rojo para eliminar */
+/* Botón Actualizar */
+.update-icon-button {
+    color: var(--color-primary) !important;
 }
 
-button mat-icon:not([color="warn"]) {
-  color: #0B7C55; /* verde para editar */
+.update-icon-button:hover {
+    background-color: rgba(27, 144, 110, 0.2);
+    border-radius: 50%;
 }
 
-/* ============================================
-   PAGINADOR
-=============================================== */
-
-mat-paginator {
-  margin-top: 20px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.10);
+/* Botón Eliminar */
+.delete-icon-button {
+    color: var(--color-warn) !important;
 }
+
+.delete-icon-button:hover {
+    background-color: rgba(244, 67, 54, 0.2);
+    border-radius: 50%;
+}
+
+/* Corrección de Ripple en Mat Icon Button */
+:host ::ng-deep .mat-mdc-icon-button .mat-mdc-focus-indicator {
+    border-radius: 50% !important;
+}
+
+/* ------------------------------------------------ */
+/* 2.5. Estilos del Paginador */
+/* ------------------------------------------------ */
+.reservas-paginator {
+    background-color: white;
+    color: var(--color-dark-green);
+    border-top: 1px solid var(--color-table-border);
+  }

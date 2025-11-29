@@ -1,0 +1,68 @@
+<div class="main-container">
+  <div class="form-card payment-card">
+    
+    <h2 class="title payment-title">Pago</h2>
+    <p class="description">Realice el pago para que su suscripcion esté cancelada y luego comunícate con un administrador para que sea registrada.</p>
+
+    <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group full-width">
+        <label for="cardNumber">Número de Tarjeta (16 dígitos)</label>
+        <input id="cardNumber" type="text" formControlName="cardNumber" maxlength="16" placeholder="0000 1111 2222 3334" required>
+        <div *ngIf="paymentForm.get('cardNumber')?.invalid && (paymentForm.get('cardNumber')?.dirty || paymentForm.get('cardNumber')?.touched)" class="error-message">
+          Número de tarjeta debe ser 16 dígitos numéricos.
+        </div>
+      </div>
+      
+      <div class="form-group full-width">
+        <label for="cardName">Nombre en la Tarjeta</label>
+        <input id="cardName" type="text" formControlName="cardName" placeholder="Nombre completo" required>
+        <div *ngIf="paymentForm.get('cardName')?.invalid && (paymentForm.get('cardName')?.dirty || paymentForm.get('cardName')?.touched)" class="error-message">
+          Nombre es requerido.
+        </div>
+      </div>
+      
+      <div class="inline-group">
+        <div class="form-group half-width">
+          <label for="expiryDate">Vencimiento (MM/AA)</label>
+          <input id="expiryDate" type="text" formControlName="expiryDate" maxlength="5" placeholder="12/26" required>
+          <div *ngIf="paymentForm.get('expiryDate')?.invalid && (paymentForm.get('expiryDate')?.dirty || paymentForm.get('expiryDate')?.touched)" class="error-message">
+            Formato inválido (ej: 12/26).
+          </div>
+        </div>
+        
+        <div class="form-group half-width">
+          <label for="cvv">CVV</label>
+          <input id="cvv" type="text" formControlName="cvv" maxlength="4" placeholder="123" required>
+          <div *ngIf="paymentForm.get('cvv')?.invalid && (paymentForm.get('cvv')?.dirty || paymentForm.get('cvv')?.touched)" class="error-message">
+            CVV debe ser 3 o 4 dígitos.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="amount">Monto a Pagar</label>
+        <input id="amount" type="number" formControlName="amount" min="1" placeholder="Ej: 50.00" required>
+      </div>
+
+      <button type="submit" [disabled]="isProcessing || paymentForm.invalid" class="pay-button">
+        <span *ngIf="!isProcessing">Pagar</span>
+        <span *ngIf="isProcessing">⌛ Procesando...</span>
+      </button>
+    <button mat-raised-button class="cancel-button" (click)="irAInicio()">Cancelar</button>
+
+    </form>
+
+    <hr class="divider">
+
+    <div *ngIf="errorMessage" class="result-box error">
+      🚨 **Error de Transacción**: {{ errorMessage }}
+    </div>
+
+    <div *ngIf="paymentResult" class="result-box" [ngClass]="{'success': paymentResult.success, 'failure': !paymentResult.success}">
+     
+      <p>{{ paymentResult.message }}</p>
+      <p>ID Transacción: <strong>{{ paymentResult.transactionId }}</strong></p>
+    </div>
+  </div>
+</div>
