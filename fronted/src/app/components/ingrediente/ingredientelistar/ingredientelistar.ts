@@ -26,24 +26,19 @@ dataSource: MatTableDataSource<Ingrediente> = new MatTableDataSource();
 
     this.iG.getList().subscribe((data) => {
         this.dataSource.data = data; 
-    
-        
         if (this.paginator) { 
             this.dataSource.paginator = this.paginator;
         }
     });
-    
     this.iG.list().subscribe((data) => {
       this.iG.setList(data); 
     });
   }
 
   ngAfterViewInit() {
-   
     this.dataSource.paginator = this.paginator;
     this.dataSource.paginator.pageSize = 5;
   }
-
 
   eliminar(id: number) {
     this.iG.delete(id).subscribe((data) => {

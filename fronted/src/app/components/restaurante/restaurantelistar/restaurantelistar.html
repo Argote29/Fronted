@@ -20,17 +20,17 @@
                     <p><strong>📍 Dirección:</strong> {{ element.direccion }}</p>
                     <p><strong>⏰ Horario:</strong> {{ element.horario }}</p>
                     <p><strong>📞 Contacto:</strong> {{ element.contacto }}</p>
-                    <p class="id-text">ID: {{ element.id_restaurante }}</p>
                 </mat-card-content>
 
                 <mat-card-actions class="card-actions">
+@if (isAdmin()) {
                     <button mat-button class="update-button" [routerLink]="['/restaurante', element.id_restaurante]">
                         <mat-icon>edit</mat-icon> Editar
                     </button>
                     
                     <button mat-button class="delete-button" (click)="eliminar(element.id_restaurante)">
                         <mat-icon>delete</mat-icon> Eliminar
-                    </button>
+                    </button>}
                 </mat-card-actions>
             </mat-card>
 

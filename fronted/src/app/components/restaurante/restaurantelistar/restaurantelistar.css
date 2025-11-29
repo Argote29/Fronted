@@ -93,43 +93,39 @@
     font-size: 0.95em;
 }
 
-.id-text {
-    font-size: 0.8rem;
-    color: #999;
-    margin-top: 15px;
-    text-align: right;
-}
+
 
 /* ------------------------------------------------ */
 /* 2.4. Estilo de Botones de Acción */
 /* ------------------------------------------------ */
 .card-actions {
     display: flex;
-    justify-content: flex-end; /* Alinea los botones al final */
+    justify-content: space-around;
     padding-top: 15px !important;
 }
 
 .update-button {
-    color: var(--color-primary) !important;
+    background-color: var(--color-primary) !important;
+    color: white !important;
     font-weight: 600;
     border-radius: 6px;
     transition: background-color 0.3s;
 }
 
 .update-button:hover {
-    background-color: var(--color-accent-2) !important;
+    background-color: var(--color-mid-green) !important;
 }
 
 .delete-button {
-    color: var(--color-warn) !important;
+    background-color: var(--color-warn) !important;
+    color: white !important;
     font-weight: 600;
     border-radius: 6px;
     transition: background-color 0.3s;
-    margin-left: 10px;
 }
 
 .delete-button:hover {
-    background-color: rgba(244, 67, 54, 0.1) !important;
+    background-color: #d32f2f !important; /* Rojo más oscuro en hover */
 }
 
 .roles-paginator {

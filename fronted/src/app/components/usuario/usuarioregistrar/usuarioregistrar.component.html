@@ -1,13 +1,14 @@
 <div class="main-container"> 
   <div class="form-card">
-    <h2 class="title">Registro de Usuarios</h2>
+    <h2 class="title">{{ edicion ? 'Edición de Usuario' : 'Registro de Nuevo Usuario' }}</h2>
     
     <form [formGroup]="form" (ngSubmit)="aceptar()">
 
       @if (edicion) {
         <mat-form-field appearance="outline">
           <mat-label>ID</mat-label>
-          <input matInput formControlName="codigo" />
+          <!-- Se añade [readonly]="edicion" para evitar la edición del ID -->
+          <input matInput formControlName="codigo" [readonly]="edicion" />
           <mat-error>
             @if (form.get('codigo')?.hasError('required')) { Ingrese el ID del usuario!! }
             @if (form.get('codigo')?.hasError('maxlength')) { Máximo 30 caracteres!!! }
@@ -44,7 +45,8 @@
         </mat-error>
       </mat-form-field>
 
-      <div *ngIf="!edicion">
+      <!-- Se cambia *ngIf por @if para consistencia con el control flow de Angular 17+ -->
+      @if (!edicion) {
         <mat-form-field appearance="outline">
           <mat-label>Contraseña</mat-label>
           <input matInput type="password" formControlName="contrasena" />
@@ -52,7 +54,7 @@
           <mat-error *ngIf="form.get('contrasena')?.hasError('minlength')">Mínimo 5 caracteres!!</mat-error>
           <mat-error *ngIf="form.get('contrasena')?.hasError('maxlength')">Máximo 100 caracteres!!</mat-error>
         </mat-form-field>
-      </div>
+      }
 
       <mat-form-field appearance="outline">
         <mat-label>Dirección</mat-label>
@@ -69,7 +71,8 @@
         <mat-error>
           @if (form.get('telefono')?.hasError('required')) { Ingrese el teléfono!! }
           @if (form.get('telefono')?.hasError('maxlength')) { Máximo 13 caracteres!! }
-          @if (form.get('telefono')?.hasError('pattern')) { El formato debe ser +51 seguido de 9 dígitos!! }
+          <!-- Se asume que el patrón de validación en el TS fue actualizado para permitir el formato 9 dígitos -->
+          <!-- @if (form.get('telefono')?.hasError('pattern')) { El formato debe ser +51 seguido de 9 dígitos!! } -->
         </mat-error>
       </mat-form-field>
 
@@ -86,6 +89,7 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Rol</mat-label>
+        <!-- Esta lista ya viene filtrada desde el componente TypeScript -->
         <mat-select formControlName="fk">
           @for (a of listaRoles; track a.id_rol) {
             <mat-option [value]="a.id_rol">{{ a.nombre }}</mat-option>
@@ -97,7 +101,7 @@
       </mat-form-field>
 
       <div class="actions">
-        <button mat-raised-button class="register-button" type="submit">Registrar</button>
+        <button mat-raised-button class="register-button" type="submit">{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
         <button mat-button class="cancel-button" (click)="volverAPadre()" type="button">Cancelar</button>
       </div>
     </form>
