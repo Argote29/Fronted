@@ -1,21 +1,15 @@
 <div >
   @if(verificar()){
   <mat-toolbar class="custom-toolbar">
-<<<<<<< HEAD
-=======
     @if (isAdmin()) {
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
     <button 
       mat-button 
       aria-label="Menú de Roles"
       [matMenuTriggerFor]="menuRol">
       <mat-icon>security</mat-icon>Roles
     </button>
-<<<<<<< HEAD
-=======
   }
     @if (isAdmin()|| isClient()) {
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
 
     <button 
       mat-button 
@@ -23,11 +17,8 @@
       [matMenuTriggerFor]="menuUsuario">
       <mat-icon>person</mat-icon>Usuarios
     </button>
-<<<<<<< HEAD
-=======
   }
       @if (isAdmin()){
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
 
     <button 
       mat-button 
@@ -35,74 +26,50 @@
       [matMenuTriggerFor]="menuIngrediente">
       <mat-icon>dining</mat-icon>Ingredientes
     </button>
-<<<<<<< HEAD
-=======
   }
       @if (isAdmin()) {
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
 
     <button 
       mat-button 
       aria-label="Panel de Suscripciones"
       [matMenuTriggerFor]="menuHistorial">
       <mat-icon>receipt_long</mat-icon>Panel de Suscripciones
-<<<<<<< HEAD
-
-    </button>
-    
-=======
     </button>
   }
     @if (isAdmin() || isRestaurant()|| isClient()) {
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
     <button 
       mat-button 
       aria-label="Menú de Restaurante"
       [matMenuTriggerFor]="menuRestaurante">
       <mat-icon>restaurant</mat-icon>Restaurante
     </button>
-<<<<<<< HEAD
-=======
   }
   @if (isAdmin() || isRestaurant()|| isClient()) {
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
     <button 
       mat-button 
       aria-label="Menú de reseñas"
       [matMenuTriggerFor]="menuResenas">
       <mat-icon>rate_review</mat-icon>Reseñas
     </button>
-<<<<<<< HEAD
-=======
   }
   
   @if (isAdmin()|| isRestaurant()) {
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
     <button 
       mat-button 
       aria-label="Menú de promociones"
       [matMenuTriggerFor]="menuPromociones">
       <mat-icon>card_giftcard</mat-icon>Promociones
     </button>
-<<<<<<< HEAD
-
-
-=======
   }
 @if (isAdmin() || isRestaurant()|| isClient()) {
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
     <button 
       mat-button 
       aria-label="Menú de platos"
       [matMenuTriggerFor]="menuPlatos">
       <mat-icon>dinner_dining</mat-icon>Platos
     </button>
-<<<<<<< HEAD
-
-=======
   }
     @if (isAdmin()) {
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
 
     <button 
       mat-button 
@@ -110,12 +77,16 @@
       [matMenuTriggerFor]="menuIngredientesplato">
       <mat-icon>grain</mat-icon>Ingredientes por platos
     </button>
-<<<<<<< HEAD
-
-=======
+  }
+  @if (isAdmin() || isRestaurant()|| isClient()) {
+    <button 
+      mat-button 
+      aria-label="Menú de platos"
+      [matMenuTriggerFor]="menuReservas">
+      <mat-icon>calendar_today</mat-icon>Reservas
+    </button>
   }
       @if (isAdmin()) {
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
     <button
       matButton
       class="btn-rojo"
@@ -124,11 +95,7 @@
     >
       <mat-icon>business</mat-icon>Reporte
     </button> 
-<<<<<<< HEAD
-
-=======
   }
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
      <span class="spacer"> </span>
     <button 
       mat-button 
@@ -145,21 +112,6 @@
   </mat-toolbar>
  
   }
-<<<<<<< HEAD
-  <mat-menu #menuRol="matMenu">
-    <button mat-menu-item routerLink="/roles">Listar</button>
-    <button mat-menu-item routerLink="/roles/nuevo">Registrar</button>
-  </mat-menu>
-
-  <mat-menu #menuUsuario="matMenu">
-    <button mat-menu-item routerLink="/usuarios">Listar</button>
-    <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>
-  </mat-menu>
-
-  <mat-menu #menuIngrediente="matMenu">
-    <button mat-menu-item routerLink="/ingredientes">Listar</button>
-    <button mat-menu-item routerLink="/ingredientes/nuevo">Registrar</button>
-=======
     
   <mat-menu #menuRol="matMenu">
     @if (isAdmin()) {
@@ -187,7 +139,6 @@
     <button mat-menu-item routerLink="/ingredientes">Listar</button>
     <button mat-menu-item routerLink="/ingredientes/nuevo">Registrar</button>
           }
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
   </mat-menu>
 
   <mat-menu #menuHistorial="matMenu">
@@ -196,28 +147,15 @@
   </mat-menu>
 
   <mat-menu #menuRestaurante="matMenu">
-<<<<<<< HEAD
-    <button mat-menu-item routerLink="/restaurante">Listar</button>
-    <button mat-menu-item routerLink="/restaurante/nuevo">Registrar</button>
-=======
     @if (isAdmin() || isRestaurant()|| isClient()) {
     <button mat-menu-item routerLink="/restaurante">Listar</button>}
     @if (isAdmin() || isRestaurant()) {
     <button mat-menu-item routerLink="/restaurante/nuevo">Registrar</button>
     }
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
   </mat-menu>
   
   <mat-menu #menuResenas="matMenu">
     <button mat-menu-item routerLink="/resena">Listar</button>
-<<<<<<< HEAD
-    <button mat-menu-item routerLink="/resena/nuevo">Registrar</button>
-  </mat-menu>
-
-  <mat-menu #menuPromociones="matMenu">
-    <button mat-menu-item routerLink="/promociones">Listar</button>
-    <button mat-menu-item routerLink="/promociones/nuevo">Registrar</button>
-=======
      @if (isAdmin()|| isClient()) {
     <button mat-menu-item routerLink="/resena/nuevo">Registrar</button>}
   </mat-menu>
@@ -227,33 +165,30 @@
     <button mat-menu-item routerLink="/promociones">Listar</button>
     <button mat-menu-item routerLink="/promociones/nuevo">Registrar</button>
      }
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
   </mat-menu>
 
 
   <mat-menu #menuPlatos="matMenu">
-<<<<<<< HEAD
-    <button mat-menu-item routerLink="/plato">Listar</button>
-    <button mat-menu-item routerLink="/plato/nuevo">Registrar</button>
-=======
     @if (isAdmin()|| isRestaurant() || isClient()) {
     <button mat-menu-item routerLink="/plato">Listar</button>}
     @if (isAdmin()|| isRestaurant()) {
     <button mat-menu-item routerLink="/plato/nuevo">Registrar</button>
          }
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
+  </mat-menu>
+
+    <mat-menu #menuReservas="matMenu">
+    @if (isAdmin()|| isRestaurant() || isClient()) {
+    <button mat-menu-item routerLink="/reserva">Listar</button>}
+    @if (isAdmin()|| isRestaurant()) {
+    <button mat-menu-item routerLink="/reserva/nuevo">Registrar</button>
+         }
   </mat-menu>
 
 
   <mat-menu #menuIngredientesplato="matMenu">
-<<<<<<< HEAD
-    <button mat-menu-item routerLink="/ingredientesplato">Listar</button>
-    <button mat-menu-item routerLink="/ingredientesplato/nuevo">Registrar</button>
-=======
      @if (isAdmin()){
     <button mat-menu-item routerLink="/ingredientesplato">Listar</button>
     <button mat-menu-item routerLink="/ingredientesplato/nuevo">Registrar</button>}
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
   </mat-menu>
 
   <mat-menu #menuReporte="matMenu">
@@ -264,11 +199,8 @@
   <button mat-menu-item routerLink="/reporterestaurantessinpromo"><mat-icon>folder</mat-icon>Restaurantes sin promociones</button>
   <button mat-menu-item routerLink="/reporteingredientesplatopororigen"><mat-icon>folder</mat-icon>Ingredintes por origen</button>
   <button mat-menu-item routerLink="/reporteusuarioresenas"><mat-icon>folder</mat-icon>Reporte de cantidad de reseñas por usuario</button>
-<<<<<<< HEAD
   <button mat-menu-item routerLink="/reporterestaurantemasresenados"><mat-icon>folder</mat-icon>Cantidad de Reseñas Por Restaurante</button>
   <button mat-menu-item routerLink="/reportecantidaddereservasporrestaurante"><mat-icon>folder</mat-icon>Cantidad de Reservas por Restaurante</button>
-=======
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
 
   </mat-menu>
 

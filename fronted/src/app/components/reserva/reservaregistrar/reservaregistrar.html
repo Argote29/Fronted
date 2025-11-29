@@ -105,9 +105,7 @@
           {{ edicion ? 'Actualizar' : 'Registrar' }}
         </button>
 
-        <button class="cancel-button" mat-raised-button routerLink="/reserva" type="button">
-          Cancelar
-        </button>
+        <button mat-button class="cancel-button" (click)="volverAPadre()" type="button">Cancelar</button>
       </div>
 
     </form>

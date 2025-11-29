@@ -30,25 +30,18 @@ import { Home } from './components/home/home';
 import { seguridadGuard } from './guard/seguridad-guard';
 import { Reporteporcentajeusuario } from './components/reporteporcentajeusuario/reporteporcentajeusuario';
 import { LandingPage } from './components/landing-page/landing-page';
-import { Reportecantidadreservausuario } from './components/reportecantidadreservausuario/reportecantidadreservausuario';
-import { Historial } from './components/historial/historial';
-import { Reportepromediorestaurante } from './components/reportepromediorestaurante/reportepromediorestaurante';
-import { ReportesuscripcionactivaComponent } from './components/reportesuscripcionactiva/reportesuscripcionactiva';
-import { Reporterestaurantessinpromo } from './components/reporterestaurantessinpromo/reporterestaurantessinpromo';
-import { Reporteingredientesplatopororigen } from './components/reporteingredientesplatopororigen/reporteingredientesplatopororigen';
-import { Reporteusuariomasresena } from './components/reporteusuariomasresena/reporteusuariomasresena';
-import { Reportecantidadreservausuario } from './components/reportecantidadreservausuario/reportecantidadreservausuario';
-import { Historial } from './components/historial/historial';
-import { Reportepromediorestaurante } from './components/reportepromediorestaurante/reportepromediorestaurante';
-import { ReportesuscripcionactivaComponent } from './components/reportesuscripcionactiva/reportesuscripcionactiva';
-import { Reporterestaurantessinpromo } from './components/reporterestaurantessinpromo/reporterestaurantessinpromo';
-import { Reporteingredientesplatopororigen } from './components/reporteingredientesplatopororigen/reporteingredientesplatopororigen';
-import { Reporteusuariomasresena } from './components/reporteusuariomasresena/reporteusuariomasresena';
 import { Reserva } from './components/reserva/reserva';
 import { Reservalistar } from './components/reserva/reservalistar/reservalistar';
 import { Reservaregistrar } from './components/reserva/reservaregistrar/reservaregistrar';
 import { Reporterestaurantemasresenados } from './components/reporterestaurantemasresenados/reporterestaurantemasresenados';
 import { Reportecantidaddereservasporrestaurante } from './components/reportecantidaddereservasporrestaurante/reportecantidaddereservasporrestaurante';
+import { Reportecantidadreservausuario } from './components/reportecantidadreservausuario/reportecantidadreservausuario';
+import { Reportepromediorestaurante } from './components/reportepromediorestaurante/reportepromediorestaurante';
+import { ReportesuscripcionactivaComponent } from './components/reportesuscripcionactiva/reportesuscripcionactiva';
+import { Reporterestaurantessinpromo } from './components/reporterestaurantessinpromo/reporterestaurantessinpromo';
+import { Reporteingredientesplatopororigen } from './components/reporteingredientesplatopororigen/reporteingredientesplatopororigen';
+import { Reporteusuariomasresena } from './components/reporteusuariomasresena/reporteusuariomasresena';
+import { Historial } from './components/historial/historial';
 
 export const routes: Routes = [
   { path: '', component: LandingPage, pathMatch: 'full' }, // Landing Page al inicio

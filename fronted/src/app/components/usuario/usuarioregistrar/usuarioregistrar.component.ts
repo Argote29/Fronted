@@ -11,18 +11,11 @@ import { RolService } from '../../../services/service-rol';
 import { Rol } from '../../../models/rol';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
-<<<<<<< HEAD
-
-@Component({
-  selector: 'app-usuarioregistrar',
-  standalone: true, // Asumo que usas Standalone components o que esto es un componente regular
-=======
 import { LoginService } from '../../../services/login-service'; // Importamos el servicio de login
 
 @Component({
   selector: 'app-usuarioregistrar',
   standalone: true,
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
   imports: [MatSelectModule,ReactiveFormsModule,MatInputModule,MatFormFieldModule,MatRadioModule,MatButtonModule,CommonModule],
   templateUrl: './usuarioregistrar.component.html',
   styleUrl: './usuarioregistrar.component.css'
@@ -33,14 +26,9 @@ export class UsuarioregistrarComponent implements OnInit{
 
   edicion: boolean = false;
   id: number = 0;
-<<<<<<< HEAD
-  // Esta lista contendrá solo CLIENTE y RESTAURANT en modo registro
-  listaRoles: Rol[] = []; 
-=======
   
   listaRoles: Rol[] = []; 
   rolesLogueado: any = ''; // Rol del usuario logueado (ej: 'ADMIN' o ['ROLE_CLIENT'])
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
 
 
   constructor(
@@ -48,11 +36,6 @@ export class UsuarioregistrarComponent implements OnInit{
     private router: Router ,
     private formBuilder: FormBuilder ,
     private route: ActivatedRoute,
-<<<<<<< HEAD
-    private rS:RolService
-  ) {}
-
-=======
     private rS:RolService,
     private loginService: LoginService // Inyectamos el servicio de login
   ) {}
@@ -89,27 +72,18 @@ export class UsuarioregistrarComponent implements OnInit{
     return this.hasRole('ADMIN');
   }
   
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
   volverAPadre() {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 
   ngOnInit(): void {
-<<<<<<< HEAD
-    // 1. Inicializar el formulario primero
-=======
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
     this.form = this.formBuilder.group({
       codigo: [''],
       nombre: ['', [Validators.required, Validators.maxLength(30)]],
       apellido: ['', [Validators.required, Validators.maxLength(60)]],
       correo: ['', [Validators.required, Validators.email, Validators.maxLength(60), Validators.pattern('^.+?\.com$')]],
-<<<<<<< HEAD
-      contrasena: ['', [Validators.required, Validators.maxLength(100),Validators.minLength(5)]],
-=======
       // Quitamos required de contraseña si es edición, lo cual es manejado por init()
       contrasena: ['', [Validators.maxLength(100),Validators.minLength(5),Validators.required]], 
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
       direccion: ['',[Validators.required,Validators.maxLength(60)]],
       telefono: ['', [Validators.required, Validators.maxLength(9), Validators.minLength(9)]],
       genero: ['', [Validators.required,Validators.maxLength(9)]],
@@ -120,22 +94,6 @@ export class UsuarioregistrarComponent implements OnInit{
     this.route.params.subscribe((data: Params ) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
-<<<<<<< HEAD
-      this.init(); // Cargar datos del usuario si es edición
-
-      // 3. Cargar y filtrar los roles DESPUÉS de saber si es edición o registro
-      this.rS.list().subscribe((rolesData: Rol[]) => {
-        // Asumo que el objeto Rol tiene una propiedad 'nombre' (Rol.nombre)
-        if (!this.edicion) {
-          // --- Lógica de Filtrado Exclusiva para Registro ---
-          this.listaRoles = rolesData.filter(rol => 
-            rol.nombre === 'CLIENT' || rol.nombre === 'RESTAURANT'
-          );
-          // ----------------------------------------------------
-        } else {
-          // Si es edición, se muestran todos los roles
-          this.listaRoles = rolesData; 
-=======
 
       // Determinamos el rol del usuario logueado
       const esAdmin = this.isAdmin();
@@ -166,7 +124,6 @@ export class UsuarioregistrarComponent implements OnInit{
             // Usamos toUpperCase() para asegurar la comparación si los nombres de rol varían (ej: 'client' vs 'CLIENT')
             rol.nombre.toUpperCase() === 'CLIENT' || rol.nombre.toUpperCase() === 'RESTAURANT'
           );
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
         }
       });
     });
@@ -174,19 +131,6 @@ export class UsuarioregistrarComponent implements OnInit{
 
   aceptar(): void {
     if (this.form.valid) {
-<<<<<<< HEAD
-      this.u.id_usuario = this.form.value.codigo;
-      this.u.nombre = this.form.value.nombre;
-      this.u.apellido = this.form.value.apellido;
-      this.u.correo = this.form.value.correo;
-      this.u.contrasena = this.form.value.contrasena;
-      this.u.direccion = this.form.value.direccion;
-      this.u.telefono = this.form.value.telefono;
-      this.u.genero = this.form.value.genero;
-      // Asegúrate de que el objeto rol esté inicializado
-      this.u.rol = new Rol(); 
-      this.u.rol.id_rol = this.form.value.fk;
-=======
       // Si el campo 'fk' (Rol) fue deshabilitado por no ser admin, 
       // su valor no se incluye en this.form.value. Necesitamos usar getRawValue().
       const formValue = this.form.getRawValue();
@@ -201,7 +145,6 @@ export class UsuarioregistrarComponent implements OnInit{
       this.u.genero = formValue.genero;
       this.u.rol = new Rol(); 
       this.u.rol.id_rol = formValue.fk;
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
 
       if (this.edicion) {
         this.uS.update(this.u).subscribe(() => {
@@ -220,20 +163,13 @@ export class UsuarioregistrarComponent implements OnInit{
   init() {
     if (this.edicion) {
       this.uS.listId(this.id).subscribe((data) => {
-<<<<<<< HEAD
-=======
         this.form.get('contrasena')?.removeValidators(Validators.required); 
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
         this.form.patchValue({
           codigo: data.id_usuario,
           nombre: data.nombre,
           apellido: data.apellido,
           correo: data.correo,
-<<<<<<< HEAD
-          contrasena: data.contrasena,
-=======
           contrasena: data.contrasena, 
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
           direccion: data.direccion,
           telefono: data.telefono,
           genero: data.genero,

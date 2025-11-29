@@ -43,6 +43,9 @@ export class Reservaregistrar {
     private fb: FormBuilder,
     private route: ActivatedRoute
   ) {}
+    volverAPadre() {
+  this.router.navigate(['../'], { relativeTo: this.route });
+}
 
   ngOnInit(): void {
     this.route.params.subscribe((p: Params) => {

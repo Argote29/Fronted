@@ -26,40 +26,20 @@ dataSource: MatTableDataSource<Ingrediente> = new MatTableDataSource();
 
     this.iG.getList().subscribe((data) => {
         this.dataSource.data = data; 
-<<<<<<< HEAD
-    
-        
-        if (this.paginator) {
-            this.dataSource.paginator = this.paginator;
-        }
-    });
-    
-    this.iG.list().subscribe((data) => {
-      this.iG.setList(data);
-=======
         if (this.paginator) { 
             this.dataSource.paginator = this.paginator;
         }
     });
     this.iG.list().subscribe((data) => {
       this.iG.setList(data); 
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
     });
   }
 
   ngAfterViewInit() {
-<<<<<<< HEAD
-   
-=======
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
     this.dataSource.paginator = this.paginator;
     this.dataSource.paginator.pageSize = 5;
   }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 32923653bc662f1f1a7ddaa62e58baf03e92454d
   eliminar(id: number) {
     this.iG.delete(id).subscribe((data) => {
       this.iG.list().subscribe(data=>{
