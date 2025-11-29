@@ -1,0 +1,46 @@
+<div class="main-container">
+  <div class="report-card">
+
+    <h2 class="title report-title">Reporte de Cantidad de Reservas por Restaurante</h2>
+
+    <!-- 🔎 Sección de Filtro -->
+    <div class="filter-section">
+      <label for="idRest" class="filter-label">
+        ID del Restaurante:
+      </label>
+
+      <input 
+        type="number"
+        id="idRest"
+        [(ngModel)]="idRestaurante"
+        min="1"
+        class="filter-input"
+      >
+
+      <button 
+        mat-raised-button
+        class="filter-button"
+        (click)="cargarGraficoPorRestaurante(idRestaurante)">
+        Mostrar Gráfico
+      </button>
+    </div>
+
+    <!-- 🎯 Gráfico -->
+    <div *ngIf="hasData" class="chart-container">
+      <canvas 
+        baseChart
+        [type]="chartType"
+        [datasets]="chartData"
+        [labels]="chartLabels"
+        [options]="chartOptions"
+        [legend]="chartLegend">
+      </canvas>
+    </div>
+
+    <!-- ❌ Sin datos -->
+    <div *ngIf="!hasData" class="no-data-message">
+      Ingrese un ID válido de restaurante para generar el gráfico.
+    </div>
+
+  </div>
+</div>

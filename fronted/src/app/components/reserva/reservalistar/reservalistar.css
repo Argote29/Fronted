@@ -1,0 +1,125 @@
+/* ============================================
+   FONDO COMPLETO VERDE CLARO
+=============================================== */
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #E9FFE7 !important; /* FONDO VERDE CLARO */
+  padding: 30px 0;
+}
+
+/* ============================================
+   CONTENEDOR CENTRAL (TABLA)
+=============================================== */
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* TÍTULO */
+h2 {
+  font-size: 28px;
+  color: #0B4C3C;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* ============================================
+   BOTÓN “Nueva reserva”
+=============================================== */
+button[mat-raised-button] {
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+/* ============================================
+   TABLA
+=============================================== */
+
+table {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+/* ENCABEZADO DE LA TABLA */
+th.mat-header-cell {
+  background-color: #ffffff;
+  font-weight: 700;
+  color: #2e5247;
+  font-size: 15px;
+  border-bottom: 2px solid #e2e2e2;
+  text-align: left;
+}
+
+/* CELDAS */
+td.mat-cell {
+  font-size: 14px;
+  color: #333;
+  background-color: #ffffff;
+  border-bottom: 1px solid #efefef;
+  padding: 10px;
+}
+
+/* EFECTO HOVER FILA */
+tr.mat-row:hover {
+  background-color: #f4fff4;
+}
+
+/* ============================================
+   BADGES DE ESTADO
+=============================================== */
+
+.estado-badge {
+  padding: 4px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 13px;
+  display: inline-block;
+  text-align: center;
+  min-width: 85px;
+}
+
+.estado-pendiente {
+  background: #FFF7D1;
+  color: #B28800;
+}
+
+.estado-confirmada {
+  background: #D7F8E7;
+  color: #0A8A4A;
+}
+
+.estado-cancelada {
+  background: #FFE2E2;
+  color: #D11A2A;
+}
+
+/* ============================================
+   ICONOS (Editar / Eliminar)
+=============================================== */
+
+button mat-icon {
+  font-size: 20px;
+}
+
+button[color="warn"] mat-icon {
+  color: #d32f2f !important; /* rojo para eliminar */
+}
+
+button mat-icon:not([color="warn"]) {
+  color: #0B7C55; /* verde para editar */
+}
+
+/* ============================================
+   PAGINADOR
+=============================================== */
+
+mat-paginator {
+  margin-top: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.10);
+}

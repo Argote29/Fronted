@@ -1,5 +1,4 @@
 import {
-<<<<<<< HEAD
   MAT_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER,
   MatTooltip,
   TooltipComponent
@@ -22,6 +21,7 @@ import {
   CdkScrollableModule
 } from "./chunk-7SQSL272.js";
 import "./chunk-L7TP46UE.js";
+import "./chunk-64HSTWKL.js";
 import {
   MatButtonModule,
   MatIconButton
@@ -37,12 +37,12 @@ import "./chunk-Q6V6YDTC.js";
 import "./chunk-GWFLKVBH.js";
 import "./chunk-HPZPFJQX.js";
 import "./chunk-GWFLKVBH.js";
-import "./chunk-5EG33CFQ.js";
 import {
   A11yModule,
   MatCommonModule,
   _IdGenerator
 } from "./chunk-PVN5A74Y.js";
+import "./chunk-5EG33CFQ.js";
 import "./chunk-CMQOO46O.js";
 import "./chunk-BP6VVTUM.js";
 import "./chunk-7XC4PWUE.js";

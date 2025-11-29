@@ -131,6 +131,14 @@
     <button mat-menu-item routerLink="/plato/nuevo">Registrar</button>
   </mat-menu>
 
+    <mat-menu #menuReservas="matMenu">
+    @if (isAdmin()|| isRestaurant() || isClient()) {
+    <button mat-menu-item routerLink="/reserva">Listar</button>}
+    @if (isAdmin()|| isRestaurant()) {
+    <button mat-menu-item routerLink="/reserva/nuevo">Registrar</button>
+         }
+  </mat-menu>
+
 
   <mat-menu #menuIngredientesplato="matMenu">
     <button mat-menu-item routerLink="/ingredientesplato">Listar</button>
@@ -145,6 +153,9 @@
     <button mat-menu-item routerLink="/reporterestaurantessinpromo"><mat-icon>folder</mat-icon>Restaurantes sin promociones</button>
   <button mat-menu-item routerLink="/reporteingredientesplatopororigen"><mat-icon>folder</mat-icon>Ingredintes por origen</button>
   <button mat-menu-item routerLink="/reporteusuarioresenas"><mat-icon>folder</mat-icon>Reporte de cantidad de reseñas por usuario</button>
+  <button mat-menu-item routerLink="/reporterestaurantemasresenados"><mat-icon>folder</mat-icon>Cantidad de Reseñas Por Restaurante</button>
+  <button mat-menu-item routerLink="/reportecantidaddereservasporrestaurante"><mat-icon>folder</mat-icon>Cantidad de Reservas por Restaurante</button>
+
   </mat-menu>
 
   <mat-menu #menuSalir="matMenu">
