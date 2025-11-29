@@ -1,0 +1,109 @@
+/* ======================================= */
+/* 1. FONDO (INVERTIDO: AHORA CLARO)       */
+/* ======================================= */
+.page-bg {
+  display: block;
+  padding: 40px 20px;
+  /* Fondo verde pastel muy clarito (casi blanco) */
+  background-color: #E9FFE7; 
+  min-height: 100vh;
+}
+
+/* ======================================= */
+/* 2. TARJETA (INVERTIDO: AHORA OSCURA)    */
+/* ======================================= */
+.report-card {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  /* El fondo de la tarjeta ahora es tu VERDE OSCURO */
+  background: #064e3b; 
+  border-radius: 20px;
+  padding: 40px;
+  color: white;
+  /* Sombra suave */
+  box-shadow: 0px 15px 40px rgba(6, 78, 59, 0.25);
+}
+
+/* Títulos en blanco para resaltar sobre el fondo oscuro */
+.report-card .report-title {
+  text-align: center;
+  color: #ffffff; 
+  font-size: 28px;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.report-card .report-subtitle {
+  text-align: center;
+  color: #a7f3d0; /* Verde menta claro */
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2); /* Línea sutil blanca */
+  margin: 20px 0 30px 0;
+}
+
+/* ======================================= */
+/* 3. TABLA (INVERTIDA)                    */
+/* ======================================= */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
+  overflow: hidden; /* Para que las esquinas redondeadas funcionen */
+}
+
+.tabla-usuarios {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* ENCABEZADO: Antes era verde, ahora es BLANCO */
+.tabla-usuarios thead th {
+  background: #ffffff; 
+  color: #064e3b; /* Texto oscuro para contraste */
+  padding: 16px;
+  font-size: 0.9rem;
+  text-align: left;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* FILAS: Antes eran blancas, ahora son VERDES (transparentes sobre la tarjeta) */
+.tabla-usuarios tbody tr {
+  background: #065f46; /* Un verde un pelín más claro que la tarjeta para distinguir filas */
+  border-bottom: 1px solid #047857; /* Línea separadora */
+  transition: 0.2s;
+}
+
+.tabla-usuarios td {
+  padding: 16px;
+  font-size: 15px;
+  color: #ecfdf5; /* Texto casi blanco */
+}
+
+/* El número (#) lo ponemos en verde neón para que destaque */
+.tabla-usuarios td:first-child {
+  font-weight: bold;
+  color: #34d399; 
+  text-align: center;
+}
+
+/* Hover: Se ilumina ligeramente */
+.tabla-usuarios tbody tr:hover {
+  background: #059669; 
+}
+
+/* ======================================= */
+/* NO DATA (Mismo estilo que la tarjeta)   */
+/* ======================================= */
+.no-data, ng-template .report-card {
+  text-align: center;
+  color: white;
+  background: #064e3b;
+  border: 1px solid #065f46;
+}
