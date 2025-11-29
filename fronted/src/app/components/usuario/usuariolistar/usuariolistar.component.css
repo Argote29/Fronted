@@ -106,11 +106,6 @@
 /* ------------------------------------------------ */
 /* 2.4. Estilo de Botones */
 /* ------------------------------------------------ */
-.card-actions {
-    display: flex;
-    justify-content: space-around;
-    padding-top: 15px !important;
-}
 
 .update-button {
     background-color: var(--color-primary) !important;

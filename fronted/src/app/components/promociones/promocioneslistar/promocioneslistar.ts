@@ -9,6 +9,7 @@ import { MatSliderModule } from '@angular/material/slider';
 
 import { ServicePromociones } from '../../../services/service-promociones';
 import { Promociones } from '../../../models/promociones';
+import { LoginService } from '../../../services/login-service';
 
 @Component({
   selector: 'app-promocioneslistar',
@@ -26,31 +27,89 @@ import { Promociones } from '../../../models/promociones';
 })
 export class Promocioneslistar {
   dataSource: MatTableDataSource<Promociones> = new MatTableDataSource<Promociones>();
-  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8'];
+  // Definimos las columnas base y de acción
+  baseColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6']; // Columnas de datos
+  // Inicialmente vacío, se llenará en ngOnInit
+  displayedColumns: string[] = []; 
+  rolesLogueado: any = ''; 
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private proS: ServicePromociones) {}
+  constructor(private proS: ServicePromociones,private loginService: LoginService) {}
+ private hasRole(roleName: string): boolean {
+      // Aseguramos que el rol del usuario logueado esté cargado
+      this.rolesLogueado = this.loginService.showRole() || null; 
 
-  ngOnInit(): void {
-    this.proS.getList().subscribe((data) => {
-        this.dataSource.data = data; 
-        if (this.paginator) { 
+      if (!this.rolesLogueado) return false;
+
+      const expectedRole = roleName.toLowerCase();
+      
+      let rolesToCheck: string[] = [];
+      
+      if (Array.isArray(this.rolesLogueado)) {
+          rolesToCheck = this.rolesLogueado;
+      } else if (typeof this.rolesLogueado === 'string') {
+          rolesToCheck = [this.rolesLogueado]; 
+      } else {
+          return false;
+      }
+
+      return rolesToCheck.some((roleElement: string) => {
+          return roleElement && roleElement.toLowerCase().includes(expectedRole);
+      });
+    }
+
+    /** Retorna true si el usuario logueado es CLIENTE. */
+    isClient(): boolean {
+      return this.hasRole('CLIENT');
+    }
+
+    /** Retorna true si el usuario logueado es ADMINISTRADOR. */
+    isAdmin(): boolean {
+      return this.hasRole('ADMIN');
+    }
+
+   ngOnInit(): void {
+    // 1. Cargar el rol
+    const isAdminRole = this.isAdmin();
+
+    // 2. Definir las columnas a mostrar CONDICIONALMENTE
+    this.displayedColumns = [...this.baseColumns]; // Agrega ID, Comentario, Calificación, etc.
+    
+    // ⭐ CAMBIO: Solo si es ADMIN, agregamos las columnas de acción.
+    if (isAdminRole) {
+        this.displayedColumns.push('c7', 'c8'); // c7: Actualizar, c8: Eliminar
+    }
+    
+    // 3. Cargar datos
+    this.proS.getList().subscribe((data) => {
+        this.dataSource.data = data; 
+        if (this.paginator) {
             this.dataSource.paginator = this.paginator;
         }
-    });
-    this.proS.list().subscribe((data) => {
-      this.proS.setList(data); 
-    });
-  }
+    });
+    
+    this.proS.list().subscribe((data) => {
+        this.proS.setList(data);
+    });
+  }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.paginator.pageSize = 5;
   }
 
-  eliminar(id: number): void {
+  eliminar(id: number) {
+    // ⭐ CAMBIO: Bloqueamos si NO es ADMIN. Esto bloquea CLIENTE y RESTAURANT.
+    if (!this.isAdmin()) {
+        console.warn('Acción de eliminación no permitida. Solo para ADMINISTRADORES.');
+        return; 
+    }
+
     this.proS.delete(id).subscribe(() => {
-      this.proS.list().subscribe(data => this.proS.setList(data));
+        this.proS.list().subscribe(data => {
+            this.proS.setList(data);
+        });
     });
   }
 }

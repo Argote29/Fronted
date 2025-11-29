@@ -55,7 +55,9 @@ export class Promocionesregistrar {
     private fb: FormBuilder,
     private route: ActivatedRoute
   ) {}
-
+volverAPadre() {
+  this.router.navigate(['../'], { relativeTo: this.route });
+}
   fechasValidas: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
     const fechaInicio = group.get('fecha_ini')?.value;
     const fechaFin = group.get('fecha_fin')?.value;

@@ -1,12 +1,15 @@
 <div >
   @if(verificar()){
   <mat-toolbar class="custom-toolbar">
+    @if (isAdmin()) {
     <button 
       mat-button 
       aria-label="Menú de Roles"
       [matMenuTriggerFor]="menuRol">
       <mat-icon>security</mat-icon>Roles
     </button>
+  }
+    @if (isAdmin()|| isClient()) {
 
     <button 
       mat-button 
@@ -14,6 +17,8 @@
       [matMenuTriggerFor]="menuUsuario">
       <mat-icon>person</mat-icon>Usuarios
     </button>
+  }
+      @if (isAdmin()){
 
     <button 
       mat-button 
@@ -21,42 +26,50 @@
       [matMenuTriggerFor]="menuIngrediente">
       <mat-icon>dining</mat-icon>Ingredientes
     </button>
+  }
+      @if (isAdmin()) {
 
     <button 
       mat-button 
       aria-label="Panel de Suscripciones"
       [matMenuTriggerFor]="menuHistorial">
       <mat-icon>receipt_long</mat-icon>Panel de Suscripciones
-
     </button>
-    
+  }
+    @if (isAdmin() || isRestaurant()|| isClient()) {
     <button 
       mat-button 
       aria-label="Menú de Restaurante"
       [matMenuTriggerFor]="menuRestaurante">
       <mat-icon>restaurant</mat-icon>Restaurante
     </button>
+  }
+  @if (isAdmin() || isRestaurant()|| isClient()) {
     <button 
       mat-button 
       aria-label="Menú de reseñas"
       [matMenuTriggerFor]="menuResenas">
       <mat-icon>rate_review</mat-icon>Reseñas
     </button>
+  }
+  
+  @if (isAdmin()|| isRestaurant()) {
     <button 
       mat-button 
       aria-label="Menú de promociones"
       [matMenuTriggerFor]="menuPromociones">
       <mat-icon>card_giftcard</mat-icon>Promociones
     </button>
-
-
+  }
+@if (isAdmin() || isRestaurant()|| isClient()) {
     <button 
       mat-button 
       aria-label="Menú de platos"
       [matMenuTriggerFor]="menuPlatos">
       <mat-icon>dinner_dining</mat-icon>Platos
     </button>
-
+  }
+    @if (isAdmin()) {
 
     <button 
       mat-button 
@@ -64,7 +77,8 @@
       [matMenuTriggerFor]="menuIngredientesplato">
       <mat-icon>grain</mat-icon>Ingredientes por platos
     </button>
-
+  }
+      @if (isAdmin()) {
     <button
       matButton
       class="btn-rojo"
@@ -73,7 +87,7 @@
     >
       <mat-icon>business</mat-icon>Reporte
     </button> 
-
+  }
      <span class="spacer"> </span>
     <button 
       mat-button 
@@ -90,19 +104,33 @@
   </mat-toolbar>
  
   }
+    
   <mat-menu #menuRol="matMenu">
+    @if (isAdmin()) {
     <button mat-menu-item routerLink="/roles">Listar</button>
+    }
+    @if (isAdmin()) {
     <button mat-menu-item routerLink="/roles/nuevo">Registrar</button>
+    }
   </mat-menu>
+  
 
   <mat-menu #menuUsuario="matMenu">
-    <button mat-menu-item routerLink="/usuarios">Listar</button>
+      @if (isAdmin()|| isClient()) {
+
+    <button mat-menu-item routerLink="/usuarios">Listar</button>}
+     @if (isAdmin()) {
+
     <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>
+      }
   </mat-menu>
 
   <mat-menu #menuIngrediente="matMenu">
+          @if (isAdmin()|| isRestaurant()) {
+
     <button mat-menu-item routerLink="/ingredientes">Listar</button>
     <button mat-menu-item routerLink="/ingredientes/nuevo">Registrar</button>
+          }
   </mat-menu>
 
   <mat-menu #menuHistorial="matMenu">
@@ -111,30 +139,40 @@
   </mat-menu>
 
   <mat-menu #menuRestaurante="matMenu">
-    <button mat-menu-item routerLink="/restaurante">Listar</button>
+    @if (isAdmin() || isRestaurant()|| isClient()) {
+    <button mat-menu-item routerLink="/restaurante">Listar</button>}
+    @if (isAdmin() || isRestaurant()) {
     <button mat-menu-item routerLink="/restaurante/nuevo">Registrar</button>
+    }
   </mat-menu>
   
   <mat-menu #menuResenas="matMenu">
     <button mat-menu-item routerLink="/resena">Listar</button>
-    <button mat-menu-item routerLink="/resena/nuevo">Registrar</button>
+     @if (isAdmin()|| isClient()) {
+    <button mat-menu-item routerLink="/resena/nuevo">Registrar</button>}
   </mat-menu>
 
   <mat-menu #menuPromociones="matMenu">
+     @if (isAdmin()|| isRestaurant()) {
     <button mat-menu-item routerLink="/promociones">Listar</button>
     <button mat-menu-item routerLink="/promociones/nuevo">Registrar</button>
+     }
   </mat-menu>
 
 
   <mat-menu #menuPlatos="matMenu">
-    <button mat-menu-item routerLink="/plato">Listar</button>
+    @if (isAdmin()|| isRestaurant() || isClient()) {
+    <button mat-menu-item routerLink="/plato">Listar</button>}
+    @if (isAdmin()|| isRestaurant()) {
     <button mat-menu-item routerLink="/plato/nuevo">Registrar</button>
+         }
   </mat-menu>
 
 
   <mat-menu #menuIngredientesplato="matMenu">
+     @if (isAdmin()){
     <button mat-menu-item routerLink="/ingredientesplato">Listar</button>
-    <button mat-menu-item routerLink="/ingredientesplato/nuevo">Registrar</button>
+    <button mat-menu-item routerLink="/ingredientesplato/nuevo">Registrar</button>}
   </mat-menu>
 
   <mat-menu #menuReporte="matMenu">

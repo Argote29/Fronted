@@ -7,7 +7,7 @@
       @if (edicion) {
         <mat-form-field appearance="outline">
           <mat-label>ID</mat-label>
-          <input matInput formControlName="codigo" />
+          <input matInput formControlName="codigo" readonly />
           <mat-error>
             @if (form.get('codigo')?.hasError('required')) { Ingrese el ID del historial!! }
           </mat-error>
