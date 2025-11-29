@@ -1,15 +1,12 @@
 <div >
   @if(verificar()){
   <mat-toolbar class="custom-toolbar">
-    @if (isAdmin()) {
     <button 
       mat-button 
       aria-label="Menú de Roles"
       [matMenuTriggerFor]="menuRol">
       <mat-icon>security</mat-icon>Roles
     </button>
-  }
-    @if (isAdmin()|| isClient()) {
 
     <button 
       mat-button 
@@ -17,8 +14,6 @@
       [matMenuTriggerFor]="menuUsuario">
       <mat-icon>person</mat-icon>Usuarios
     </button>
-  }
-      @if (isAdmin()){
 
     <button 
       mat-button 
@@ -26,50 +21,42 @@
       [matMenuTriggerFor]="menuIngrediente">
       <mat-icon>dining</mat-icon>Ingredientes
     </button>
-  }
-      @if (isAdmin()) {
 
     <button 
       mat-button 
       aria-label="Panel de Suscripciones"
       [matMenuTriggerFor]="menuHistorial">
       <mat-icon>receipt_long</mat-icon>Panel de Suscripciones
+
     </button>
-  }
-    @if (isAdmin() || isRestaurant()|| isClient()) {
+    
     <button 
       mat-button 
       aria-label="Menú de Restaurante"
       [matMenuTriggerFor]="menuRestaurante">
       <mat-icon>restaurant</mat-icon>Restaurante
     </button>
-  }
-  @if (isAdmin() || isRestaurant()|| isClient()) {
     <button 
       mat-button 
       aria-label="Menú de reseñas"
       [matMenuTriggerFor]="menuResenas">
       <mat-icon>rate_review</mat-icon>Reseñas
     </button>
-  }
-  
-  @if (isAdmin()|| isRestaurant()) {
     <button 
       mat-button 
       aria-label="Menú de promociones"
       [matMenuTriggerFor]="menuPromociones">
       <mat-icon>card_giftcard</mat-icon>Promociones
     </button>
-  }
-@if (isAdmin() || isRestaurant()|| isClient()) {
+
+
     <button 
       mat-button 
       aria-label="Menú de platos"
       [matMenuTriggerFor]="menuPlatos">
       <mat-icon>dinner_dining</mat-icon>Platos
     </button>
-  }
-    @if (isAdmin()) {
+
 
     <button 
       mat-button 
@@ -77,16 +64,7 @@
       [matMenuTriggerFor]="menuIngredientesplato">
       <mat-icon>grain</mat-icon>Ingredientes por platos
     </button>
-  }
-  @if (isAdmin() || isRestaurant()|| isClient()) {
-    <button 
-      mat-button 
-      aria-label="Menú de platos"
-      [matMenuTriggerFor]="menuReservas">
-      <mat-icon>calendar_today</mat-icon>Reservas
-    </button>
-  }
-      @if (isAdmin()) {
+
     <button
       matButton
       class="btn-rojo"
@@ -95,7 +73,7 @@
     >
       <mat-icon>business</mat-icon>Reporte
     </button> 
-  }
+
      <span class="spacer"> </span>
     <button 
       mat-button 
@@ -112,33 +90,19 @@
   </mat-toolbar>
  
   }
-    
   <mat-menu #menuRol="matMenu">
-    @if (isAdmin()) {
     <button mat-menu-item routerLink="/roles">Listar</button>
-    }
-    @if (isAdmin()) {
     <button mat-menu-item routerLink="/roles/nuevo">Registrar</button>
-    }
   </mat-menu>
-  
 
   <mat-menu #menuUsuario="matMenu">
-      @if (isAdmin()|| isClient()) {
-
-    <button mat-menu-item routerLink="/usuarios">Listar</button>}
-     @if (isAdmin()) {
-
+    <button mat-menu-item routerLink="/usuarios">Listar</button>
     <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>
-      }
   </mat-menu>
 
   <mat-menu #menuIngrediente="matMenu">
-          @if (isAdmin()|| isRestaurant()) {
-
     <button mat-menu-item routerLink="/ingredientes">Listar</button>
     <button mat-menu-item routerLink="/ingredientes/nuevo">Registrar</button>
-          }
   </mat-menu>
 
   <mat-menu #menuHistorial="matMenu">
@@ -147,33 +111,24 @@
   </mat-menu>
 
   <mat-menu #menuRestaurante="matMenu">
-    @if (isAdmin() || isRestaurant()|| isClient()) {
-    <button mat-menu-item routerLink="/restaurante">Listar</button>}
-    @if (isAdmin() || isRestaurant()) {
+    <button mat-menu-item routerLink="/restaurante">Listar</button>
     <button mat-menu-item routerLink="/restaurante/nuevo">Registrar</button>
-    }
   </mat-menu>
   
   <mat-menu #menuResenas="matMenu">
     <button mat-menu-item routerLink="/resena">Listar</button>
-     @if (isAdmin()|| isClient()) {
-    <button mat-menu-item routerLink="/resena/nuevo">Registrar</button>}
+    <button mat-menu-item routerLink="/resena/nuevo">Registrar</button>
   </mat-menu>
 
   <mat-menu #menuPromociones="matMenu">
-     @if (isAdmin()|| isRestaurant()) {
     <button mat-menu-item routerLink="/promociones">Listar</button>
     <button mat-menu-item routerLink="/promociones/nuevo">Registrar</button>
-     }
   </mat-menu>
 
 
   <mat-menu #menuPlatos="matMenu">
-    @if (isAdmin()|| isRestaurant() || isClient()) {
-    <button mat-menu-item routerLink="/plato">Listar</button>}
-    @if (isAdmin()|| isRestaurant()) {
+    <button mat-menu-item routerLink="/plato">Listar</button>
     <button mat-menu-item routerLink="/plato/nuevo">Registrar</button>
-         }
   </mat-menu>
 
     <mat-menu #menuReservas="matMenu">
@@ -186,17 +141,16 @@
 
 
   <mat-menu #menuIngredientesplato="matMenu">
-     @if (isAdmin()){
     <button mat-menu-item routerLink="/ingredientesplato">Listar</button>
-    <button mat-menu-item routerLink="/ingredientesplato/nuevo">Registrar</button>}
+    <button mat-menu-item routerLink="/ingredientesplato/nuevo">Registrar</button>
   </mat-menu>
 
   <mat-menu #menuReporte="matMenu">
-  <button mat-menu-item routerLink="/reportecantidad"><mat-icon>folder</mat-icon>Porcentaje de  Usuario por Genero</button>
+    <button mat-menu-item routerLink="/reportecantidad"><mat-icon>folder</mat-icon>Porcentaje de  Usuario por Genero</button>
   <button mat-menu-item routerLink="/reportecantidadreservausuario"><mat-icon>folder</mat-icon>Cantidad de reserva por Usuario</button>
   <button mat-menu-item routerLink="/reportepromediorestaurante"><mat-icon>folder</mat-icon>Puntuacion promedio por restaurante</button>
   <button mat-menu-item routerLink="/reportecomparacion"><mat-icon>folder</mat-icon>Reporte de comparacion de suscripciones</button>
-  <button mat-menu-item routerLink="/reporterestaurantessinpromo"><mat-icon>folder</mat-icon>Restaurantes sin promociones</button>
+    <button mat-menu-item routerLink="/reporterestaurantessinpromo"><mat-icon>folder</mat-icon>Restaurantes sin promociones</button>
   <button mat-menu-item routerLink="/reporteingredientesplatopororigen"><mat-icon>folder</mat-icon>Ingredintes por origen</button>
   <button mat-menu-item routerLink="/reporteusuarioresenas"><mat-icon>folder</mat-icon>Reporte de cantidad de reseñas por usuario</button>
   <button mat-menu-item routerLink="/reporterestaurantemasresenados"><mat-icon>folder</mat-icon>Cantidad de Reseñas Por Restaurante</button>
@@ -209,10 +163,12 @@
       <mat-icon>logout</mat-icon>
       <span>Cerrar sesión</span>
     </button>
-
+  
     <button mat-menu-item disabled>
       <mat-icon>verified_user</mat-icon> <span style="font-weight: bold; margin-right: 5px;">Rol:</span>
       <span>{{ roles }}</span>
     </button>
   </mat-menu>
+
+
 </div>
