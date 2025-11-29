@@ -1,0 +1,38 @@
+<div class="page-bg">
+  <div class="report-card" *ngIf="hasData; else noData">
+    <h1 class="report-title">Reporte de Usuarios y Cantidad de Reseñas</h1>
+    <p class="report-subtitle">
+      Listado de todos los usuarios con la cantidad total de reseñas registradas.
+    </p>
+
+    <hr class="divider">
+
+    <div class="table-wrapper">
+      <table class="tabla-usuarios">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre del usuario</th>
+            <th>Total de reseñas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let u of usuariosResenas; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ u.nombre }}</td>
+            <td>{{ u.totalResenas }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <div class="report-card">
+      <h1 class="report-title">Reporte de Usuarios y Cantidad de Reseñas</h1>
+      <p class="report-subtitle">
+        Actualmente no hay usuarios registrados o no tienen reseñas.
+      </p>
+    </div>
+  </ng-template>
+</div>

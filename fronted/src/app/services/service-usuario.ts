@@ -1,3 +1,4 @@
+
 import { Injectable, OnInit } from '@angular/core';
 import { environment } from '../../enviroments/environment'; 
 import { Usuario } from '../models/usuario';
@@ -5,7 +6,7 @@ import { Subject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { QueryPorcentajeUsuarioFiltrado } from '../models/QueryPorcentajeUsuarioFiltradoDTO';
 import { QueryCantidadReservaUsuario } from '../models/QueryCantidadReservaUsuario';
-import { QueryusuarioMasResenadodto } from '../models/QueryUsuarioMasResenado';
+import { QueryUsuarioResenas } from '../models/QueryUsuarioResenas';
 
 const base_url = environment.base;
 
@@ -61,6 +62,7 @@ getCantidadReservaUsuario(): Observable<QueryCantidadReservaUsuario[]>{
   return this.http.get<QueryCantidadReservaUsuario[]>(`${this.url}/agruparReservaUsuario`);
 } 
 
-  getUsuarioMasResenas(): Observable<QueryusuarioMasResenadodto[]>{
-return this.http.get<QueryusuarioMasResenadodto[]>(`${this.url}/mas-resenas`)}
+   getUsuarioResenas(): Observable<QueryUsuarioResenas[]>{
+  return this.http.get<QueryUsuarioResenas[]>(`${this.url}/mas-resenas`);
+} 
 }
