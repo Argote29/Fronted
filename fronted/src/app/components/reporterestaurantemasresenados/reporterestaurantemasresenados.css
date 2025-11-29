@@ -1,0 +1,109 @@
+/* ------------------------------------------------ */
+/* 1. Variables Globales y Contenedor Principal     */
+/* ------------------------------------------------ */
+:host {
+  --color-dark-green: #083E2E;
+  --color-primary: #1B906E;
+  --color-mid-green: #15664E;
+  --color-accent-2: #C2FFC8;
+  --color-background: #E9FFE7;
+  --color-warn: #f44336;
+}
+
+/* Fondo general y centrado TOTAL */
+.title-container {
+  background-color: var(--color-background);
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+/* ------------------------------------------------ */
+/* 2. Título del Reporte                            */
+/* ------------------------------------------------ */
+.title {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.title h2 {
+  color: var(--color-dark-green);
+  font-size: 2.1em;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ------------------------------------------------ */
+/* 3. Tarjeta del Gráfico                           */
+/* ------------------------------------------------ */
+.chart-container {
+  background: white;
+  padding: 25px;
+  margin: 0 auto;
+
+  border-radius: 12px;
+  max-width: 900px;
+  width: 100%;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Animación suave */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Ajuste del tamaño del gráfico */
+canvas {
+  width: 100% !important;
+  height: 420px !important;
+}
+
+/* ------------------------------------------------ */
+/* 4. Mensaje de No Datos                           */
+/* ------------------------------------------------ */
+.no-data {
+  margin-top: 40px;
+  text-align: center;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  border: 2px dashed var(--color-accent-2);
+
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  animation: shake 0.4s ease-out;
+}
+
+.no-data-icon {
+  font-size: 48px;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+}
+
+.no-data-message {
+  color: var(--color-mid-green);
+  font-size: 1.1em;
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Animación del mensaje */
+@keyframes shake {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-3px); }
+  50%  { transform: translateX(3px); }
+  75%  { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}

@@ -25,7 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './resenaregistrar.css'
 })
 export class Resenaregistrar {
- form: FormGroup = new FormGroup({});
+  form: FormGroup = new FormGroup({});
   r: Resena = new Resena();
   edicion = false;
   id = 0;

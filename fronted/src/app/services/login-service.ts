@@ -20,13 +20,12 @@ constructor(private http: HttpClient) {}
     let token = sessionStorage.getItem('token');
     if (!token) {
     
-      return null; 
+      return null;
     }
     const helper = new JwtHelperService();
     const decodedToken = helper.decodeToken(token);
     return decodedToken?.roles;
   }
-  
-  
+
 
 }

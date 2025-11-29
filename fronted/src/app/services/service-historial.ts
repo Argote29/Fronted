@@ -41,9 +41,8 @@ export class ServiceHistorial implements OnInit {
        }
        
       update(h: Historial) {
-         return this.http.put(`${this.url}`, h, { responseType: 'text' });
-       }
-     
+        return this.http.put(`${this.url}`, h, { responseType: 'text' });
+      }
       delete(id: number) {
          return this.http.delete(`${this.url}/${id}`,{ responseType: 'text' })
        } 

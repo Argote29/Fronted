@@ -30,13 +30,18 @@ import { Home } from './components/home/home';
 import { seguridadGuard } from './guard/seguridad-guard';
 import { Reporteporcentajeusuario } from './components/reporteporcentajeusuario/reporteporcentajeusuario';
 import { LandingPage } from './components/landing-page/landing-page';
+import { Reserva } from './components/reserva/reserva';
+import { Reservalistar } from './components/reserva/reservalistar/reservalistar';
+import { Reservaregistrar } from './components/reserva/reservaregistrar/reservaregistrar';
+import { Reporterestaurantemasresenados } from './components/reporterestaurantemasresenados/reporterestaurantemasresenados';
+import { Reportecantidaddereservasporrestaurante } from './components/reportecantidaddereservasporrestaurante/reportecantidaddereservasporrestaurante';
 import { Reportecantidadreservausuario } from './components/reportecantidadreservausuario/reportecantidadreservausuario';
-import { Historial } from './components/historial/historial';
 import { Reportepromediorestaurante } from './components/reportepromediorestaurante/reportepromediorestaurante';
 import { ReportesuscripcionactivaComponent } from './components/reportesuscripcionactiva/reportesuscripcionactiva';
 import { Reporterestaurantessinpromo } from './components/reporterestaurantessinpromo/reporterestaurantessinpromo';
 import { Reporteingredientesplatopororigen } from './components/reporteingredientesplatopororigen/reporteingredientesplatopororigen';
 import { Reporteusuariomasresena } from './components/reporteusuariomasresena/reporteusuariomasresena';
+import { Historial } from './components/historial/historial';
 
 export const routes: Routes = [
   { path: '', component: LandingPage, pathMatch: 'full' }, // Landing Page al inicio
@@ -124,6 +129,15 @@ export const routes: Routes = [
       { path: ':id', component: Ingredientesplatoregistrar, canActivate: [seguridadGuard] },
     ],
   },
+    {
+    path:'reserva',
+    component:Reserva,
+    children:[
+      {path:'',component:Reservalistar,canActivate:[seguridadGuard]},
+      {path:'nuevo',component:Reservaregistrar,canActivate:[seguridadGuard]},
+      {path:':id',component:Reservaregistrar,canActivate:[seguridadGuard]},
+    ]
+  },
   {
     path: 'homes',
     component: Home,
@@ -131,6 +145,30 @@ export const routes: Routes = [
   },
   {
     path: 'reportecantidad', component: Reporteporcentajeusuario
+  },
+  {
+    path:'reportecantidadreservausuario',component: Reportecantidadreservausuario
+  },
+  {
+    path:'reportepromediorestaurante',component: Reportepromediorestaurante
+  },
+  {
+    path:'reportecomparacion',component: ReportesuscripcionactivaComponent
+  },
+  {
+    path:'reporterestaurantessinpromo',component: Reporterestaurantessinpromo
+  },
+    {
+    path:'reporteingredientesplatopororigen',component: Reporteingredientesplatopororigen
+  },
+  {
+    path:'reporteusuarioresenas',component: Reporteusuariomasresena
+  },
+  {
+    path:'reporterestaurantemasresenados',component:Reporterestaurantemasresenados
+  },
+  {
+    path:'reportecantidaddereservasporrestaurante',component:Reportecantidaddereservasporrestaurante
   },
   {
     path:'reportecantidadreservausuario',component: Reportecantidadreservausuario

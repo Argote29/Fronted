@@ -1,0 +1,97 @@
+:host {
+    --color-dark-green: #083E2E;
+    --color-primary: #1B906E;
+    --color-mid-green: #15664E;
+    --color-light-green: #57FFAE;
+    --color-accent-1: #A4F47E;
+    --color-accent-2: #C2FFC8;
+    --color-background: #E9FFE7;
+    --color-error: #f44336;
+}
+
+/* Fondo tipo landing */
+.main-container {
+    background-color: var(--color-background);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Tarjeta */
+.form-card {
+    background: white;
+    width: 420px;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.10);
+    text-align: center;
+}
+
+/* Título */
+.title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--color-dark-green);
+    margin-bottom: 25px;
+}
+
+/* Separación de campos */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Estilo de los mat-form-field */
+mat-form-field {
+    width: 100%;
+}
+
+/* Fondo de los inputs */
+:host ::ng-deep .mat-mdc-text-field-wrapper {
+    background: #F8FFF6 !important;
+    border-radius: 8px !important;
+}
+
+/* Label verde */
+:host ::ng-deep .mat-mdc-form-field-label {
+    color: var(--color-mid-green) !important;
+}
+
+/* Focus */
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-form-field-outline-thick {
+    color: var(--color-primary) !important;
+}
+
+/* Error */
+:host ::ng-deep .mat-mdc-form-field-error {
+    color: var(--color-error) !important;
+}
+
+/* Botones */
+.actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.register-button {
+    background-color: var(--color-primary) !important;
+    color: white !important;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 8px;
+    flex: 1;
+}
+
+.cancel-button {
+    color: var(--color-primary) !important;
+    border: 2px solid var(--color-primary) !important;
+    background: transparent !important;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 8px;
+    flex: 1;
+}
