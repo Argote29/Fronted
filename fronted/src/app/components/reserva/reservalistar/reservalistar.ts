@@ -7,6 +7,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
 import { Reserva } from '../../../models/Reserva';
 import { ServiceReserva } from '../../../services/service-reserva';
+import { LoginService } from '../../../services/login-service';
 
 @Component({
   selector: 'app-reservalistar',
@@ -18,30 +19,86 @@ export class Reservalistar {
   dataSource: MatTableDataSource<Reserva> = new MatTableDataSource();
 
   
-  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8','c9'];
+ baseColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6','c7']; // Columnas de datos
+  // Inicialmente vacío, se llenará en ngOnInit
+  displayedColumns: string[] = []; 
   @ViewChild(MatPaginator) paginator!: MatPaginator; //Paginator
+  rolesLogueado: any = ''; 
+  constructor(private rS: ServiceReserva,private loginService: LoginService) {}
+private hasRole(roleName: string): boolean {
+      // Aseguramos que el rol del usuario logueado esté cargado
+      this.rolesLogueado = this.loginService.showRole() || null; 
 
-  constructor(private rS: ServiceReserva) {}
+      if (!this.rolesLogueado) return false;
 
+      const expectedRole = roleName.toLowerCase();
+      
+      let rolesToCheck: string[] = [];
+      
+      if (Array.isArray(this.rolesLogueado)) {
+          rolesToCheck = this.rolesLogueado;
+      } else if (typeof this.rolesLogueado === 'string') {
+          rolesToCheck = [this.rolesLogueado]; 
+      } else {
+          return false;
+      }
+
+      return rolesToCheck.some((roleElement: string) => {
+          return roleElement && roleElement.toLowerCase().includes(expectedRole);
+      });
+    }
+
+    /** Retorna true si el usuario logueado es CLIENTE. */
+    isClient(): boolean {
+      return this.hasRole('CLIENT');
+    }
+     /** Retorna true si el usuario logueado es ADMINISTRADOR. */
+    isAdmin(): boolean {
+      return this.hasRole('ADMIN');
+    }
   ngOnInit(): void {
+    // 1. Cargar el rol
+    const isClientRole = this.isClient();
+    const isAdminRole = this.isAdmin();
+
+
+    // 2. Definir las columnas a mostrar CONDICIONALMENTE
+    this.displayedColumns = [...this.baseColumns]; // Agrega ID, Comentario, Calificación, etc.
+    
+    // Si NO es cliente (es decir, ADMIN o RESTAURANT), agregamos las columnas de acción isAdminRole !isClientRole
+    if (isAdminRole ) {
+        this.displayedColumns.push('c8', 'c9'); // c7: Actualizar, c8: Eliminar
+    }
+    
+    // 3. Cargar datos
+    this.rS.getList().subscribe((data) => {
+        this.dataSource.data = data; 
+        if (this.paginator) {
+            this.dataSource.paginator = this.paginator;
+        }
+    });
     
     this.rS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
+        this.rS.setList(data);
     });
-    
-    this.rS.getList().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-    });
-  
-  this.rS.list().subscribe(data => {
-    this.dataSource.data = data;
+  }
+
+  ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-  });
-}
+    this.dataSource.paginator.pageSize = 5;
+  }
 
   eliminar(id: number) {
+    // ⭐ El bloqueo en el TS es vital si ocultamos los botones en el HTML
+    if (this.isClient()) {
+        console.warn('Acción de eliminación no permitida para el rol CLIENTE');
+        return; 
+    }
+
     this.rS.delete(id).subscribe(() => {
-      this.rS.list().subscribe((data) => this.rS.setList(data));
+        this.rS.list().subscribe(data => {
+            this.rS.setList(data);
+        });
     });
   }
 }

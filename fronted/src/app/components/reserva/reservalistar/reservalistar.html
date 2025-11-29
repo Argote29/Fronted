@@ -1,103 +1,105 @@
-<div class="container">
+<div class="main-container">
 
-  <!-- Título -->
-  <div style="text-align:center; margin-bottom: 20px;">
-    <h2>Listado de Reservas</h2>
-  </div>
-  
+  <!-- Título -->
+  <div class="title-section">
+    <h2 class="title">Listado de Reservas</h2>
+  </div>
+  
 
-  <!-- TABLA -->
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width:100%">
+  <!-- TABLA -->
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 reservas-table">
 
-    <!-- ID -->
-    <ng-container matColumnDef="c1">
-      <th mat-header-cell *matHeaderCellDef> ID </th>
-      <td mat-cell *matCellDef="let e"> {{ e.id_reserva }} </td>
-    </ng-container>
+      <!-- ID -->
+      <ng-container matColumnDef="c1">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let e"> {{ e.id_reserva }} </td>
+      </ng-container>
 
-    <!-- Estado (con badge) -->
-    <ng-container matColumnDef="c2">
-      <th mat-header-cell *matHeaderCellDef> Estado </th>
-      <td mat-cell *matCellDef="let e">
-        <span 
-          class="estado-badge"
-          [ngClass]="{
-            'estado-confirmada': e.estado === 'Confirmada',
-            'estado-pendiente': e.estado === 'Pendiente',
-            'estado-cancelada': e.estado === 'Cancelada'
-          }">
-          {{ e.estado }}
-        </span>
-      </td>
-    </ng-container>
+      <!-- Estado (con badge) -->
+      <ng-container matColumnDef="c2">
+        <th mat-header-cell *matHeaderCellDef> Estado </th>
+        <td mat-cell *matCellDef="let e">
+          <span 
+            class="estado-badge"
+            [ngClass]="{
+              'estado-confirmada': e.estado === 'Confirmada',
+              'estado-pendiente': e.estado === 'Pendiente',
+              'estado-cancelada': e.estado === 'Cancelada'
+            }">
+            {{ e.estado }}
+          </span>
+        </td>
+      </ng-container>
 
-    <!-- Número de personas -->
-    <ng-container matColumnDef="c3">
-      <th mat-header-cell *matHeaderCellDef> Número de personas </th>
-      <td mat-cell *matCellDef="let e"> {{ e.numero_personas }} </td>
-    </ng-container>
+      <!-- Número de personas -->
+      <ng-container matColumnDef="c3">
+        <th mat-header-cell *matHeaderCellDef> Número de personas </th>
+        <td mat-cell *matCellDef="let e"> {{ e.numero_personas }} </td>
+    </ng-container>
 
-    <!-- Fecha -->
-    <ng-container matColumnDef="c4">
-      <th mat-header-cell *matHeaderCellDef> Fecha </th>
-      <td mat-cell *matCellDef="let e"> 
-        {{ e.fecha_reserva | date:'dd/MM/yyyy' }} 
-      </td>
-    </ng-container>
+    <!-- Fecha -->
+    <ng-container matColumnDef="c4">
+      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+      <td mat-cell *matCellDef="let e"> 
+        {{ e.fecha_reserva | date:'dd/MM/yyyy' }} 
+      </td>
+    </ng-container>
 
-    <!-- Hora -->
-    <ng-container matColumnDef="c5">
-      <th mat-header-cell *matHeaderCellDef> Hora de Reserva </th>
-      <td mat-cell *matCellDef="let e"> {{ e.hora }} </td>
-    </ng-container>
+    <!-- Hora -->
+    <ng-container matColumnDef="c5">
+      <th mat-header-cell *matHeaderCellDef> Hora de Reserva </th>
+      <td mat-cell *matCellDef="let e"> {{ e.hora }} </td>
+    </ng-container>
 
-    <!-- Usuario -->
-    <ng-container matColumnDef="c6">
-      <th mat-header-cell *matHeaderCellDef> Usuario </th>
-      <td mat-cell *matCellDef="let e">
-        {{ e.usuario?.nombre }} {{ e.usuario?.apellido }}
-      </td>
-    </ng-container>
+    <!-- Usuario -->
+    <ng-container matColumnDef="c6">
+      <th mat-header-cell *matHeaderCellDef> Usuario </th>
+      <td mat-cell *matCellDef="let e">
+        {{ e.usuario?.nombre }} {{ e.usuario?.apellido }}
+      </td>
+    </ng-container>
 
-    <!-- Restaurante -->
-    <ng-container matColumnDef="c7">
-      <th mat-header-cell *matHeaderCellDef> Restaurante </th>
-      <td mat-cell *matCellDef="let e"> 
-        {{ e.restaurante?.nombre_restaurante }} 
-      </td>
-    </ng-container>
+    <!-- Restaurante -->
+    <ng-container matColumnDef="c7">
+      <th mat-header-cell *matHeaderCellDef> Restaurante </th>
+      <td mat-cell *matCellDef="let e"> 
+        {{ e.restaurante?.nombre_restaurante }} 
+      </td>
+    </ng-container>
 
-    <!-- Actualizar -->
-    <ng-container matColumnDef="c8">
-      <th mat-header-cell *matHeaderCellDef> Actualizar </th>
-      <td mat-cell *matCellDef="let e">
-        <button mat-button [routerLink]="['/reserva', e.id_reserva]">
+    <!-- Actualizar -->
+    <ng-container matColumnDef="c8">
+      <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+      <td mat-cell *matCellDef="let e">
+        <button mat-icon-button class="update-icon-button" [routerLink]="['/reserva', e.id_reserva]">
           <mat-icon>edit</mat-icon>
-        </button>
-      </td>
-    </ng-container>
+        </button>
+      </td>
+    </ng-container>
 
-    <!-- Eliminar -->
-    <ng-container matColumnDef="c9">
-      <th mat-header-cell *matHeaderCellDef> Eliminar </th>
-      <td mat-cell *matCellDef="let e">
-        <button mat-button color="warn" (click)="eliminar(e.id_reserva)">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </td>
-    </ng-container>
+    <!-- Eliminar -->
+    <ng-container matColumnDef="c9">
+      <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+      <td mat-cell *matCellDef="let e">
+<button mat-icon-button class="delete-icon-button" (click)="eliminar(e.id_reserva)">
+      <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
 
-    <!-- Filas -->
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <!-- Filas -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-  </table>
+  </table>
 
-  <!-- PAGINADOR -->
-  <mat-paginator
-    [pageSizeOptions]="[5, 8, 10, 25]"
-    [pageSize]="8"
-    showFirstLastButtons>
-  </mat-paginator>
-
+  <!-- PAGINADOR -->
+  <mat-paginator
+    class="reservas-paginator"
+    [pageSizeOptions]="[5, 8, 10, 25]"
+    [pageSize]="8"
+    showFirstLastButtons>
+  </mat-paginator>
+  </div>
 </div>

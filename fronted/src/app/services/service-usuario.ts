@@ -6,8 +6,7 @@ import { Subject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { QueryPorcentajeUsuarioFiltrado } from '../models/QueryPorcentajeUsuarioFiltradoDTO';
 import { QueryCantidadReservaUsuario } from '../models/QueryCantidadReservaUsuario';
-import { QueryUsuarioResenas } from '../models/QueryUsuarioResenas';
-
+import { QueryusuarioMasResenadodto } from '../models/QueryUsuarioMasResenado';
 const base_url = environment.base;
 
 @Injectable({
@@ -62,7 +61,6 @@ getCantidadReservaUsuario(): Observable<QueryCantidadReservaUsuario[]>{
   return this.http.get<QueryCantidadReservaUsuario[]>(`${this.url}/agruparReservaUsuario`);
 } 
 
-   getUsuarioResenas(): Observable<QueryUsuarioResenas[]>{
-  return this.http.get<QueryUsuarioResenas[]>(`${this.url}/mas-resenas`);
-} 
+   getUsuarioMasResenas(): Observable<QueryusuarioMasResenadodto[]>{
+return this.http.get<QueryusuarioMasResenadodto[]>(`${this.url}/mas-resenas`)}
 }

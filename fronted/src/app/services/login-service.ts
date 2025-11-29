@@ -26,6 +26,4 @@ constructor(private http: HttpClient) {}
     const decodedToken = helper.decodeToken(token);
     return decodedToken?.roles;
   }
-
-
 }
