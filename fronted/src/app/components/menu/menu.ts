@@ -8,21 +8,21 @@ import { LoginService } from '../../services/login-service';
 
 @Component({
   selector: 'app-menu',
-  standalone: true, 
+  standalone: true,
   imports: [MatToolbarModule, MatIconModule, MatButtonModule, MatMenuModule, RouterLink],
   templateUrl: './menu.html',
   styleUrl: './menu.css',
 })
-export class Menu implements OnInit { 
+export class Menu implements OnInit {
   // Usamos 'any' para el rol ya que el formato de retorno es un Array inesperado (ej: ['ROLE_ADMIN'])
-  roles: any = ''; 
+  roles: any = '';
   usuario: string = '';
 
   constructor(private loginService: LoginService) {}
   
   ngOnInit(): void {
     // 1. Cargamos el rol al inicio del componente para que esté listo al renderizar el HTML.
-    this.roles = this.loginService.showRole(); 
+    this.roles = this.loginService.showRole();
     console.log('DEBUG: Rol cargado en MenuComponent:', this.roles);
   }
 

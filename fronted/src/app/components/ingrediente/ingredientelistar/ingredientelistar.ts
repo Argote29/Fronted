@@ -28,13 +28,13 @@ dataSource: MatTableDataSource<Ingrediente> = new MatTableDataSource();
         this.dataSource.data = data; 
     
         
-        if (this.paginator) { 
+        if (this.paginator) {
             this.dataSource.paginator = this.paginator;
         }
     });
     
     this.iG.list().subscribe((data) => {
-      this.iG.setList(data); 
+      this.iG.setList(data);
     });
   }
 
