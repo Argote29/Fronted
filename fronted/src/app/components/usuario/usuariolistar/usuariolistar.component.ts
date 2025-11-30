@@ -28,12 +28,11 @@ export class UsuariolistarComponent implements OnInit, AfterViewInit {
 
     constructor(
       private uS: ServiceUsuario,
-      private loginService: LoginService // ⭐ AÑADIDO: Inyectamos el servicio
+      private loginService: LoginService 
     ) {}
 
-    /**
-     * Carga el rol del usuario logueado y comprueba si incluye el roleName dado.
-     */
+    
+ 
      private hasRole(roleName: string): boolean {
         this.rolesLogueado = this.loginService.showRole() || null; 
 
@@ -56,14 +55,13 @@ export class UsuariolistarComponent implements OnInit, AfterViewInit {
         });
     }
 
-    /** Retorna true si el usuario logueado es ADMINISTRADOR. */
     isAdmin(): boolean {
         return this.hasRole('ADMIN');
     }
 
 
     ngOnInit(): void {
-        this.rolesLogueado = this.loginService.showRole(); // Cargar rol al inicio
+        this.rolesLogueado = this.loginService.showRole(); 
 
         this.uS.getList().subscribe((data) => {
             this.dataSource.data = data; 
@@ -83,7 +81,7 @@ export class UsuariolistarComponent implements OnInit, AfterViewInit {
     }
     
     eliminar(id: number) {
-        // ⭐ Protección adicional en TS
+       
         if (!this.isAdmin()) {
             console.warn('Acción no permitida: Solo el administrador puede eliminar.');
             return;

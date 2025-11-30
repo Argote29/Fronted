@@ -14,16 +14,42 @@ import { LoginService } from '../../services/login-service';
   styleUrl: './menu.css',
 })
 export class Menu implements OnInit { 
-  // Usamos 'any' para el rol ya que el formato de retorno es un Array inesperado (ej: ['ROLE_ADMIN'])
   roles: any = ''; 
-  usuario: string = '';
+  userEmail: string | null = null; 
+    
+  // NUEVA PROPIEDAD: Para almacenar el ID numérico que viene del Backend
+  userIdNumerico: number | null = null; 
 
   constructor(private loginService: LoginService) {}
   
   ngOnInit(): void {
-    // 1. Cargamos el rol al inicio del componente para que esté listo al renderizar el HTML.
+    // 1. Cargamos el rol
     this.roles = this.loginService.showRole(); 
+    
+    // 2. Obtenemos el identificador (que sabemos que es el correo)
+    const identifier = this.loginService.showIdUser(); 
+
+    // Asignamos el identificador al correo si es una cadena
+    if (typeof identifier === 'string') {
+        this.userEmail = identifier;
+        
+        // 3. LLAMADA AL BACKEND: Si tenemos el correo, buscamos el ID numérico
+        this.loginService.fetchUserIdByEmail(this.userEmail).subscribe({
+            next: (id: number) => {
+                // El ID numérico se guarda aquí
+                this.userIdNumerico = id;
+                console.log('DEBUG: ID obtenido del Backend:', this.userIdNumerico);
+            },
+            error: (err) => {
+                // Manejar error si el Backend devuelve 404 o 401
+                console.error('Error al obtener ID numérico:', err);
+                this.userIdNumerico = null;
+            }
+        });
+    }
+
     console.log('DEBUG: Rol cargado en MenuComponent:', this.roles);
+    console.log('DEBUG: Correo de Usuario cargado en MenuComponent:', this.userEmail);
   }
 
   cerrar() {
@@ -31,36 +57,35 @@ export class Menu implements OnInit {
   }
   
   verificar(): boolean {
-    // 2. Solo verifica el estado de la sesión. El rol ya fue cargado en ngOnInit.
     return this.loginService.verificar();
   }
   
-  // 🔒 FUNCIÓN CENTRAL PARA VERIFICAR EL ROL (Solución robusta para Arrays y Cadenas)
+  // FUNCIÓN CENTRAL PARA VERIFICAR EL ROL (Solución robusta para Arrays y Cadenas)
   private hasRole(roleName: string): boolean {
-    if (!this.roles) return false;
+    if (!this.roles) return false;
 
-    // Si es un Array (ej: ['ROLE_ADMIN']), buscamos la palabra clave en cada elemento.
-    if (Array.isArray(this.roles)) {
-        const expectedRole = roleName.toLowerCase();
-        
-        return this.roles.some((roleElement: string) => {
-            // Buscamos 'admin' dentro de 'ROLE_ADMIN'
-            return roleElement && roleElement.toLowerCase().includes(expectedRole);
-        });
-    }
+    // Si es un Array (ej: ['ROLE_ADMIN']), buscamos la palabra clave en cada elemento.
+    if (Array.isArray(this.roles)) {
+        const expectedRole = roleName.toLowerCase();
+        
+        return this.roles.some((roleElement: string) => {
+            // Buscamos 'admin' dentro de 'ROLE_ADMIN'
+            return roleElement && roleElement.toLowerCase().includes(expectedRole);
+        });
+    }
 
-    // Si es una cadena (el formato original simple esperado).
-    if (typeof this.roles === 'string') {
-        const normalizedRole = this.roles.toLowerCase();
-        const expectedRole = roleName.toLowerCase();
-        
-        return normalizedRole.includes(expectedRole);
-    }
-    
-    return false;
+ 
+    if (typeof this.roles === 'string') {
+        const normalizedRole = this.roles.toLowerCase();
+        const expectedRole = roleName.toLowerCase();
+        
+        return normalizedRole.includes(expectedRole);
+    }
+    
+    return false;
   }
 
-  // 🛑 MÉTODOS DE ROL (Usan la lógica de hasRole)
+ 
   isAdmin(): boolean {
     return this.hasRole('ADMIN');
   }

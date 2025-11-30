@@ -6,19 +6,19 @@
     <form [formGroup]="form" (submit)="aceptar()">
 
       @if (edicion) {
-        <mat-form-field class="full-width">
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>ID</mat-label>
           <input matInput formControlName="id" readonly />
         </mat-form-field>
       }
 
       <!-- Usuario -->
-      <mat-form-field class="full-width">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Usuario</mat-label>
         <mat-select formControlName="usuarioId">
           @for (u of listaUsuarios; track u) {
             <mat-option [value]="u.id_usuario">
-              {{ u.nombre }} {{ u.apellido }}
+              {{ u.nombre }}
             </mat-option>
           }
         </mat-select>
@@ -30,7 +30,7 @@
       </mat-form-field>
 
       <!-- Restaurante -->
-      <mat-form-field class="full-width">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Restaurante</mat-label>
         <mat-select formControlName="restauranteId">
           @for (r of listaRestaurantes; track r) {
@@ -47,23 +47,26 @@
       </mat-form-field>
 
       <!-- Rating -->
-      <div class="rating">
-        @for (star of stars; track star; let i = $index) {
-          <mat-icon
-            (click)="setRating(i + 1)"
-            [class.filled]="i < form.get('calificacion')?.value">
-            star
-          </mat-icon>
-        }
-      </div>
-      <div class="rating-error">
-        @if (form.get('calificacion')?.hasError('required')) {
-          Seleccione una calificación!!
-        }
+      <div class="rating-section">
+        <label class="rating-label">Calificación:</label>
+        <div class="rating-stars">
+          @for (star of stars; track star; let i = $index) {
+            <mat-icon
+              (click)="setRating(i + 1)"
+              [class.filled]="i < form.get('calificacion')?.value">
+              star
+            </mat-icon>
+          }
+        </div>
+        <div class="rating-error">
+          @if (form.get('calificacion')?.hasError('required')) {
+            Seleccione una calificación!!
+          }
+        </div>
       </div>
 
       <!-- Comentario -->
-      <mat-form-field class="full-width">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Descripción</mat-label>
         <textarea
           matInput
