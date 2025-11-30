@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core'; // Agregué OnInit aquí para que sea explícito
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
@@ -26,7 +26,7 @@ import { Promociones } from '../../../models/promociones';
   templateUrl: './platoregistrar.html',
   styleUrl: './platoregistrar.css',
 })
-export class Platoregistrar {
+export class Platoregistrar implements OnInit {
   form: FormGroup = new FormGroup({});
   r: Plato = new Plato();
   edicion = false;
@@ -42,39 +42,55 @@ export class Platoregistrar {
     private fb: FormBuilder,
     private route: ActivatedRoute
   ) {}
+
   volverAPadre() {
-  this.router.navigate(['../'], { relativeTo: this.route });
-}
+    this.router.navigate(['../'], { relativeTo: this.route });
+  }
 
   ngOnInit(): void {
+    // 1. PRIMERO: Crear el formulario con TODAS las validaciones aquí.
+    // Así sirven tanto para registrar como para editar.
+    this.form = this.fb.group({
+      id_plato: [''],
+      precio_plato: [0, [Validators.required, Validators.min(1), Validators.max(10000)]],
+      nombre_plato: ["", [Validators.required, Validators.maxLength(30)]],
+      info_nutricional: ["", [Validators.required, Validators.maxLength(200)]],
+      id_promociones: [null, Validators.required],
+      id_restaurante: [null, Validators.required],
+    });
 
+    // 2. Cargar listas
+    this.promS.list().subscribe(d => (this.listaPromociones = d));
+    this.rs.list().subscribe(d => (this.listaRestaurantes = d));
+
+    // 3. Verificar si es edición
     this.route.params.subscribe((p: Params) => {
       this.id = p['id'];
       this.edicion = this.id != null;
-      this.init();
-    });
-    this.promS.list().subscribe(d => (this.listaPromociones = d));
-    this.rs.list().subscribe(d => (this.listaRestaurantes = d));
-    this.form = this.fb.group({
-      id_plato: [''],
-      precio_plato: [0, [Validators.required,Validators.min(1), Validators.max(10000)]],
-      nombre_plato: ["", Validators.required],
-      info_nutricional: ["",[Validators.required, Validators.maxLength(200)]],
-      id_promociones: [null, Validators.required],
-      id_restaurante: [null, Validators.required],
+      // Solo llamamos a init si es edición y el form ya existe
+      if (this.edicion) {
+        this.init();
+      }
     });
   }
 
   aceptar(): void {
     if (!this.form.valid) return;
+    
+    // Mapeo de valores
     this.r.id_plato = this.form.value.id_plato;
     this.r.precio_plato = this.form.value.precio_plato;
     this.r.nombre_plato = this.form.value.nombre_plato;
     this.r.info_nutricional = this.form.value.info_nutricional;
+    
+    // Inicializar objetos anidados
     this.r.promociones = new Promociones();
     this.r.restaurante = new Restaurante();
+    
+    // Asignar IDs
     this.r.promociones.id_Promociones = this.form.value.id_promociones;
     this.r.restaurante.id_restaurante = this.form.value.id_restaurante;
+
     const op = this.edicion ? this.ps.update(this.r) : this.ps.insert(this.r);
 
     op.subscribe(() => {
@@ -84,19 +100,20 @@ export class Platoregistrar {
   }
 
   private init(): void {
-    if (this.edicion) {
-      this.ps.listId(this.id).subscribe(data => {
-
-        this.form = new FormGroup({
-          id_plato: new FormControl(data.id_plato),
-          precio_plato: new FormControl(data.precio_plato, Validators.required),
-          nombre_plato: new FormControl(data.nombre_plato, Validators.required),
-          info_nutricional: new FormControl(data.info_nutricional, Validators.required),
-          id_promociones: new FormControl(data.promociones?.id_Promociones, Validators.required),
-          id_restaurante: new FormControl(data.restaurante?.id_restaurante, Validators.required),
-        });
-
+    // Ya no comprobamos "if (this.edicion)" aquí porque lo hicimos en el ngOnInit
+    this.ps.listId(this.id).subscribe(data => {
+      
+      // CORRECCIÓN PRINCIPAL:
+      // Usamos .patchValue (o .setValue) para llenar los datos.
+      // NO usamos "new FormGroup" para no borrar las validaciones del ngOnInit.
+      this.form.patchValue({
+        id_plato: data.id_plato,
+        precio_plato: data.precio_plato,
+        nombre_plato: data.nombre_plato,
+        info_nutricional: data.info_nutricional,
+        id_promociones: data.promociones?.id_Promociones,
+        id_restaurante: data.restaurante?.id_restaurante,
       });
-    }
+    });
   }
 }

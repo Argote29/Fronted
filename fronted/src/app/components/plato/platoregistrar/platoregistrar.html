@@ -48,8 +48,11 @@
         <input matInput formControlName="nombre_plato" />
         <mat-error>
           @if (form.get('nombre_plato')?.hasError('required')) {
+            
             Ingrese el nombre del plato!!
           }
+             @if (form.get('nombre_plato')?.hasError('maxlength')) { Máximo 30 caracteres !!! }
+
         </mat-error>
       </mat-form-field>
 

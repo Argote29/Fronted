@@ -5,6 +5,7 @@ import { Subject,Observable} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { QueryPromedioRestaurante } from '../models/QueryPromedioRestaurante';
 import { QueryRestauranteSinPromo } from '../models/QueryRestauranteSinPromo';
+import { QueryRestaurantesMasVariedadPlatosDTO } from '../models/QueryRestaurantesMasVariedadPlatosDTO';
 
 const base_url = environment.base;
 
@@ -51,5 +52,8 @@ export class RestauranteService implements OnInit {
 } 
   getRestaurantesSinPromos(): Observable<QueryRestauranteSinPromo[]>{
     return this.http.get<QueryRestauranteSinPromo[]>(`${this.url}/sin-promos`);
-} 
+}
+getRestaurantesMasVariedadPlatos(): Observable<QueryRestaurantesMasVariedadPlatosDTO[]> {
+    return this.http.get<QueryRestaurantesMasVariedadPlatosDTO[]>(`${this.url}/mas-variedad-platos`);
+  } 
 }
