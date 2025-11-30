@@ -20,7 +20,7 @@ export class ReportesuscripcionactivaComponent {
   barChartOptions: ChartOptions = {
     responsive: true,
   };
-  barChartLabels: string[] = ['Activos', 'Inactivos']; 
+  barChartLabels: string[] = ['Vigentes por fecha', 'Vencidas por fecha']; 
   barChartType: ChartType = 'bar';
   barChartLegend = true;
   barChartData: ChartDataset[] = [];
@@ -35,7 +35,7 @@ export class ReportesuscripcionactivaComponent {
         this.barChartData = [
           {
             data: [data.activos, data.inactivos], 
-            label: 'Estado de Suscripciones',
+            label: 'Estado de Suscripciones por fecha de vencimiento',
             backgroundColor: [
               'rgba(57, 201, 105, 1)',  
               'rgb(204, 0, 0)'    
