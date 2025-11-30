@@ -71,6 +71,8 @@ ngOnInit(): void {
 
     
     this.form = this.fb.group({
+      
+  idIngredientePlato: [0],
   cantidad: [0, [Validators.required, Validators.min(1), Validators.max(20)]],
   tipo_unidad: ['', Validators.required],
   platoId: [null, Validators.required],
@@ -82,8 +84,10 @@ ngOnInit(): void {
   if (!this.form.valid) return;
 
   // Asignar valores desde el formulario
+  
   this.i.cantidad = this.form.value.cantidad;
   this.i.tipo_unidad = this.form.value.tipo_unidad;
+  this.i.idIngredientePlato = this.form.value.idIngredientePlato;
 
   // Asignar relaciones
   this.i.plato.id_plato = this.form.value.platoId;
@@ -100,13 +104,15 @@ ngOnInit(): void {
   private init(): void {
   if (this.edicion) {
     this.si.listId(this.id).subscribe(data => {
-      this.form = new FormGroup({
-        cantidad: new FormControl(data.cantidad, Validators.required),
-        tipo_unidad: new FormControl(data.tipo_unidad, Validators.required),
-        platoId: new FormControl(data.plato?.id_plato, Validators.required),
-        ingredienteId: new FormControl(data.ingredientes?.id_ingredientes, Validators.required),
+      this.form.patchValue({
+        idIngredientePlato: data.idIngredientePlato,  
+        cantidad: data.cantidad,
+        tipo_unidad: data.tipo_unidad,
+        platoId: data.plato?.id_plato,
+        ingredienteId: data.ingredientes?.id_ingredientes,
       });
     });
   }
 }
 }
+

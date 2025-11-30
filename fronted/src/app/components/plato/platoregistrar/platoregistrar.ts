@@ -59,7 +59,7 @@ export class Platoregistrar {
       id_plato: [''],
       precio_plato: [0, [Validators.required,Validators.min(1), Validators.max(10000)]],
       nombre_plato: ["", Validators.required],
-      info_nutricional: ["", Validators.required],
+      info_nutricional: ["",[Validators.required, Validators.maxLength(200)]],
       id_promociones: [null, Validators.required],
       id_restaurante: [null, Validators.required],
     });
