@@ -15,42 +15,44 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
-// 1. IMPORTAR GOOGLE MAPS
+
 import { GoogleMap, MapMarker } from '@angular/google-maps';
-import { CommonModule } from '@angular/common'; // Importante para *ngIf
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-restauranteregistrar',
   standalone: true,
   imports: [
-    CommonModule, // Necesario para directivas como *ngIf
+    CommonModule,
     ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
     MatRadioModule,
     MatDatepickerModule,
     MatButtonModule,
-    GoogleMap, // Importar el componente del mapa
-    MapMarker  // Importar el marcador
+    GoogleMap,
+    MapMarker
   ],
-  templateUrl: './restauranteregistrar.html', // Asegúrate que el nombre del archivo coincida
+  templateUrl: './restauranteregistrar.html',
   providers: [provideNativeDateAdapter()],
-  styleUrl: './restauranteregistrar.css', // Asegúrate que el nombre coincida
+  styleUrl: './restauranteregistrar.css',
 })
-export class Restauranteregistrar implements OnInit { // Renombré la clase por convención (Component)
+export class Restauranteregistrar implements OnInit {
+  
   form: FormGroup = new FormGroup({});
   re: Restaurante = new Restaurante();
 
   edicion: boolean = false;
   id: number = 0;
 
-  // 2. CONFIGURACIÓN DEL MAPA
-  center: google.maps.LatLngLiteral = { lat: -12.0464, lng: -77.0428 }; // Lima, Perú (Puedes cambiarlo)
+  // MAPA
+  center: google.maps.LatLngLiteral = { lat: -12.0464, lng: -77.0428 };
   zoom = 15;
   markerPosition: google.maps.LatLngLiteral | undefined;
+
   mapOptions: google.maps.MapOptions = {
-    disableDefaultUI: false, // Muestra controles de zoom
-    clickableIcons: false,   // Evita clics accidentales en POIs de Google
+    disableDefaultUI: false,
+    clickableIcons: false,
   };
 
   constructor(
@@ -59,9 +61,10 @@ export class Restauranteregistrar implements OnInit { // Renombré la clase por 
     private formBuilder: FormBuilder,
     private route: ActivatedRoute
   ) {}
+
   volverAPadre() {
-  this.router.navigate(['../'], { relativeTo: this.route });
-}
+    this.router.navigate(['../'], { relativeTo: this.route });
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
@@ -72,77 +75,113 @@ export class Restauranteregistrar implements OnInit { // Renombré la clase por 
 
     this.form = this.formBuilder.group({
       codigo: [''],
+
       nombre: ['', Validators.required],
-      ubicacion: ['', Validators.required], // Aquí guardaremos la dirección
+
+      ubicacion: [
+        '',
+        Validators.required
+      ],
+
       cocinatip: ['', Validators.required],
-      Tiempo: ['', Validators.required],
-      numero: [''],
+
+      Tiempo: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(/^.{3,40}$/) // mínimo 3 caracteres, máximo 40
+        ])
+      ],
+
+      numero: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern('^[0-9]+$'),
+          Validators.minLength(7),
+          Validators.maxLength(9)
+        ])
+      ]
     });
   }
 
   aceptar(): void {
-    if (this.form.valid) {
-      this.re.id_restaurante = this.form.value.codigo;
-      this.re.nombre_restaurante = this.form.value.nombre;
-      this.re.direccion = this.form.value.ubicacion;
-      this.re.tipo_cocina = this.form.value.cocinatip;
-      this.re.horario = this.form.value.Tiempo;
-      this.re.contacto = this.form.value.numero; // Corregido: era 'presupuesto' en tu código anterior
+    if (!this.form.valid) return;
 
-      if (this.edicion) {
-        this.rS.update(this.re).subscribe((data) => {
-          this.rS.list().subscribe((data) => {
-            this.rS.setList(data);
-          });
-        });
-      } else {
-        this.rS.insert(this.re).subscribe((data) => {
-          this.rS.list().subscribe((data) => {
-            this.rS.setList(data);
-          });
-        });
-      }
-      this.router.navigate(['restaurante']);
+    this.re.id_restaurante = this.form.value.codigo;
+    this.re.nombre_restaurante = this.form.value.nombre;
+    this.re.direccion = this.form.value.ubicacion;
+    this.re.tipo_cocina = this.form.value.cocinatip;
+    this.re.horario = this.form.value.Tiempo;
+    this.re.contacto = this.form.value.numero;
+
+    if (this.edicion) {
+      this.rS.update(this.re).subscribe(() => {
+        this.rS.list().subscribe(data => this.rS.setList(data));
+      });
+    } else {
+      this.rS.insert(this.re).subscribe(() => {
+        this.rS.list().subscribe(data => this.rS.setList(data));
+      });
     }
+
+    this.router.navigate(['restaurante']);
   }
 
   init() {
     if (this.edicion) {
       this.rS.listId(this.id).subscribe((data) => {
+        this.markerPosition = undefined; // no marcamos en mapa la edición
+
         this.form = new FormGroup({
           codigo: new FormControl(data.id_restaurante),
-          nombre: new FormControl(data.nombre_restaurante),
-          ubicacion: new FormControl(data.direccion),
-          cocinatip: new FormControl(data.tipo_cocina),
-          Tiempo: new FormControl(data.horario),
-          numero: new FormControl(data.contacto),
+
+          nombre: new FormControl(data.nombre_restaurante, Validators.required),
+
+          ubicacion: new FormControl(data.direccion, Validators.required),
+
+          cocinatip: new FormControl(data.tipo_cocina, Validators.required),
+
+          Tiempo: new FormControl(
+            data.horario,
+            Validators.compose([
+              Validators.required,
+              Validators.pattern(/^.{3,40}$/)
+            ])
+          ),
+
+          numero: new FormControl(
+            data.contacto,
+            Validators.compose([
+              Validators.required,
+              Validators.pattern('^[0-9]+$'),
+              Validators.minLength(7),
+              Validators.maxLength(9)
+            ])
+          ),
         });
       });
     }
   }
 
-  // 3. LÓGICA DEL MAPA: AL HACER CLIC
+
   seleccionarUbicacion(event: google.maps.MapMouseEvent) {
     if (event.latLng) {
+
       this.markerPosition = event.latLng.toJSON();
-      // Llamamos a la función para obtener el nombre de la calle
+
       this.obtenerDireccion(this.markerPosition);
     }
   }
 
-  // 4. GEOCODING: CONVERTIR COORDENADAS A TEXTO
+
   obtenerDireccion(latLng: google.maps.LatLngLiteral) {
     const geocoder = new google.maps.Geocoder();
     geocoder.geocode({ location: latLng }, (results, status) => {
       if (status === 'OK' && results && results[0]) {
         const direccion = results[0].formatted_address;
-        
-        console.log('Dirección encontrada:', direccion);
 
-        // Actualizamos el campo 'ubicacion' del formulario
-        this.form.patchValue({
-          ubicacion: direccion
-        });
+        this.form.patchValue({ ubicacion: direccion });
       } else {
         console.error('Error al geocodificar: ' + status);
       }
