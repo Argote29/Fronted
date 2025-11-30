@@ -4,12 +4,13 @@
 :host {
     /* Define tus colores como variables CSS */
     --color-dark-green: #083E2E;
-    --color-primary: #1B906E;
+    --color-primary: #1B906E; /* Verde para botones y estrellas llenas */
     --color-mid-green: #15664E;
     --color-accent-1: #A4F47E;
     --color-accent-2: #C2FFC8;
     --color-background: #E9FFE7;
     --color-error: #f44336;
+    --color-star-empty: #ccc; /* Gris para estrellas vacías */
 }
 
 /* Fondo principal limpio */
@@ -37,10 +38,13 @@
     background: white;
     padding: 40px 30px;
     border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); 
     max-width: 500px;
     width: 100%;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espacio entre secciones */
 }
 
 form {
@@ -54,24 +58,25 @@ form {
 }
 
 /* ------------------------------------------------ */
-/* 2.3. Estilo de Campos de Formulario (Angular Material) */
+/* 2.3. Estilo de Campos de Formulario */
 /* ------------------------------------------------ */
 mat-form-field {
     width: 100%;
 }
 
-/* Estilo para un look de campo minimalista y moderno */
-:host ::ng-deep .mat-mdc-text-field-wrapper {
-    background-color: var(--color-accent-2); /* Fondo suave en los campos */
+/* Estilo de apariencia para inputs y selects */
+:host ::ng-deep .mat-mdc-text-field-wrapper,
+:host ::ng-deep .mat-mdc-select-trigger {
+    background-color: var(--color-accent-2); 
     border-radius: 8px !important;
 }
 
-/* Color del borde de foco (focus) */
+/* Color del borde de foco */
 :host ::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-form-field-outline-thick {
     color: var(--color-primary) !important;
 }
 
-/* Estilo de la etiqueta (Label) cuando está en el campo */
+/* Estilo de la etiqueta */
 :host ::ng-deep .mat-mdc-form-field-label {
     color: var(--color-mid-green) !important;
 }
@@ -82,43 +87,39 @@ mat-form-field {
 }
 
 /* ------------------------------------------------ */
-/* 2.4. Estilo de Radio Buttons */
+/* 2.4. Estilo de Calificación (Rating Stars) */
 /* ------------------------------------------------ */
-.radio-group-container {
-    padding: 10px 15px;
+.rating-section {
+    padding: 15px 0;
     border: 1px solid var(--color-accent-2);
     border-radius: 8px;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    margin: 10px 0;
 }
 
-.radio-label {
-    color: var(--color-mid-green);
-    font-size: 0.9em;
-    font-weight: 500;
-    margin-bottom: 5px;
+.rating-label {
     display: block;
+    color: var(--color-mid-green);
+    font-weight: 600;
+    margin-bottom: 10px;
 }
 
-.custom-radio-group {
-    display: flex;
-    gap: 20px;
+.rating-stars mat-icon {
+    font-size: 30px;
+    cursor: pointer;
+    color: var(--color-star-empty); /* Color por defecto: gris */
+    transition: color 0.2s;
 }
 
-/* Color del radio button activo */
-:host ::ng-deep .mat-mdc-radio-button.mat-mdc-checked .mat-mdc-radio-outer-circle {
-    border-color: var(--color-primary) !important;
-}
-:host ::ng-deep .mat-mdc-radio-button.mat-mdc-checked .mat-mdc-radio-inner-circle {
-    background-color: var(--color-primary) !important;
+.rating-stars mat-icon.filled {
+    color: var(--color-primary); /* Color Verde Primario cuando está llena */
 }
 
-.radio-error {
+.rating-error {
     color: var(--color-error);
     font-size: 0.75em;
     margin-top: 5px;
+    display: block;
+    text-align: center;
 }
 
 
@@ -158,27 +159,4 @@ mat-form-field {
 
 .cancel-button:hover {
     background-color: var(--color-accent-1) !important; 
-}
-.rating {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 10px 0 5px 0;
-}
-
-.rating mat-icon {
-  font-size: 40px !important;   /* ⭐ AUMENTA EL TAMAÑO */
-  width: 40px !important;
-  height: 40px !important;
-  cursor: pointer;
-  color: #ccc; /* color gris para estrellas vacías */
-  transition: 0.2s ease;
-}
-
-.rating mat-icon.filled {
-  color: var(--color-primary) !important; /* ⭐ Color verde cuando está llena */
-}
-
-.rating mat-icon:hover {
-  transform: scale(1.2); /* Efecto bonito al pasar el mouse */
 }

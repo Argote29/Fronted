@@ -2,178 +2,181 @@
 /* 2.1. Definición de Variables y Contenedor Principal */
 /* ------------------------------------------------ */
 :host {
-    /* Define tus colores como variables CSS */
-    --color-dark-green: #083E2E;
-    --color-primary: #1B906E; /* Éxito, Botón principal */
-    --color-mid-green: #15664E; 
-    --color-accent-2: #C2FFC8; /* Fondo de inputs */
-    --color-background: #E9FFE7; /* Fondo principal */
-    --color-error: #f44336; /* Falla */
-    --color-success: #388e3c; /* Éxito */
+  /* Define tus colores como variables CSS */
+  --color-dark-green: #083E2E;
+  --color-primary: #1B906E; /* Éxito, Botón principal */
+  --color-mid-green: #15664E; 
+  --color-accent-2: #C2FFC8; /* Fondo de inputs */
+  --color-background: #E9FFE7; /* Fondo principal */
+  --color-error: #f44336; /* Falla */
+  --color-success: #388e3c; /* Éxito */
 }
 
 /* Fondo principal limpio */
 .main-container {
-    background-color: var(--color-background); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+  background-color: var(--color-background); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  font-family: Arial, sans-serif;
 }
 
 /* ------------------------------------------------ */
 /* 2.2. Estilo de Tarjeta de Pago */
 /* ------------------------------------------------ */
 .payment-card {
-    background: white;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); 
-    max-width: 450px;
-    width: 100%;
-    text-align: center;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); 
+  max-width: 450px;
+  width: 100%;
+  text-align: center;
 }
 
 .payment-title {
-    color: var(--color-dark-green);
-    font-size: 1.8em;
-    font-weight: 700;
-    margin-bottom: 10px;
+  color: var(--color-dark-green);
+  font-size: 1.8em;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .description {
-    color: var(--color-mid-green);
-    margin-bottom: 25px;
-    font-size: 0.95em;
+  color: var(--color-mid-green);
+  margin-bottom: 25px;
+  font-size: 0.95em;
 }
 
 /* ------------------------------------------------ */
 /* 2.3. Estilo de Formulario y Campos */
 /* ------------------------------------------------ */
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .form-group {
-    text-align: left;
+  text-align: left;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 600;
-    color: var(--color-mid-green);
-    font-size: 0.9em;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: var(--color-mid-green);
+  font-size: 0.9em;
 }
 
-.form-group input, .pay-button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    background-color: var(--color-accent-2); 
-    box-sizing: border-box;
-    transition: box-shadow 0.2s;
+/* 🔑 MODIFICADO: Aplicar estilos a input y select */
+.form-group input, .form-group select, .pay-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-accent-2); 
+  box-sizing: border-box;
+  transition: box-shadow 0.2s;
+    appearance: none; /* Mejorar apariencia del select */
 }
 
-.form-group input:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px var(--color-primary); 
-    background-color: white;
+/* 🔑 MODIFICADO: Aplicar foco a input y select */
+.form-group input:focus, .form-group select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-primary); 
+  background-color: white;
 }
 
 .error-message {
-    color: var(--color-error);
-    font-size: 0.8em;
-    margin-top: 4px;
-    font-weight: 500;
+  color: var(--color-error);
+  font-size: 0.8em;
+  margin-top: 4px;
+  font-weight: 500;
 }
 
 .inline-group {
-    display: flex;
-    gap: 15px;
+  display: flex;
+  gap: 15px;
 }
 
 .half-width {
-    flex: 1;
+  flex: 1;
 }
 
 /* ------------------------------------------------ */
 /* 2.4. Estilo del Botón de Pago */
 /* ------------------------------------------------ */
 .pay-button {
-    margin-top: 20px;
-    background-color: var(--color-primary);
-    color: white;
-    font-weight: 700;
-    font-size: 1.1em;
-    cursor: pointer;
-    transition: background-color 0.2s, opacity 0.2s;
+  margin-top: 20px;
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: 700;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s;
 }
 
 .pay-button:hover:not([disabled]) {
-    background-color: var(--color-mid-green);
+  background-color: var(--color-mid-green);
 }
 
 .pay-button[disabled] {
-    opacity: 0.6;
-    cursor: not-allowed;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* ------------------------------------------------ */
 /* 2.5. Estilos de Resultado */
 /* ------------------------------------------------ */
 .divider {
-    border: none;
-    height: 1px;
-    background-color: var(--color-accent-2);
-    margin: 30px 0;
+  border: none;
+  height: 1px;
+  background-color: var(--color-accent-2);
+  margin: 30px 0;
 }
 
 .result-box {
-    padding: 15px;
-    border-radius: 8px;
-    text-align: left;
-    margin-top: 15px;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: left;
+  margin-top: 15px;
 }
 
 .result-box h3 {
-    margin-top: 0;
-    font-size: 1.2em;
+  margin-top: 0;
+  font-size: 1.2em;
 }
 
 .result-box.processing {
-    background-color: #fff3cd; 
-    color: #856404;
-    border: 1px solid #ffeeba;
-    text-align: center;
+  background-color: #fff3cd; 
+  color: #856404;
+  border: 1px solid #ffeeba;
+  text-align: center;
 }
 
 .result-box.success {
-    background-color: #d4edda;
-    color: var(--color-success);
-    border: 1px solid var(--color-primary);
+  background-color: #d4edda;
+  color: var(--color-success);
+  border: 1px solid var(--color-primary);
 }
 
 .result-box.failure, .result-box.error {
-    background-color: #f8d7da;
-    color: var(--color-error);
-    border: 1px solid var(--color-error);
+  background-color: #f8d7da;
+  color: var(--color-error);
+  border: 1px solid var(--color-error);
 }
 .cancel-button {
-    background-color: transparent !important;
-    color: var(--color-primary) !important;
-    border-radius: 8px;
-    font-weight: 600;
-    padding: 10px 20px;
-    width: 100%; /* El botón ocupa todo el ancho */
-    flex-grow: 1;
+background-color: transparent !important;
+color: var(--color-primary) !important;
+border-radius: 8px;
+font-weight: 600;
+  padding: 10px 20px;
+  width: 100%; /* El botón ocupa todo el ancho */
+  flex-grow: 1;
 }
 
 .cancel-button:hover {
-    background-color: var(--color-accent-1) !important; 
+background-color: var(--color-accent-2) !important; /* Usar color claro para el hover */
 }

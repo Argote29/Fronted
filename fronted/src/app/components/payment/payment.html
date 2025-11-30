@@ -2,11 +2,20 @@
   <div class="form-card payment-card">
     
     <h2 class="title payment-title">Pago</h2>
-    <p class="description">Realice el pago para que su suscripcion esté cancelada y luego comunícate con un administrador para que sea registrada.</p>
-
+    <p class="description">Realice el pago para que su suscripcion o reserva esté cancelada y luego comunícate con un administrador para que sea registrada.</p>
+    
     <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
-
-      <div class="form-group full-width">
+        <div class="form-group full-width">
+        <label for="paymentType">Tipo de Pago</label>
+          <select id="paymentType" formControlName="paymentType" required>
+             <option *ngFor="let option of paymentOptions" [value]="option.type">
+              {{ option.label}}
+            </option>
+        </select><div *ngIf="paymentForm.get('paymentType')?.invalid && (paymentForm.get('paymentType')?.dirty || paymentForm.get('paymentType')?.touched)" class="error-message">
+          Debe seleccionar el tipo de transacción.
+        </div>
+      </div>
+ <div class="form-group full-width">
         <label for="cardNumber">Número de Tarjeta (16 dígitos)</label>
         <input id="cardNumber" type="text" formControlName="cardNumber" maxlength="16" placeholder="0000 1111 2222 3334" required>
         <div *ngIf="paymentForm.get('cardNumber')?.invalid && (paymentForm.get('cardNumber')?.dirty || paymentForm.get('cardNumber')?.touched)" class="error-message">

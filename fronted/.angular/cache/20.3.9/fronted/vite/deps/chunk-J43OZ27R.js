@@ -2,16 +2,16 @@ import {
   MAT_RIPPLE_GLOBAL_OPTIONS,
   RippleRenderer,
   defaultRippleAnimationConfig
-} from "./chunk-U2JK7K4R.js";
+} from "./chunk-SODLU5P5.js";
 import {
   _animationsDisabled
-} from "./chunk-JEB4ZOTS.js";
+} from "./chunk-7TWQE2Q3.js";
 import {
   _getEventTarget
-} from "./chunk-UWUODZH3.js";
+} from "./chunk-456OVAEK.js";
 import {
   Platform
-} from "./chunk-WCLRD6CR.js";
+} from "./chunk-2IDUV5PP.js";
 import {
   DOCUMENT,
   Injectable,
@@ -163,4 +163,4 @@ var MatRippleLoader = class _MatRippleLoader {
 export {
   MatRippleLoader
 };
-//# sourceMappingURL=chunk-QP6GGGHK.js.map
+//# sourceMappingURL=chunk-J43OZ27R.js.map
