@@ -43,6 +43,7 @@ import { Reporteingredientesplatopororigen } from './components/reporteingredien
 import { Reporteusuariomasresena } from './components/reporteusuariomasresena/reporteusuariomasresena';
 import { Historial } from './components/historial/historial';
 import { PaymentComponent } from './components/payment/payment';
+import { RestaurantesMasVariedadPlatosComponent } from './components/reporterestaurantemasvariedaddeplatos/reporterestaurantemasvariedaddeplatos';
 
 export const routes: Routes = [
   { path: '', component: LandingPage, pathMatch: 'full' }, // Landing Page al inicio
@@ -189,6 +190,9 @@ export const routes: Routes = [
   {
     path:'reporteusuarioresenas',component: Reporteusuariomasresena
   },
+   {
+  path: 'reporterestaurantemasvariedaddeplatos', component: RestaurantesMasVariedadPlatosComponent
+},
   {
     path:'pago',component: PaymentComponent
   }

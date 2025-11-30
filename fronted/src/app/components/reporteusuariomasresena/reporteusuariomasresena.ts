@@ -3,8 +3,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { ServiceUsuario } from '../../services/service-usuario';
 import { ChartDataset, ChartOptions, ChartType } from 'chart.js';
-import { QueryusuarioMasResenadodto } from '../../models/QueryUsuarioMasResenado';
-
 @Component({
   selector: 'app-reporteusuariomasresena',
   imports: [MatIconModule, BaseChartDirective],
