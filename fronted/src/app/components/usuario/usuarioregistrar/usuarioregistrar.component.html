@@ -71,6 +71,9 @@
         <mat-error>
           @if (form.get('telefono')?.hasError('required')) { Ingrese el teléfono!! }
           @if (form.get('telefono')?.hasError('maxlength')) { Máximo 13 caracteres!! }
+          @if (form.get('telefono')?.hasError('minlength')){ Minimo 9 caracteres!! }
+
+          
           <!-- Se asume que el patrón de validación en el TS fue actualizado para permitir el formato 9 dígitos -->
           <!-- @if (form.get('telefono')?.hasError('pattern')) { El formato debe ser +51 seguido de 9 dígitos!! } -->
         </mat-error>
