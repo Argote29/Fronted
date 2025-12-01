@@ -24,8 +24,8 @@ export const appConfig: ApplicationConfig = {
       JwtModule.forRoot({
         config: {
           tokenGetter: tokenGetter,
-          allowedDomains: ['localhost:8080'],
-          disallowedRoutes: ['http://localhost:8080/login/forget'],
+          allowedDomains: ['vegetariano-api.onrender.com'],
+          disallowedRoutes: ['https://vegetariano-api.onrender.com/login','https://vegetariano-api.onrender.com/login/forget'],
         },
       })
     )
