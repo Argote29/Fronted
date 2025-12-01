@@ -38,7 +38,7 @@ export class LoginService {
   // ----------------------------------------------------
   
   private apiUrl = 'https://vegetariano-api.onrender.com/login';
-  private apiIdUrl = 'https://vegetariano-api.onrender.com/id-por-correo'; 
+  private apiIdUrl = 'https://vegetariano-api.onrender.com/usuarios/id-por-correo'; 
 
   login(request: JwtRequestDTO) {
     return this.http.post(this.apiUrl, request);
